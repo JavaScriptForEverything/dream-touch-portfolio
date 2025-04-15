@@ -40,6 +40,7 @@ export * from './githubIcon'
 export * from './linkedInIcon'
 export * from './twitterIcon'
 export * from './facebookIcon'
+export * from './whatsAppIcon'
 export * from './youtubeIcon'
 export * from './instragramIcon'
 

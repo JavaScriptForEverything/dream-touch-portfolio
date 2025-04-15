@@ -22,3 +22,4 @@ export * from './clientLikeDislike'
 
 
 export * from './embadedMap'
+export * from './whatsappChat'

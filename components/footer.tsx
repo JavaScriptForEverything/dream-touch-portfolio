@@ -2,6 +2,7 @@ import { ArrowRightIcon } from '@/icons'
 import FooterBlock from './footer/footerBlock'
 import { contactInfo, socialMediaItems } from '@/data'
 import { EmbeddedMap } from '@/components'
+import WhatsappChat from './whatsappChat'
 
 
 
@@ -79,8 +80,9 @@ export const Footer = ({ className }: Props) => {
 						</a>
 					</div>
 				))}
-
 			</div>
+
+			<WhatsappChat />
 
 			<p className='py-1 bg-[rgb(32,32,32)] text-center' > All Right Reserved &copy;HashTAG </p>
 		</footer>
