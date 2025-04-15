@@ -22,7 +22,11 @@ export const metadata: Metadata = {
 const Home = () => {
 
 	return (
-		<div className='min-h-screen w-full container mx-auto flex flex-col gap-4 px-2 md:px-0'>
+		<div className='container mx-auto px-6 md:px-0 min-h-screen w-full flex flex-col gap-4 '>
+
+			<p className="">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto deleniti mollitia blanditiis earum error doloremque ipsam adipisci vel excepturi ab reiciendis labore, beatae quaerat provident autem deserunt corrupti, culpa debitis?
+			</p>
 
 			{/* Block-1: Search bar for mobile view only */}
 			{/* <div data-name='search bar for mobile view' className='md:hidden grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 my-4'>

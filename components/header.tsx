@@ -17,42 +17,39 @@ type Props = {
 export const Header = async ({}: Props) => {
 
 	return (
-		<div className="
-			sticky top-0 z-20 bg-slate-900/40 text-slate-50
-			p-4 
+		<div className=" sticky top-0 z-20 bg-[#292929] text-slate-50 py-4 ">
+			<div className="container mx-auto px-6 md:px-0 flex items-center gap-4">
+				<Link href='/' className='mr-12' >
+					<Image 
+						src='/logo.svg'
+						alt='/logo.svg'
+						width={80}
+						height={80}
+					/>
+				</Link>
 
-			flex items-center gap-4
-		">
-			<Link href='/' >
-				<Image 
-					src='/logo.svg'
-					alt='/logo.svg'
-					width={80}
-					height={80}
-				/>
-			</Link>
-
-			<nav className="hidden md:flex gap-4">
-				{headerNavItems.map( ({ label, path }) => (
-					<a key={label} href={path} className='hover:text-red-500 transition-colors duration-300 uppercase ' >{label}</a>
-				))}
-			</nav>
+				<nav className="hidden md:flex gap-4">
+					{headerNavItems.map( ({ label, path }) => (
+						<a key={label} href={path} className='hover:text-red-500 transition-colors duration-300 uppercase ' >{label}</a>
+					))}
+				</nav>
 
 
 
-			<div className="ml-auto">
-				<p className="flex flex-col">
-					<span className='font-extralight'>Have any questions?</span>
-					<a href='tel:+8801713776555' className='font-extrabold text-lg'>+8801713776555</a>
-				</p>
-			</div>
+				<div className="ml-auto">
+					<p className="flex flex-col">
+						<span className='font-extralight'>Have any questions?</span>
+						<a href='tel:+8801713776555' className='font-extrabold text-lg'>+8801713776555</a>
+					</p>
+				</div>
 
-			<div className="hidden md:block shrink-0">
-				<GetAQuoteButton />
-			</div>
+				<div className="hidden md:block shrink-0">
+					<GetAQuoteButton />
+				</div>
 
-			<div className="block md:hidden shrink-0">
-				<HomeMenuButton />
+				<div className="block md:hidden shrink-0">
+					<HomeMenuButton />
+				</div>
 			</div>
 
 

@@ -19,8 +19,8 @@ const FooterBlock = ({ children, title }: Props) => {
 
 	return (
 		<>
-			<section className={`container mx-auto ${poppins.className}`}>
-				<div className="px-12 py-8">
+			<section className={`${poppins.className}`}>
+				<div className="py-8">
 					<p className='uppercase pb-2 text-sm font-bold'>{title}</p>
 					<div className="flex items-baseline mb-8">
 						<div className="h-1 bg-red-500 w-4"></div>
