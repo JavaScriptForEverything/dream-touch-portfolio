@@ -37,8 +37,8 @@ const RootLayout = ({ children, }: Props) => {
       {/* <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} > */}
       <body className={`${roboto.className}`} >
 				<ReduxProvider>
-						<DrawerPanel /> 
-       			{children}
+					<DrawerPanel /> 
+					{children}
 				</ReduxProvider>
       </body>
     </html>

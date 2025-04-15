@@ -1,8 +1,12 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { HomeMenuButton } from './homeMenuButton'
-import { cartLabel, topRightConrnerMenuItems } from '@/data'
+// import { cartLabel, topRightConrnerMenuItems } from '@/data'
 import { SearchWithFilter } from './searchWithFilter'
 import { ClientBadge } from './clientBadge'
+import { MessageIcon } from '@/icons'
+import GetAQuoteButton from './quoteButton'
+import { headerNavItems } from '@/data'
 
 
 type Props = {
@@ -13,8 +17,51 @@ type Props = {
 export const Header = async ({}: Props) => {
 
 	return (
+		<div className="
+			sticky top-0 z-20 bg-slate-900/40 text-slate-50
+			p-4 
+
+			flex items-center gap-4
+		">
+			<Link href='/' >
+				<Image 
+					src='/logo.svg'
+					alt='/logo.svg'
+					width={80}
+					height={80}
+				/>
+			</Link>
+
+			<nav className="hidden md:flex gap-4">
+				{headerNavItems.map( ({ label, path }) => (
+					<a key={label} href={path} className='hover:text-red-500 transition-colors duration-300 uppercase ' >{label}</a>
+				))}
+			</nav>
+
+
+
+			<div className="ml-auto">
+				<p className="flex flex-col">
+					<span className='font-extralight'>Have any questions?</span>
+					<a href='tel:+8801713776555' className='font-extrabold text-lg'>+8801713776555</a>
+				</p>
+			</div>
+
+			<div className="hidden md:block shrink-0">
+				<GetAQuoteButton />
+			</div>
+
+			<div className="block md:hidden shrink-0">
+				<HomeMenuButton />
+			</div>
+
+
+		</div>
+	)
+
+	return (
 		<div className='sticky top-0 z-50 bg-slate-50'>
-			
+
 			{/* 1. main header  */}
 			<div className='h-16 flex items-center gap-2 px-2 md:px-0 md:container md:mx-auto'>
 
@@ -28,7 +75,7 @@ export const Header = async ({}: Props) => {
 				</div>
 
 				<div className='flex-1 hidden md:flex items-center justify-center  '>
-					<SearchWithFilter className='h-10' /> 
+					{/* <SearchWithFilter className='h-10' />  */}
 				</div>
 
 				{/* -----[ to-right-corner section ]----- */}

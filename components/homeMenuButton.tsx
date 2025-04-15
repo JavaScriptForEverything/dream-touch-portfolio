@@ -13,7 +13,8 @@ export const HomeMenuButton = () => {
 
 	return (
 		<>
-			<button onClick={toggleDrawer} className='md:hidden text-slate-500 hover:text-slate-600 active:text-slate-800'>
+			<button onClick={toggleDrawer} className='md:hidden text-slate-50 
+			hover:text-red-500 active:text-red-600'>
 				<MenuIcon fontSize={32} />
 			</button>
 		</>

@@ -1,10 +1,14 @@
 import { HomeIcon, MailIcon, PersonIcon, ArticleIcon, HeartIcon, CartIcon } from '@/icons'
 
-export const headerItems = [
-	{ label: 'home', 		path: '/', 				Icon: HomeIcon  },
-	{ label: 'about', 	path: '/about', 	Icon: PersonIcon  },
-	{ label: 'contact', path: '/contact', Icon: MailIcon },
-	{ label: 'docs', 		path: '/docs', 		Icon: ArticleIcon },
+
+export const headerNavItems = [
+	{ label: 'home', 			path: '/', 						Icon: HomeIcon  },
+	{ label: 'portfolio', path: '/portfolio', 	Icon: PersonIcon  },
+	{ label: 'service', 	path: '/service', 		Icon: PersonIcon  },
+	{ label: 'blog', 			path: '/blog', 				Icon: ArticleIcon },
+	{ label: 'about us', 	path: '/about-us', 		Icon: PersonIcon  },
+	{ label: 'contact us', path: '/contact-us', Icon: MailIcon },
+	{ label: 'e-catalogue', path: '/e-catalogue', Icon: ArticleIcon },
 ]
 
 export const cartLabel = 'my cart' 	// based on cartLabel => <Badge> <CartIcon /> </Badge>

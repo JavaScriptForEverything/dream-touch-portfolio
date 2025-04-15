@@ -64,5 +64,6 @@ export * from './alignRight'
 export * from './alignCenter'
 export * from './alignJustify'
 
+export * from './messageIcon'
 export * from './likeIcon'
 export * from './dislikeIcon'
