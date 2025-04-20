@@ -3,6 +3,9 @@ export * from './phoneIcon'
 export * from './emailIcon'
 export * from './locationIcon'
 
+export * from './wranchIcon'
+export * from './portfolioIcon'
+export * from './blogIcon'
 
 
 

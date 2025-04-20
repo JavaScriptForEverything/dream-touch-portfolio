@@ -35,9 +35,11 @@ export const Drawer = (props: Props) => {
 			<div className={overlayClasses} onClick={onClose} />
 		)}
 		<div className={drawerClasses}>
-			<div className="p-4">
-				<button className="text-gray-500" onClick={onClose}> Close </button>
+			<div className="relative">
 				{children}
+				<button className="text-red-500 absolute top-1 right-1 z-40 cursor-pointer
+				hidden
+				" onClick={onClose}> Close </button>
 			</div>
 		</div>
 		</>

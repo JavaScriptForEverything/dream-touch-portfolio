@@ -1,0 +1,5 @@
+
+in home page
+	- youtube video loading slow down page load
+
+	
