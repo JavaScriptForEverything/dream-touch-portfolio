@@ -339,3 +339,10 @@ export const capitalize = (str: string) => {
 //     grandTotal: parseFloat(grandTotal.toFixed(2)),
 //   };
 // }
+
+
+
+const maxLength = (str: string, length: 200 ) => {
+	
+	return str.length > length ? str.slice(0, length) + '...' : str	
+}

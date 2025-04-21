@@ -19,7 +19,7 @@ export const Header = async ({}: Props) => {
 
 	return (
 		<div className=" max-h-20 sticky top-0 z-20 bg-[#292929] text-slate-50 py-4">
-			<div className="container mx-auto px-6 md:px-0 flex items-center gap-4">
+			<div className="container mx-auto px-6 lg:px-12 flex items-center gap-4">
 				<Link href='/' className='mr-12' >
 					<Image 
 						src='/logo.svg'

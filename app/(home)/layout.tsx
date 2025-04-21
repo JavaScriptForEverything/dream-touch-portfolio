@@ -16,11 +16,11 @@ const HomeLayout = ({ children }: Props) => {
   return (
 		<>
 		<head>
-			{/* <link rel="icon" href="/favicon.png" /> */}
+			<link rel="icon" href="/favicon.png" />
 		</head>
 		<div className=''>
 			<Header />
-			<div className="container mx-auto px-6 md:px-0">
+			<div className="container mx-auto px-6 xl:px-12 ">
 				{children}
 			</div>
 			<Footer />

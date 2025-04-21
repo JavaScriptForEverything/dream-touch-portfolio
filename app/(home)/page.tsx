@@ -1,8 +1,10 @@
 import type { Metadata } from "next"
 import Image from 'next/image'
-import { VideoGallery } from '@/components'
-import FooterBlock from '@/components/footer/footerBlock'
 import { clientImages } from '@/data/home'
+import { ArrowRight } from 'lucide-react'
+import { MessageIcon, StarIcon } from '@/icons'
+import GoogleReview from '@/components/home/googleReview'
+// import FooterBlock from '@/components/footer/footerBlock'
 
 
 // const productItems = [
@@ -24,7 +26,7 @@ const Home = () => {
 	return (
 		<div className='min-h-screen w-full flex flex-col gap-8'>
 
-			<div data-name="hero-image-container" className='-mx-6' >
+			<div data-name="hero-image-container" className='-mx-12' >
 				<div data-name="hero-image" className='relative h-72 md:h-96 bg-red-500 text-red-700 '>
 					<Image 
 						src='/images/home/hero-image.png'
@@ -66,6 +68,146 @@ const Home = () => {
 			</div>
 
 			<div data-name="hero-content-container" className='text-slate-600 font-light '>
+				<h1 className=' 
+					text-slate-800
+					text-shadow-2xs
+				 text-4xl md:text-4xl font-extrabold my-4 capitalize mb-8 '>
+					We provide the best interior design services in Bangladesh
+				</h1>
+
+				<p className="text-slate-600 text-center text-xl ">
+					As a leading interior design company in Bangladesh, we provide the best interior design services. We have professional designers who create beautiful, functional environments that reflect your unique style and vision. Transform your space with the best interior designs today!
+				</p>
+			</div>
+
+
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 ">
+
+				{clientImages.map((item) => (
+					<div key={item.image} className="
+					border
+					border-red-200 hover:outline 
+					hover:border-red-300
+					hover:outline-red-400/40 
+
+					rounded-3xl
+					bg-slate-100
+					p-6
+					group
+					">
+						<Image 
+							src={item.image}
+							alt={item.image}
+							width={350}
+							height={250}
+							className='w-full rounded-3xl h-60 
+							group-hover:scale-110 duration-500 
+							'
+						/>
+
+						<div className="p-4 bg-slate-100">
+							<a href={item.url}>
+								<h3 className='text-red-700 font-extrabold text-lg truncate overflow-hidden whitespace-nowrap hover:text-red-700 '>{item.title}</h3>
+							</a>
+							<p className="border-b border-red-700 my-4 w-0 group-hover:w-full
+							duration-500
+							"></p>
+
+							<p className='text-slate-600 line-clamp-2 my-2 '>{item.description}</p>
+							<div className="flex justify-end">
+								<a href={item.url} className='
+								
+									p-3 rounded-full
+									-rotate-45
+
+									text-red-600
+									bg-red-100 
+
+									group-hover:bg-red-600
+									group-hover:text-slate-50	
+									group-active:bg-red-700
+									group-active:text-slate-50	
+
+								'>
+									<ArrowRight className='w-6 h-6 inline-block ' />
+								</a>
+							</div>
+					</div>
+
+					</div>
+				))}
+			</div>
+
+
+			<div className="flex gap-2 justify-center items-center ">
+				<div className="
+					bg-red-600
+					text-slate-50
+					hover:bg-slate-600
+					flex gap-2 justify-center items-center
+					rounded-xl
+					py-3 px-6
+					transition-all
+					duration-500
+
+					relative 
+					group
+					overflow-hidden
+				">
+					<a href='#' className='z-10'>Book An Appointment</a>
+					<a href='#' className='z-10'>
+						<MessageIcon fontSize={32} className='text-white' />
+					</a>
+					<div className="
+						absolute inset-0
+					bg-slate-600
+						translate-x-full
+						group-hover:translate-x-0
+						duration-500 
+						z-0
+					"></div>
+				</div>
+			</div>
+
+
+			<div data-name="clients-container" className=' p-8 border border-slate-300 rounded text-red-600 font-extrabold mt-8'>
+				<h2 className='uppercase text-2xl mb-4'>Our Happy Clients</h2>
+				<div className="grid grid-cols-3 md:grid-cols-6 gap-2">
+
+					{clientImages.map((item) => (
+						<a href='' title={item.title} key={item.image} className="p-4 w-auto h-auto border border-red-500/70 rounded hover:outline hover:outline-red-500/40 ">
+							<Image 
+								src={item.image}
+								alt={item.image}
+								width={250}
+								height={250}
+								className=' hover:scale-110 duration-200 '
+							/>
+						</a>
+					))}
+				</div>
+			</div>
+
+
+			<div data-name="ratting-container" className='text-red-600 font-extrabold '>
+				<h2 className='capitalize text-2xl mb-6'>What our clients say about us</h2>
+
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 ">
+					{[1, 2, 3, 4, 5, 6].map((item) => (
+
+						<GoogleReview key={item}
+							numberOfStars={5}
+							reviewText='I recently came across Barnomala Architect & Interior and Im absolutely thrilled with their services! The attention to detail, creativity, and professionalism they bring to the table is truly commendable. I highly recommend them for any interior design needs!'
+							reviewerName='John Doe'
+							reviewerImage='/images/user/default.jpg'
+						/>
+					))}
+				</div>
+
+
+			</div> 
+
+			{/* <div data-name="hero-content-container" className='text-slate-600 font-light '>
 				<h1 className=' text-red-600 text-3xl md:text-4xl font-extrabold my-4 capitalize '> Best interior design company in Bangladesh </h1>
 
 				<div className="flex flex-col md:flex-row gap-4 md:gap-8">
@@ -108,10 +250,10 @@ const Home = () => {
 				</div>
 
 
-			</div>
+			</div> */}
 
-			<div data-name="portfolio-container" className='
-					p-8 border border-slate-300 rounded
+			{/* <div data-name="portfolio-container" className=' p-8 
+					border border-slate-300 rounded
 			text-red-600 font-extrabold mt-8'>
 				<div className="mb-8">
 					<h2 className='capitalize text-2xl'>
@@ -121,8 +263,7 @@ const Home = () => {
 				</div>
 				
 
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2
-					">
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 ">
 
 						{clientImages.map((item) => (
 							<div key={item.image} className="w-auto h-auto border 
@@ -160,35 +301,13 @@ const Home = () => {
 						))}
 					</div>
 
-			</div>
-
-			<div data-name="clients-container" className='
-				p-8 border border-slate-300 rounded
-			
-			text-red-600 font-extrabold mt-8'>
-				<h2 className='uppercase text-2xl mb-4'>Our Happy Clients</h2>
-				
-				<div className="grid grid-cols-3 md:grid-cols-6 gap-2">
-
-					{clientImages.map((item) => (
-						<a href='' title={item.title} key={item.image} className="p-4 w-auto h-auto border border-red-500/70 rounded hover:outline hover:outline-red-500/40 ">
-							<Image 
-								src={item.image}
-								alt={item.image}
-								width={250}
-								height={250}
-								className=' hover:scale-110 duration-200 '
-							/>
-						</a>
-					))}
-				</div>
-			</div>
+			</div> */}
 
 
-			<div data-name="video-gallery-container" className='text-red-600 font-extrabold '>
+			{/* <div data-name="video-gallery-container" className='text-red-600 font-extrabold '>
 				<h2 className='uppercase text-2xl mb-4'>Video Gallery</h2>
 				<VideoGallery />
-			</div>
+			</div> */}
 
 
 
