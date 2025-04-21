@@ -1,9 +1,10 @@
 import type { Metadata } from "next"
 import Image from 'next/image'
-import { clientImages } from '@/data/home'
+import { clientImages, portfolioImages } from '@/data/home'
 import { ArrowRight } from 'lucide-react'
-import { MessageIcon, StarIcon } from '@/icons'
+import { MessageIcon, StarIcon, YoutubeIcon } from '@/icons'
 import GoogleReview from '@/components/home/googleReview'
+import AnimationButton from '@/components/animationButton'
 // import FooterBlock from '@/components/footer/footerBlock'
 
 
@@ -82,8 +83,7 @@ const Home = () => {
 
 
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 ">
-
-				{clientImages.map((item) => (
+				{portfolioImages.map((item) => (
 					<div key={item.image} className="
 					border
 					border-red-200 hover:outline 
@@ -139,40 +139,16 @@ const Home = () => {
 			</div>
 
 
-			<div className="flex gap-2 justify-center items-center ">
-				<div className="
-					bg-red-600
-					text-slate-50
-					hover:bg-slate-600
-					flex gap-2 justify-center items-center
-					rounded-xl
-					py-3 px-6
-					transition-all
-					duration-500
-
-					relative 
-					group
-					overflow-hidden
-				">
-					<a href='#' className='z-10'>Book An Appointment</a>
-					<a href='#' className='z-10'>
-						<MessageIcon fontSize={32} className='text-white' />
-					</a>
-					<div className="
-						absolute inset-0
-					bg-slate-600
-						translate-x-full
-						group-hover:translate-x-0
-						duration-500 
-						z-0
-					"></div>
-				</div>
-			</div>
+			<AnimationButton 
+				Icon={<MessageIcon fontSize={32} className='text-white' />}
+				text='Book An Appointment'
+				link='#'
+			/>
 
 
 			<div data-name="clients-container" className=' p-8 border border-slate-300 rounded text-red-600 font-extrabold mt-8'>
 				<h2 className='uppercase text-2xl mb-4'>Our Happy Clients</h2>
-				<div className="grid grid-cols-3 md:grid-cols-6 gap-2">
+				<div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-9 gap-2">
 
 					{clientImages.map((item) => (
 						<a href='' title={item.title} key={item.image} className="p-4 w-auto h-auto border border-red-500/70 rounded hover:outline hover:outline-red-500/40 ">
@@ -189,7 +165,7 @@ const Home = () => {
 			</div>
 
 
-			<div data-name="ratting-container" className='text-red-600 font-extrabold '>
+			<div data-name="review-container" className='mt-8 text-red-600 font-extrabold '>
 				<h2 className='capitalize text-2xl mb-6'>What our clients say about us</h2>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 ">
@@ -205,7 +181,137 @@ const Home = () => {
 				</div>
 
 
+				<div className="mt-8">
+					<AnimationButton 
+						Icon={<StarIcon className='text-white w-5 h-5' />}
+						text='Check All Reviews'
+						link='#'
+					/>
+				</div>
 			</div> 
+
+
+			<div data-name="recent-project-container" className='mt-12 text-slate-600 font-light '>
+				<h1 className=' 
+					text-slate-800
+					text-shadow-2xs
+				 text-2xl md:text-3xl font-extrabold my-4 capitalize mb-8 
+				 text-center
+				 '>
+					Recently completed interior projects
+				 </h1>
+
+				<p className="text-slate-600 text-center text-xl ">
+					As one of the best interior design companies in Bangladesh, our team has successfully delivered exceptional design solutions that exceed our client's expectations. Our completed projects speak for themselves and demonstrate our dedication to delivering innovative and functional designs.
+				</p>
+			</div>
+
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 ">
+
+				{portfolioImages.map((item) => (
+					<div key={item.title} className="
+						border border-red-400
+						rounded-lg
+						p-4
+						relative
+						h-80
+						overflow-hidden
+						group
+					">
+						<span data-name='hover-top-right-effect' className="
+						w-0 h-0 rounded-full bg-red-500
+						absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4
+						group-hover:w-24 group-hover:h-24 duration-500
+						transition-all
+						">
+						</span>
+
+
+						<Image 
+							// src='/images/home/portfolios/apartment-decor-r13paque78wtipjj12u3ofnnjvgiwt23rmsk70pi2w.webp'
+							src={item.image}
+							alt={item.image}
+							width={350}
+							height={350}
+							className='w-full rounded-lg h-80
+								absolute -bottom-2 -right-2
+							'
+						/>
+
+					<a href={item.url} >
+						<YoutubeIcon className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' fontSize={60} />
+					</a>
+
+						<span className="
+							absolute bottom-0 right-0
+							px-12 py-2 
+							bg-slate-600
+							text-slate-50
+							capitalize
+						">
+							{item.title}
+						</span>
+					</div>
+				))} 
+
+				{/* {portfolioImages.map((item) => (
+					<div key={item.image} className="
+					border
+					border-red-200 hover:outline 
+					hover:border-red-300
+					hover:outline-red-400/40 
+
+					rounded-3xl
+					bg-slate-100
+					p-6
+					group
+					">
+						<Image 
+							src={item.image}
+							alt={item.image}
+							width={350}
+							height={250}
+							className='w-full rounded-3xl h-60 
+							group-hover:scale-110 duration-500 
+							'
+						/>
+
+						<div className="p-4 bg-slate-100">
+							<a href={item.url}>
+								<h3 className='text-red-700 font-extrabold text-lg truncate overflow-hidden whitespace-nowrap hover:text-red-700 '>{item.title}</h3>
+							</a>
+							<p className="border-b border-red-700 my-4 w-0 group-hover:w-full
+							duration-500
+							"></p>
+
+							<p className='text-slate-600 line-clamp-2 my-2 '>{item.description}</p>
+							<div className="flex justify-end">
+								<a href={item.url} className='
+								
+									p-3 rounded-full
+									-rotate-45
+
+									text-red-600
+									bg-red-100 
+
+									group-hover:bg-red-600
+									group-hover:text-slate-50	
+									group-active:bg-red-700
+									group-active:text-slate-50	
+
+								'>
+									<ArrowRight className='w-6 h-6 inline-block ' />
+								</a>
+							</div>
+					</div>
+
+					</div>
+				))} */}
+			</div>
+
+
+
+
 
 			{/* <div data-name="hero-content-container" className='text-slate-600 font-light '>
 				<h1 className=' text-red-600 text-3xl md:text-4xl font-extrabold my-4 capitalize '> Best interior design company in Bangladesh </h1>
