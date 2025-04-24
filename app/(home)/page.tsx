@@ -1,10 +1,11 @@
 import type { Metadata } from "next"
 import Image from 'next/image'
-import { clientImages, portfolioImages } from '@/data/home'
+import { clientImages, missionItems, portfolioImages } from '@/data/home'
 import { ArrowRight } from 'lucide-react'
-import { MessageIcon, StarIcon, YoutubeIcon } from '@/icons'
+import { DoubleQuoteRight, MessageIcon, StarIcon, YoutubeIcon } from '@/icons'
 import GoogleReview from '@/components/home/googleReview'
 import AnimationButton from '@/components/animationButton'
+import CardReview from '@/components/review/cardReview'
 // import FooterBlock from '@/components/footer/footerBlock'
 
 
@@ -27,7 +28,7 @@ const Home = () => {
 	return (
 		<div className='min-h-screen w-full flex flex-col gap-8'>
 
-			<div data-name="hero-image-container" className='-mx-12' >
+			<div data-name="hero-image-container" className='-mx-20' >
 				<div data-name="hero-image" className='relative h-72 md:h-96 bg-red-500 text-red-700 '>
 					<Image 
 						src='/images/home/hero-image.png'
@@ -72,11 +73,14 @@ const Home = () => {
 				<h1 className=' 
 					text-slate-800
 					text-shadow-2xs
-				 text-4xl md:text-4xl font-extrabold my-4 capitalize mb-8 '>
+				 text-2xl md:text-4xl font-extrabold my-4 capitalize mb-8 
+				 '>
 					We provide the best interior design services in Bangladesh
 				</h1>
 
-				<p className="text-slate-600 text-center text-xl ">
+				<p className="text-slate-600 text-justify text-sm 
+					md:text-lg 
+				">
 					As a leading interior design company in Bangladesh, we provide the best interior design services. We have professional designers who create beautiful, functional environments that reflect your unique style and vision. Transform your space with the best interior designs today!
 				</p>
 			</div>
@@ -165,13 +169,12 @@ const Home = () => {
 			</div>
 
 
-			<div data-name="review-container" className='mt-8 text-red-600 font-extrabold '>
+			<div data-name="review-container" className='mt-8 bg-sky-50 text-red-600 font-extrabold '>
 				<h2 className='capitalize text-2xl mb-6'>What our clients say about us</h2>
 
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 ">
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 ">
 					{[1, 2, 3, 4, 5, 6].map((item) => (
-
-						<GoogleReview key={item}
+						<CardReview key={item}
 							numberOfStars={5}
 							reviewText='I recently came across Barnomala Architect & Interior and Im absolutely thrilled with their services! The attention to detail, creativity, and professionalism they bring to the table is truly commendable. I highly recommend them for any interior design needs!'
 							reviewerName='John Doe'
@@ -310,110 +313,77 @@ const Home = () => {
 			</div>
 
 
+			<div data-name="recent-project-container" className='mt-12 text-slate-600 font-light '>
+				<h1 className=' 
+					text-slate-800
+					text-shadow-2xs
+				 text-2xl md:text-3xl font-extrabold my-4 capitalize mb-8 
+				 text-center
+				 '>
+					We Are Modern Interior Design Studio in Bangladesh
+				 </h1>
 
+				{/* <p className="text-slate-600 text-center text-xl ">
+					As one of the best interior design companies in Bangladesh, our team has successfully delivered exceptional design solutions that exceed our client's expectations. Our completed projects speak for themselves and demonstrate our dedication to delivering innovative and functional designs.
+				</p> */}
 
+				{/* <div className="flex flex-col md:flex-row gap-4 md:gap-8"> */}
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+					<div data-name='image-container' className="relative min-h-80
+						flex flex-col justify-end
+					">
+						<Image 
+							src={'/best-interior-designer-in-bangladesh.webp'}
+							alt='modern interior design studio'
+							fill
+							className=' object-cover
+							'
+						/>
+						<div className="bg-red-500 px-8 py-3 text-white font-extrabold text-shadow-2xs
+							flex justify-between items-center
+							z-10 relative 
+							">
+							<div className="">
+								<h2> LN. Salauddin Manik </h2>
+								<p> Director & CEO </p>
+							</div>
 
-			{/* <div data-name="hero-content-container" className='text-slate-600 font-light '>
-				<h1 className=' text-red-600 text-3xl md:text-4xl font-extrabold my-4 capitalize '> Best interior design company in Bangladesh </h1>
-
-				<div className="flex flex-col md:flex-row gap-4 md:gap-8">
-					<div className='flex-1/2 flex flex-col gap-3'>
-						<p className='text-justify'>
-							Barnomala Architects & Interior is the best 
-							<strong className='text-slate-950 font-bold'> interior design company in Bangladesh, </strong>
-							we emerged as a professional and expert interior service provider 
-							<strong className='text-slate-950 font-bold'> in 2018 </strong>
-							. Our core services include transforming spaces into aesthetically pleasant and functional ones that align with our client's interests and needs.  More About Us
-						</p>
-
-						<p className="text-justify">
-							We have specialized in <strong className='text-red-600 font-semibold'> residential </strong> and 
-							<strong className='text-red-600 font-semibold'> commercial interior design </strong>
-							across Bangladesh, delivering exceptional flat, apartment, home, office, restaurant, and hospitality venue projects. Over the years, we’ve proudly completed numerous prestigious projects nationwide.
-						</p>
-
-						<p className="text-justify">
-							Call us at <strong className='text-red-600 font-semibold'> +8801713776555 </strong>, and let us help you turn your vision into reality with our customized interior design solutions.
-						</p>
-
-						<div className="my-4">
-							<a href='#' className='
-								px-6 py-3 bg-red-500 rounded text-slate-50
-								hover:bg-red-600 hover:text-slate-100 
-							'>More About Us</a>
+							<DoubleQuoteRight />
 						</div>
 
 					</div>
 
-					<div data-name="hero-image" className='relative flex-1/2 w-full min-h-80 bg-red-500 text-red-700 '>
-						<Image 
-							src='/images/home/best-interior-design-company-in-dhaka-bangladesh.webp'
-							alt='side image missing'
-							fill
-							className="object-fill"
-						/>
-					</div>
-				</div>
+					<div data-name='mission-and-vision-container' className="flex flex-col gap-4 md:gap-8 border border-red-200/80">
+						<div data-name='mission-container' className="p-4">
+							<h1 className=' text-slate-800 text-shadow-2xs text-xl md:text-2xl font-extrabold capitalize text-center ' > Mission </h1>
+							<ul className='list-disc list-inside px-3 py-1.5 text-sm'>
+								{missionItems.map((item, index) => (
+									<li key={index} className='text-slate-800 font-bold leading-6'>{item}</li>
+								))}
+							</ul>
+						</div>
 
-
-			</div> */}
-
-			{/* <div data-name="portfolio-container" className=' p-8 
-					border border-slate-300 rounded
-			text-red-600 font-extrabold mt-8'>
-				<div className="mb-8">
-					<h2 className='capitalize text-2xl'>
-						Portfolios
-					</h2>
-					<p className="text-slate-600 ml-4"> - Your Famous Interior Design Firm In BD </p>
-				</div>
-				
-
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 ">
-
-						{clientImages.map((item) => (
-							<div key={item.image} className="w-auto h-auto border 
-							border-red-400 rounded hover:outline 
-							hover:border-red-500
-							hover:outline-red-500/40 
-							">
-								<Image 
-									src={item.image}
-									alt={item.image}
-									width={250}
-									height={350}
-									className='w-full rounded '
-								/>
-
-								<div className="p-4 ">
-									<a href={item.url}>
-										<h3 className='text-red-600 font-extrabold text-lg truncate overflow-hidden whitespace-nowrap hover:text-red-700 '>{item.title}</h3>
-									</a>
-									<p className='text-slate-600 line-clamp-2 mb-4'>{item.description}</p>
-									<a href={item.url} className='
-									
-										bg-red-100 border-red-400 px-3 py-1.5 rounded
-										hover:bg-red-200/80	
-										hover:border-red-600	
-										hover:text-red-600	
-										active:text-red-800	
-										active:bg-red-200
-
-										border 
-									'> see more </a>
-							</div>
-
-							</div>
-						))}
+						<div data-name='vision-container' className="
+						flex flex-col gap-4 p-4">
+							<h1 className=' 
+								text-slate-800
+								text-shadow-2xs
+								text-xl md:text-2xl font-extrabold capitalize 
+								text-center
+								'
+								> Vision </h1>
+								<p className="text-slate-700/90 font-bold text-sm">
+									Our interior design company aims to turn your dreams into reality. We meet our customers’ needs with transparency and affordability.
+								</p>
+						</div>
 					</div>
 
-			</div> */}
+				</div>
+			</div>
 
 
-			{/* <div data-name="video-gallery-container" className='text-red-600 font-extrabold '>
-				<h2 className='uppercase text-2xl mb-4'>Video Gallery</h2>
-				<VideoGallery />
-			</div> */}
+
+
 
 
 

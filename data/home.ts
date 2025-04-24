@@ -134,3 +134,13 @@ export const portfolioImages = [
     url: '#',
   },
 ];
+
+
+export const missionItems = [
+	'Making customers happy with helpful solutions.',
+	'Creating a great place to work for employees.',
+	'Giving clients high-quality products at fair prices.',
+	'Always delivering products on time.',
+	'Providing support after delivery to meet client needs.',
+	'Helping society by creating jobs.',
+]

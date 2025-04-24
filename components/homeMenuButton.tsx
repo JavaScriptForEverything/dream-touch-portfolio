@@ -1,6 +1,6 @@
 'use client'
 import { useAppDispatch, useAppSelector } from '@/hooks/redux'
-import { MenuIcon } from '@/icons'
+import { CrossIcon, MenuIcon } from '@/icons'
 import * as layoutReducer from '../store/layoutReducer'
 
 export const HomeMenuButton = () => {
@@ -15,6 +15,7 @@ export const HomeMenuButton = () => {
 		<>
 			<button onClick={toggleDrawer} className='md:hidden text-slate-50 
 			hover:text-red-500 active:text-red-600 cursor-pointer'>
+				{/* {drawerIsOpen ?  <CrossIcon className='w-12 h-12' />	: <MenuIcon fontSize={32} /> } */}
 				<MenuIcon fontSize={32} />
 			</button>
 		</>

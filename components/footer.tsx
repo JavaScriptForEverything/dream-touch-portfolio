@@ -16,7 +16,7 @@ export const Footer = ({ className }: Props) => {
 	return (
 		<footer className={`${className} mt-6 bg-[#292929]  text-slate-100`}>
 
-			<div className="container mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-3 gap-4">
+			<div className="container mx-auto px-8 lg:px-20 grid grid-cols-1 md:grid-cols-3 gap-4">
 				<FooterBlock title='about'>
 					<div className="text-sm tracking-normal leading-relaxed ">
 						Our success in today's competitive market depends on our dedicated team pooling their talent. This combination enables us to outperform our competitors. Our goal is the same: to become the best choice for our customers.
@@ -69,7 +69,7 @@ export const Footer = ({ className }: Props) => {
 			</div>
 
 
-			<div className="container mx-auto px-6 my-6 flex items-center gap-1 rounded-sm">
+			<div className="container mx-auto px-8 lg:px-20 my-6 flex items-center gap-1 rounded-sm">
 				{socialMediaItems.map(({ label, path, Icon }) => (
 					<div key={label} className="flex items-center gap-2">
 						<a href={path} title={label} className="
@@ -84,7 +84,9 @@ export const Footer = ({ className }: Props) => {
 
 			<WhatsappChat />
 
-			<p className='container mx-auto px-6 md:px-0 py-1 bg-[rgb(32,32,32)] text-center' > All Right Reserved &copy;HashTAG </p>
+			<p className='py-1 bg-[rgb(32,32,32)] text-center' >
+ 				All Right Reserved &copy;HashTAG 
+			</p>
 		</footer>
 	)
 }

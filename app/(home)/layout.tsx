@@ -20,7 +20,7 @@ const HomeLayout = ({ children }: Props) => {
 		</head>
 		<div className=''>
 			<Header />
-			<div className="container mx-auto px-6 xl:px-12 ">
+			<div className="container mx-auto px-8 lg:px-20  ">
 				{children}
 			</div>
 			<Footer />

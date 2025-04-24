@@ -9,6 +9,7 @@ export * from './blogIcon'
 
 
 
+export * from './doubleQuoteRight'
 
 
 export * from './alertSuccessIcon'
