@@ -1,6 +1,6 @@
 import { ArrowRightIcon } from '@/icons'
 import FooterBlock from './footer/footerBlock'
-import { contactInfo, socialMediaItems } from '@/data'
+import { contactInfo, footerLinkItems, socialMediaItems } from '@/data'
 import { EmbeddedMap } from '@/components'
 import WhatsappChat from './whatsappChat'
 
@@ -68,6 +68,30 @@ export const Footer = ({ className }: Props) => {
 				</FooterBlock>
 			</div>
 
+			<div className="container mx-auto px-8 lg:px-20 grid grid-cols-1 gap-4">
+				<FooterBlock title='Links'>
+					<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+						{footerLinkItems.map((link) => (
+							<div key={link.title} className="flex flex-col gap-4">
+								<p className='underline underline-offset-6'>{link.title}</p>
+								<ul className="flex flex-col gap-2">
+									{link.child.map(({ label, href }) => (
+										<li key={label} className="text-sm text-slate-400 hover:text-slate-300/90">
+											<a href={href} className="flex items-center gap-2 capitalize truncate ">
+												{label}
+											</a>
+										</li>
+									))}
+								</ul>
+
+							</div>
+						))}
+					</div>
+
+				</FooterBlock>
+			</div>
+
+
 
 			<div className="container mx-auto px-8 lg:px-20 my-6 flex items-center gap-1 rounded-sm">
 				{socialMediaItems.map(({ label, path, Icon }) => (
@@ -83,6 +107,7 @@ export const Footer = ({ className }: Props) => {
 			</div>
 
 			<WhatsappChat />
+
 
 			<p className='py-1 bg-[rgb(32,32,32)] text-center' >
  				All Right Reserved &copy;HashTAG 
