@@ -12,14 +12,14 @@ export type RestrictTo = (...roles: string[]) => RequestHandler
 
 
 export type ErrorStatus = 'error' | 'failed' | 'AuthError' | 'PermissionDenied'
-export type MyError<Status extends string = ErrorStatus> = Error & {
+export interface MyError<Status extends string = ErrorStatus> extends Error {
   message: string
   statusCode: number
   status: Status
 }
 
 export type ResponseStatus = 'success' | 'fialed' | 'error'
-export type ResponseData<Data = any> = {
+export interface ResponseData<Data = any> {
 	status: ResponseStatus
 	count?: number
 	total?: number
@@ -30,7 +30,7 @@ export type ResponseData<Data = any> = {
 	limit?: number
 }
 
-export type Image = {
+export interface Image {
 	public_id: string
 	secure_url: string
 }

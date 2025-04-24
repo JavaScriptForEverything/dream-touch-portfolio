@@ -1,6 +1,6 @@
 import type { Role } from '@/types/common'
 
-export type Session = {
+export interface Session {
 	state: string
 	authToken: string
 	user: {

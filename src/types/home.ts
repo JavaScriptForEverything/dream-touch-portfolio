@@ -1,7 +1,7 @@
 import type { Document, Model, Types } from 'mongoose'
 import type { Image } from '@/types/common'
 
-export type Home = {
+export interface Home {
 	isActive: boolean
 
 	mainBannerRedirectUrl: string
@@ -16,9 +16,9 @@ export type Home = {
 	giftCardBanners: Image[]
 }
 
-export type HomeDocument = Document & Home & { }
-export type CreateHome = Home & { }
-export type UpdateHome = Home
+export interface HomeDocument extends Document, Home {}
+export interface CreateHome extends Home {}
+export interface UpdateHome extends Home {}
 
-export type HomeModel = Model<HomeDocument> & { }
+export interface HomeModel extends Model<HomeDocument> {}
 

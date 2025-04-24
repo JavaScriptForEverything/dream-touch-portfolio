@@ -12,7 +12,7 @@ import type { Image } from '@/types/common'
 
 */ 
 
-export type Category = {
+export interface Category {
 	user: Types.ObjectId
 	name: string
 	slug: string
@@ -23,11 +23,10 @@ export type Category = {
 	banner?: Image
 	isCategoryShownOnFrontend: boolean
 }
-export type CategoryDocument = Document & Category
+export interface CategoryDocument extends Document, Category {}
 
-export type CreateCategory = Category & { }
-export type UpdateCategory = Category
+export interface CreateCategory extends Category { }
+export interface UpdateCategory extends Category {}
 
 
-
-export type CategoryModel = Model<CategoryDocument> & { }
+export interface CategoryModel extends Model<CategoryDocument> { }

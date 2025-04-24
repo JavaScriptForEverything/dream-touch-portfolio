@@ -1,13 +1,13 @@
 import type { Types, Document, Model } from 'mongoose'
 
-export type ProductReviewLike = {
+export interface ProductReviewLike {
 	review: Types.ObjectId
 	user: Types.ObjectId
 	product: Types.ObjectId
 }
-export type ProductReviewLikeDocument = Document & ProductReviewLike
+export interface ProductReviewLikeDocument extends Document, ProductReviewLike {}
 
-export type CreateProductReviewLike = ProductReviewLike
-export type UpdateProductReviewLike = ProductReviewLike
+export interface CreateProductReviewLike extends ProductReviewLike {}
+export interface UpdateProductReviewLike extends ProductReviewLike {}
 
-export type ProductReviewLikeModel = Model<ProductReviewLikeDocument> & { }
+export interface ProductReviewLikeModel extends Model<ProductReviewLikeDocument> {}

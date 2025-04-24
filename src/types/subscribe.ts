@@ -1,12 +1,12 @@
 import type { Types, Document, Model } from 'mongoose'
 
-export type Subscribe = {
+export interface Subscribe {
 	user: Types.ObjectId
 	email: string
 }
-export type SubscribeDocument = Document & Subscribe
+export interface SubscribeDocument extends Document, Subscribe {}
 
-export type CreateSubscribe = Subscribe
-export type UpdateSubscribe = Subscribe
+export interface CreateSubscribe extends Subscribe {}
+export interface UpdateSubscribe extends Subscribe {}
 
-export type SubscribeModel = Model<SubscribeDocument> & { }
+export interface SubscribeModel extends Model<SubscribeDocument> {}

@@ -2,7 +2,7 @@ import type { Types, Document, Model } from 'mongoose'
 
 
 
-export type BillingInfo = {
+export interface BillingInfo {
 	user: Types.ObjectId
 
 	phone: string
@@ -13,9 +13,9 @@ export type BillingInfo = {
 	region: string
 	postCode: string
 }
-export type BillingInfoDocument = Document & BillingInfo
+export interface BillingInfoDocument extends Document, BillingInfo {}
 
-export type CreateBillingInfo = BillingInfo
-export type UpdateBillingInfo = BillingInfo
+export interface CreateBillingInfo extends BillingInfo {}
+export interface UpdateBillingInfo extends BillingInfo {}
 
-export type BillingInfoModel = Model<BillingInfoDocument> & { }
+export interface BillingInfoModel extends Model<BillingInfoDocument> { }

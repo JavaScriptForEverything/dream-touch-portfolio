@@ -10,7 +10,7 @@ import type { Image } from '@/types/common'
 	"image": "https://via.placeholder.com/300x200?text=Technology+Blog",
 */ 
 
-export type BlogCategory = {
+export interface BlogCategory {
 	user: Types.ObjectId
 	name: string
 	slug: string
@@ -19,11 +19,11 @@ export type BlogCategory = {
 	isVisible: true
 	image?: Image
 }
-export type BlogCategoryDocument = Document & BlogCategory
+export interface BlogCategoryDocument extends Document, BlogCategory {}
 
-export type CreateBlogCategory = BlogCategory & { }
-export type UpdateBlogCategory = BlogCategory
+export interface CreateBlogCategory extends BlogCategory { }
+export interface UpdateBlogCategory extends BlogCategory {}
 
 
 
-export type BlogCategoryModel = Model<BlogCategoryDocument> & { }
+export interface BlogCategoryModel extends Model<BlogCategoryDocument> { }

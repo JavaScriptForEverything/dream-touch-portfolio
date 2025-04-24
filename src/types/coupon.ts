@@ -2,7 +2,7 @@ import type { Document, Model } from 'mongoose'
 import { Image } from '@/types/common'
 
 
-export type Coupon = {
+export interface Coupon {
 	// type: string
 	name: string
 	description: string
@@ -21,13 +21,13 @@ export type Coupon = {
 
 	verifyCoupon: (coupon: string) => Promise<boolean>
 }
-export type CouponDocument = Document & Coupon
+export interface CouponDocument extends Document, Coupon {}
 
-export type CreateCoupon = Coupon
-export type UpdateCoupon = Coupon
+export interface CreateCoupon extends Coupon {}
+export interface UpdateCoupon extends Coupon {}
 
 
-export type CouponModel = Model<CouponDocument> & { }
+export interface CouponModel extends Model<CouponDocument> { }
 
 
 

@@ -13,7 +13,7 @@ import type { PolicyType } from './common'
 
 faq, privary, terms-and-conditions
 */
-export type Policy = {
+export interface Policy {
 	type: PolicyType
 
 	title: string
@@ -23,9 +23,9 @@ export type Policy = {
 
 	isVisible: boolean
 }
-export type PolicyDocument = Document & Policy
+export interface PolicyDocument extends Document, Policy {}
 
-export type CreatePolicy = Policy
-export type UpdatePolicy = Policy
+export interface CreatePolicy extends Policy {}
+export interface UpdatePolicy extends Policy {}
 
-export type PolicyModel = Model<PolicyDocument> & { }
+export interface PolicyModel extends Model<PolicyDocument> {}

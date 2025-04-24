@@ -1,7 +1,7 @@
 import type { Document, Model, Types } from 'mongoose'
 import type { Image } from '@/types/common'
 
-export type Blogs = {
+export interface Blogs {
 	name: string
 	slug: string
 	summary: string
@@ -23,18 +23,18 @@ export type Blogs = {
 	// logo?: Image
 	// thumbnail?: Image
 }
-export type BlogDocument = Document & Blogs & {
+export interface BlogDocument extends Document, Blogs {
 	category: Types.ObjectId
 	author: Types.ObjectId
 }
 
-export type CreateBlog = Blogs & {
+export interface CreateBlog extends Blogs {
 	category: Types.ObjectId
 	author: Types.ObjectId
 }
 
-export type UpdateBlog = Blogs
+export interface UpdateBlog extends Blogs {}
 
 
 
-export type BlogModel = Model<BlogDocument> & { }
+export interface BlogModel extends Model<BlogDocument> { }

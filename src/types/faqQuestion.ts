@@ -1,14 +1,14 @@
 import type { Document, Model, Types } from 'mongoose'
 
-export type FaqQuestion = {
+export interface FaqQuestion {
 	user: Types.ObjectId
 	name: string
 	email: string
 	message: string
 }
-export type FaqQuestionDocument = Document & FaqQuestion
+export interface FaqQuestionDocument extends Document, FaqQuestion {}
 
-export type CreateFaqQuestion = FaqQuestion
-export type UpdateFaqQuestion = FaqQuestion
+export interface CreateFaqQuestion extends FaqQuestion {}
+export interface UpdateFaqQuestion extends FaqQuestion {}
 
-export type FaqQuestionModel = Model<FaqQuestionDocument> & { }
+export interface FaqQuestionModel extends Model<FaqQuestionDocument> { }

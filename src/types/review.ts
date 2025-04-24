@@ -10,17 +10,17 @@ type CommonReview = {
 	rating: number, 			
 }
 
-export type ReviewDocument = Document & CommonReview & {
+export interface ReviewDocument extends Document, CommonReview {
 	user: Types.ObjectId, 				
 	// likes: Types.ObjectId[],
 }
 
-export type CreateReview = CommonReview & {
+export interface CreateReview extends CommonReview {
 	user: Types.ObjectId, 				
 }
-export type UpdateReview = CommonReview 
+export interface UpdateReview extends CommonReview {}
 
 
-// export type ReviewModel = Model<ReviewDocument> & {
+// export interface ReviewModel = Model<ReviewDocument> & {
 // 	populate(arg0: string): unknown
 // }

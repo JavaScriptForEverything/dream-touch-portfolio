@@ -2,7 +2,7 @@ import type { Document, Model, Types } from 'mongoose'
 import type { GenderType, Image, Role } from '@/types/common'
 
 
-type Address = {
+interface Address {
   street: string
 	city: string
 	state: string
@@ -10,7 +10,7 @@ type Address = {
 	country: string
 }
 
-type CommonFields = {
+interface CommonFields {
 
 	coverPhoto: Image
 	avatar: Image
@@ -31,7 +31,7 @@ type CommonFields = {
 	isVisible: boolean
 }
 
-export type CreateUser = CommonFields & {
+export interface CreateUser extends CommonFields {
 	clientId: String, 		// for social media login like: Google | Facebook | ...
 
 	email: string
@@ -39,7 +39,7 @@ export type CreateUser = CommonFields & {
 	confirmPassword?: string
 }
 
-export type UserDocument = Document & CommonFields & {
+export interface UserDocument extends Document, CommonFields {
 	clientId: String, 		// for social media login like: Google | Facebook | ...
 	_id: Types.ObjectId
 	updatedAt: Date 			// required to update this
@@ -65,9 +65,9 @@ export type UserDocument = Document & CommonFields & {
 	// otherPermissions : OtherPermissions
 }
 
-export type UpdateUser = CommonFields
+export interface UpdateUser extends CommonFields {}
 
-export type UserModel = Model<UserDocument> & {
+export interface UserModel extends Model<UserDocument> {
 
 	createEmailResetToken: () => Promise<string>
 	handleEmailUpdate: (resetToken: string, email: string) => Promise<boolean>
@@ -75,6 +75,6 @@ export type UserModel = Model<UserDocument> & {
 
 
 
-export type UpdateOTP = {
+export interface UpdateOTP {
 	otpCode?: number
 }

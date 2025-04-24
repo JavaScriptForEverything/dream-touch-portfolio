@@ -53,12 +53,14 @@ type CommonProduct = {
 }
 
 
-export type Product = {
+export interface Product {
 	_id?: Types.ObjectId 						// required for seeder
 	user: Types.ObjectId
 
 }
-export type ProductDocument = Document & CommonProduct & Product
-export type CreateProduct = CommonProduct
-export type UpdateProduct = CommonProduct
+export interface ProductDocument extends Document, CommonProduct, Omit<Product, '_id'> {
+  _id: Types.ObjectId; // Override _id to ensure compatibility
+}
+export interface CreateProduct extends CommonProduct {}
+export interface UpdateProduct extends CommonProduct {}
 

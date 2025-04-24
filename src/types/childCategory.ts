@@ -2,7 +2,7 @@ import type { Document, Model, Types } from 'mongoose'
 import type { Image } from '@/types/common'
 
 
-export type ChildCategory = {
+export interface ChildCategory {
 	name: string
 	slug: string
 	description: string
@@ -11,17 +11,17 @@ export type ChildCategory = {
 	thumbnail?: Image
 	banner?: Image
 }
-export type ChildCategoryDocument = Document & ChildCategory & {
+export interface ChildCategoryDocument extends Document, ChildCategory {
 	subCategory: Types.ObjectId
 	user: Types.ObjectId
 }
 
 
-export type CreateChildCategory = ChildCategory & {
+export interface CreateChildCategory extends ChildCategory {
 	subCategory: Types.ObjectId
 	user: Types.ObjectId
 }
-export type UpdateChildCategory = ChildCategory
+export interface UpdateChildCategory extends ChildCategory {}
 
 
-export type ChildCategoryModel = Model<ChildCategoryDocument> & { }
+export interface ChildCategoryModel extends Model<ChildCategoryDocument> { }

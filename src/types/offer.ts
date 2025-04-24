@@ -3,7 +3,7 @@ import type { Image } from '@/types/common'
 
 
 
-export type Offer = {
+export interface Offer {
 	product: Types.ObjectId
 
 	name: string
@@ -21,9 +21,9 @@ export type Offer = {
 	banner?: Image
 	footerBanner?: Image
 }
-export type OfferDocument = Document & Offer
+export interface OfferDocument extends Document, Offer {}
 
-export type CreateOffer = Offer
-export type UpdateOffer = Offer
+export interface CreateOffer extends Offer {}
+export interface UpdateOffer extends Offer {}
 
-export type OfferModel = Model<OfferDocument> & { }
+export interface OfferModel extends Model<OfferDocument> { }

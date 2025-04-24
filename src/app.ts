@@ -35,11 +35,7 @@ app.use(express.urlencoded({ limit: '400mb', extended: true }))
 
 
 // middlewares
-app.use(morgan('dev'))  	
-// app.use((_, __, next) => {
-// 	if(NODE_ENV === 'production') return next()
-// 	morgan('dev')
-// })  	
+if(NODE_ENV !== 'production') app.use(morgan('dev'))  	
 app.use(cors(corsOptions))
 
 

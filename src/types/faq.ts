@@ -1,6 +1,6 @@
 import type { Document, Model } from 'mongoose'
 
-export type Faq = {
+export interface Faq {
 	category: string
 	question: string
 	answer: string
@@ -8,9 +8,9 @@ export type Faq = {
 
 	isVisible: boolean
 }
-export type FaqDocument = Document & Faq
+export interface FaqDocument extends Document, Faq {}
 
-export type CreateFaq = Faq
-export type UpdateFaq = Faq
+export interface CreateFaq extends Faq {}
+export interface UpdateFaq extends Faq {}
 
-export type FaqModel = Model<FaqDocument> & { }
+export interface FaqModel extends Model<FaqDocument> { }

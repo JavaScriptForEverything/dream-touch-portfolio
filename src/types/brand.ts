@@ -3,7 +3,7 @@ import type { Image } from '@/types/common'
 
 
 
-export type Brand = {
+export interface Brand {
 	name: string
 	slug: string
 	description?: string
@@ -14,12 +14,12 @@ export type Brand = {
 	thumbnail?: Image
 	banner?: Image
 }
-export type BrandDocument = Document & Brand
+export interface BrandDocument extends Document, Brand {}
 
-export type CreateBrand = Brand
-export type UpdateBrand = Brand
+export interface CreateBrand extends Brand {}
+export interface UpdateBrand extends Brand {}
 
-// export type CreateBrand = {
+// export interface CreateBrand = {
 // 	name: string
 // 	description: string
 // 	isVisible: boolean
@@ -31,7 +31,7 @@ export type UpdateBrand = Brand
 // }
 
 
-// export type UpdateBrand = {
+// export interface UpdateBrand = {
 // 	name: string
 // 	description: string
 // 	isVisible: boolean
@@ -44,4 +44,4 @@ export type UpdateBrand = Brand
 
 
 
-export type BrandModel = Model<BrandDocument> & { }
+export interface BrandModel extends Model<BrandDocument> { }

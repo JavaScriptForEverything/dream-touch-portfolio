@@ -2,7 +2,7 @@ import type { Types, Document, Model } from 'mongoose'
 
 
 
-export type ShippingInfo = {
+export interface ShippingInfo {
 	user: Types.ObjectId
 
 	fname: string
@@ -15,9 +15,9 @@ export type ShippingInfo = {
 	city: string
 	country: string
 }
-export type ShippingInfoDocument = Document & ShippingInfo
+export interface ShippingInfoDocument extends Document, ShippingInfo {}
 
-export type CreateShippingInfo = ShippingInfo
-export type UpdateShippingInfo = ShippingInfo
+export interface CreateShippingInfo extends ShippingInfo {}
+export interface UpdateShippingInfo extends ShippingInfo {}
 
-export type ShippingInfoModel = Model<ShippingInfoDocument> & { }
+export interface ShippingInfoModel extends Model<ShippingInfoDocument> {}

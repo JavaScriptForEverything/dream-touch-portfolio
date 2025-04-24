@@ -1,12 +1,12 @@
 import type { Types, Document, Model } from 'mongoose'
 
-export type WishList = {
+export interface WishList {
 	product: Types.ObjectId
 	user: Types.ObjectId
 }
-export type WishListDocument = Document & WishList
+export interface WishListDocument extends Document, WishList {}
 
-export type CreateWishList = WishList
-export type UpdateWishList = WishList
+export interface CreateWishList extends WishList {}
+export interface UpdateWishList extends WishList {}
 
-export type WishListModel = Model<WishListDocument> & { }
+export interface WishListModel extends Model<WishListDocument> {}

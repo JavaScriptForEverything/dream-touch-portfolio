@@ -3,7 +3,7 @@ import type { Image } from '@/types/common'
 
 
 
-export type SubCategory = {
+export interface SubCategory {
 	name: string
 	slug: string
 	description: string
@@ -12,16 +12,16 @@ export type SubCategory = {
 	thumbnail?: Image
 	banner?: Image
 }
-export type SubCategoryDocument = Document & SubCategory & {
+export interface SubCategoryDocument extends Document, SubCategory {
 	category: Types.ObjectId
 	user: Types.ObjectId
 }
 
-export type CreateSubCategory = SubCategory & {
+export interface CreateSubCategory extends SubCategory {
 	category: Types.ObjectId
 	user: Types.ObjectId
 }
-export type UpdateSubCategory = SubCategory
+export interface UpdateSubCategory extends SubCategory {}
 
 
-export type SubCategoryModel = Model<SubCategoryDocument> & { }
+export interface SubCategoryModel extends Model<SubCategoryDocument> {}

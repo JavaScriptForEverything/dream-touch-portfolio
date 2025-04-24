@@ -6,14 +6,14 @@ import type { BillingInfo } from '@/types/billingInfo'
 
 type Currency = string
 
-export type CashOnDeliveryProduct  = Document & {
+export interface CashOnDeliveryProduct  extends Document {
 	product: Types.ObjectId 											
 	quantity: number
 	color?: string
 	size?: string
 }
 
-export type RequestBody  = {
+export interface RequestBody {
 	products: CashOnDeliveryProduct[]
 	currency: Currency
 	shippingCharge: number
@@ -26,27 +26,27 @@ export type RequestBody  = {
 
 
 
-export type SnapshotUser = {
+export interface SnapshotUser {
 	id: Types.ObjectId
 	name: string
 	email: string
 	phone: string
 }
-export type SnapshotShippingInfo = {
+export interface SnapshotShippingInfo {
 	id: Types.ObjectId
 	street: string
 	city: string
 	country: string
 }
 
-export type SnapshotBillingInfo = {
+export interface SnapshotBillingInfo {
 	id: Types.ObjectId
 	name: string
 	phone: string
 	email: string
 	street: string
 }
-export type SnapshotProduct = {
+export interface SnapshotProduct {
 	id: Types.ObjectId
 	name: string
 	skuCode: string
@@ -62,7 +62,7 @@ export type SnapshotProduct = {
 	size: string
 }
 
-// export type Snapshot = {
+// export interface Snapshot = {
 // 	user: SnapshotUser
 // 	shippingInfo: SnapshotShippingInfo
 // 	billingInfo: SnapshotBillingInfo
@@ -70,7 +70,7 @@ export type SnapshotProduct = {
 // }
 
 
-export type OrderDocument = Document & {
+export interface OrderDocument extends Document {
 	nmCode: string
 
 	user: SnapshotUser

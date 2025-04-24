@@ -2,7 +2,7 @@ import type { Document, Model, Types } from 'mongoose'
 import type { Image } from '@/types/common'
 
 
-type SocialMediaLinks = {
+interface SocialMediaLinks {
 	website: string
 	facebook: string
 	instagram: string
@@ -15,7 +15,7 @@ type SocialMediaLinks = {
 	tiktok: string
 }
 
-export type Site = {
+export interface Site {
 	isActive: boolean
 
 	updateBy: Types.ObjectId
@@ -68,10 +68,10 @@ export type Site = {
 	// contactUsEmail: string
 	// contactUsAddress: string
 }
-export type SiteDocument = Document & Site
+export interface SiteDocument extends Document, Site {}
 
-export type CreateSite = Site
-export type UpdateSite = Site
+export interface CreateSite extends Site {}
+export interface UpdateSite extends Site {}
 
 
-export type SiteModel = Model<SiteDocument> & { }
+export interface SiteModel extends Model<SiteDocument> {}

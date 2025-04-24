@@ -1,11 +1,11 @@
 import type { Document, Model } from 'mongoose'
 
-export type FaqCategory = {
+export interface FaqCategory {
 	name: string
 }
-export type FaqCategoryDocument = Document & FaqCategory
+export interface FaqCategoryDocument extends Document, FaqCategory {}
 
-export type CreateFaq = FaqCategory
-export type UpdateFaq = FaqCategory
+export interface CreateFaq extends FaqCategory {}
+export interface UpdateFaq extends FaqCategory {}
 
-export type FaqCategoryModel = Model<FaqCategoryDocument> & { }
+export interface FaqCategoryModel extends Model<FaqCategoryDocument> { }

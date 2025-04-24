@@ -1,9 +1,12 @@
+import 'dotenv/config'
+import { NODE_ENV } from '@/config/config'
 
 // List of allowed origins
-const allowedOrigins = [
-	'http://localhost:5000', 												// => backend
-	'http://localhost:3001', 												// => frontend	
-	'http://localhost:3002', 												// => admin
+export const allowedOrigins = [
+
+	'http://localhost:300', 												// => frontend	
+	'http://localhost:5173', 												// => dashboard
+
 
 	// 'http://dreamtouch.com.bd:5000', 						// => backend
 	// 'http://dreamtouch.com.bd:3001', 						// => frontend	
@@ -20,7 +23,7 @@ const allowedOrigins = [
 ]
 
 
-export const corsOptions = {
+export const prodCorsOptions = {
   origin: function (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
     if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) {
@@ -33,3 +36,13 @@ export const corsOptions = {
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'], // Add the methods you need to allow
   credentials: true,
 }
+
+const devCorsOptions = { 																								// <= fetch(`${backendOrigin}/auth/login`, { credentials: 'include' })
+	// origin:  '*', 					// => all all origins
+	// origin:  true, 				// => if request comes from abc then response header will be abc
+	origin: allowedOrigins, 	// => array of allowed origins
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'], // Add the methods you need to allow
+	credentials: true
+}	
+
+export const corsOptions = NODE_ENV === 'production' ? prodCorsOptions : devCorsOptions

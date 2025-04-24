@@ -1,7 +1,7 @@
 import type { Document, Model, Types } from 'mongoose'
 import type { Image } from '@/types/common'
 
-export type AboutUs = {
+export interface AboutUs {
 	isActive: boolean
 	header: string
 	slogan: string
@@ -23,8 +23,8 @@ export type AboutUs = {
 	column3Image: Image
 }
 
-export type AboutUsDocument = Document & AboutUs & { }
-export type CreateAboutUs = AboutUs & { }
-export type UpdateAboutUs = AboutUs
+export interface AboutUsDocument extends Document, AboutUs { }
+export interface CreateAboutUs extends AboutUs { }
+export interface UpdateAboutUs extends AboutUs {}
 
-export type AboutUsModel = Model<AboutUsDocument> & { }
+export interface AboutUsModel extends Model<AboutUsDocument> { }
