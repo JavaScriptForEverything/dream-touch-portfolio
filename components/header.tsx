@@ -36,9 +36,9 @@ export const Header = async ({}: Props) => {
 				<div className="ml-auto">
 					<p className="flex flex-col">
 						<span className='font-extralight'>Have any questions?</span>
-						<a href='tel:+8801713776555' className='font-extrabold text-lg'>
+						<Link href='tel:+8801713776555' className='font-extrabold text-lg'>
 							{contactInfo.phone}
-						</a>
+						</Link>
 					</p>
 				</div>
 

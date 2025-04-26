@@ -5,8 +5,12 @@ import ContactForm from './contactForm'
 import { IconButton } from '@/components/mui'
 import { contactUsSocialIcons } from '@/data'
 import { BreadCrumbs } from '@/components'
+import { contactInfo } from '@/data/footer'
 
 const ContactUs = () => {
+
+	const phone = contactInfo.find(item => item.label === 'phone')
+	const email = contactInfo.find(item => item.label === 'email')
 
 	return (
 		<div className=''>
@@ -37,12 +41,25 @@ const ContactUs = () => {
 
 						<div className="flex items-center gap-2 mt-4">
 							<span className="w-5 h-5 text-red-500"><PhoneIcon /></span>
-							<span>+8801955-521500</span>
+							<span>
+								{phone && phone.href && phone.placeholder && (
+									<Link href={phone.href} className="text-slate-500 hover:text-red-500 transition">
+										{phone.placeholder}
+									</Link> 
+								)}
+							</span>
+
 						</div>
 
 						<div className="flex items-center gap-2 mt-4">
 							<span className="w-5 h-5 text-red-500"><EmailIcon /></span>
-							<span>demo@gmail.com</span>
+							<span>
+								{email && email.href && email.placeholder && (
+									<Link href={email.href} className="text-slate-500 hover:text-red-500 transition">
+										{email.placeholder}
+									</Link> 
+								)}
+							</span>
 						</div>
 					</div>
 

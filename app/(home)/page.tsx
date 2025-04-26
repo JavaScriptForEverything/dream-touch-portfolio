@@ -6,6 +6,7 @@ import { DoubleQuoteRight, MessageIcon, StarIcon, YoutubeIcon } from '@/icons'
 import GoogleReview from '@/components/home/googleReview'
 import AnimationButton from '@/components/animationButton'
 import CardReview from '@/components/review/cardReview'
+import Link from 'next/link'
 // import FooterBlock from '@/components/footer/footerBlock'
 
 
@@ -55,14 +56,14 @@ const Home = () => {
 							Inspired by living
 						</p>
 
-						<a href='#' className='bg-red-100 border-red-400 px-3 py-1.5 rounded
+						<Link href='#' className='bg-red-100 border-red-400 px-3 py-1.5 rounded
 							hover:border-red-500	
 							hover:text-red-600	
 							active:text-red-800	
 							active:bg-red-200	
 						'>
 							more
-						</a>
+						</Link>
 					</div>
 
 
@@ -110,16 +111,16 @@ const Home = () => {
 						/>
 
 						<div className="p-4 bg-slate-100">
-							<a href={item.url}>
+							<Link href={item.url}>
 								<h3 className='text-red-700 font-extrabold text-lg truncate overflow-hidden whitespace-nowrap hover:text-red-700 '>{item.title}</h3>
-							</a>
+							</Link>
 							<p className="border-b border-red-700 my-4 w-0 group-hover:w-full
 							duration-500
 							"></p>
 
 							<p className='text-slate-600 line-clamp-2 my-2 '>{item.description}</p>
 							<div className="flex justify-end">
-								<a href={item.url} className='
+								<Link href={item.url} className='
 								
 									p-3 rounded-full
 									-rotate-45
@@ -134,7 +135,7 @@ const Home = () => {
 
 								'>
 									<ArrowRight className='w-6 h-6 inline-block ' />
-								</a>
+								</Link>
 							</div>
 					</div>
 
@@ -155,7 +156,7 @@ const Home = () => {
 				<div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-9 gap-2">
 
 					{clientImages.map((item) => (
-						<a href='' title={item.title} key={item.image} className="p-4 w-auto h-auto border border-red-500/70 rounded hover:outline hover:outline-red-500/40 ">
+						<Link href='' title={item.title} key={item.image} className="p-4 w-auto h-auto border border-red-500/70 rounded hover:outline hover:outline-red-500/40 ">
 							<Image 
 								src={item.image}
 								alt={item.image}
@@ -163,7 +164,7 @@ const Home = () => {
 								height={250}
 								className=' hover:scale-110 duration-200 '
 							/>
-						</a>
+						</Link>
 					))}
 				</div>
 			</div>
@@ -241,9 +242,9 @@ const Home = () => {
 							'
 						/>
 
-					<a href={item.url} >
+					<Link href={item.url} >
 						<YoutubeIcon className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' fontSize={60} />
-					</a>
+					</Link>
 
 						<span className="
 							absolute bottom-0 right-0
@@ -280,16 +281,16 @@ const Home = () => {
 						/>
 
 						<div className="p-4 bg-slate-100">
-							<a href={item.url}>
+							<Link href={item.url}>
 								<h3 className='text-red-700 font-extrabold text-lg truncate overflow-hidden whitespace-nowrap hover:text-red-700 '>{item.title}</h3>
-							</a>
+							</Link>
 							<p className="border-b border-red-700 my-4 w-0 group-hover:w-full
 							duration-500
 							"></p>
 
 							<p className='text-slate-600 line-clamp-2 my-2 '>{item.description}</p>
 							<div className="flex justify-end">
-								<a href={item.url} className='
+								<Link href={item.url} className='
 								
 									p-3 rounded-full
 									-rotate-45
@@ -304,7 +305,7 @@ const Home = () => {
 
 								'>
 									<ArrowRight className='w-6 h-6 inline-block ' />
-								</a>
+								</Link>
 							</div>
 					</div>
 

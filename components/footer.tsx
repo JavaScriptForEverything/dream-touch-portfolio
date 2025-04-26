@@ -3,6 +3,7 @@ import FooterBlock from './footer/footerBlock'
 import { contactInfo, footerLinkItems, socialMediaItems } from '@/data'
 import { EmbeddedMap } from '@/components'
 import WhatsappChat from './whatsappChat'
+import Link from 'next/link'
 
 
 type Props = {
@@ -26,7 +27,7 @@ export const Footer = ({ className }: Props) => {
 					border-b-[1px] border-dashed border-slate-300/20
 					
 					">
-						<a href='#' className='text-red-500 hover:text-slate-50'> Read more </a>
+						<Link href='#' className='text-red-500 hover:text-slate-50'> Read more </Link>
 						<ArrowRightIcon />
 					</div>
 				</FooterBlock>
@@ -48,7 +49,7 @@ export const Footer = ({ className }: Props) => {
 										<td className='pr-2'>:</td>
 
 										<td className='w-full'>
-											<a href={href} className="hover:text-red-600 transition"> {placeholder} </a>
+											<Link href={href} className="hover:text-red-600 transition"> {placeholder} </Link>
 										</td>
 									</tr>
 								))}
@@ -76,9 +77,9 @@ export const Footer = ({ className }: Props) => {
 								<ul className="flex flex-col gap-2">
 									{link.child.map(({ label, href }) => (
 										<li key={label} className="text-sm text-slate-400 hover:text-slate-300/90">
-											<a href={href} className="flex items-center gap-2 capitalize truncate ">
+											<Link href={href} className="flex items-center gap-2 capitalize truncate ">
 												{label}
-											</a>
+											</Link>
 										</li>
 									))}
 								</ul>
@@ -95,12 +96,12 @@ export const Footer = ({ className }: Props) => {
 			<div className="container mx-auto px-8 lg:px-20 my-6 flex items-center gap-1 rounded-sm">
 				{socialMediaItems.map(({ label, path, Icon }) => (
 					<div key={label} className="flex items-center gap-2">
-						<a href={path} title={label} className="
+						<Link href={path} title={label} className="
 							p-2 border border-slate-400/20 bg-slate-700/20
 							hover:border-slate-400/50 hover:bg-slate-700/50
 						">
 							<Icon className='text-red-500 w-5 h-5' />
-						</a>
+						</Link>
 					</div>
 				))}
 			</div>

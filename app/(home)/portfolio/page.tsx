@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 const navItems = [
 	{ name: 'Real Project', href: '/portfolio/real-project' },
 	{ name: 'Residential Project', href: '/portfolio/real-project' },
@@ -17,9 +19,9 @@ const Portfolio = () => {
 		<ul>
 			{navItems.map((item) => (
 				<li key={item.name}>
-					<a href={item.href} className="text-blue-500 hover:underline">
+					<Link href={item.href} className="text-blue-500 hover:underline">
 						{item.name}
-					</a>
+					</Link>
 				</li>
 			))}
 		</ul>

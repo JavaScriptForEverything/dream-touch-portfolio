@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 interface Props {
@@ -23,11 +24,11 @@ const AnimationButton = ({ Icon, text, link }: Props) => {
 					group
 					overflow-hidden
 				">
-					<a href={link} className='z-10'>{text}</a>
-					<a href={link} className='z-10'>
+					<Link href={link} className='z-10'>{text}</Link>
+					<Link href={link} className='z-10'>
 						{/* <Icon fontSize={32} className='text-white' /> */}
 						{Icon}
-					</a>
+					</Link>
 					<div className="
 						absolute inset-0
 					bg-slate-600
