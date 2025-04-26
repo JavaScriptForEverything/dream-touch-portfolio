@@ -48,6 +48,11 @@ export const footerLinkItems = [
 		title: 'Policies', 
 		child: [
 			{ 
+				label: 'FAQ', 	
+				placeholder:'FAQ',	
+				href: 'faq', 
+			},
+			{ 
 				label: 'terms and conditions', 	
 				placeholder:'terms and conditions',	
 				href: 'terms-and-conditions', 

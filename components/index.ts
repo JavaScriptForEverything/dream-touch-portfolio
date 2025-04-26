@@ -1,3 +1,6 @@
+
+export * from '@/components/breadCrumbs'
+
 export * from '@/components/header'
 export * from '@/components/header/headerNavbar'
 export * from '@/components/subHeader'

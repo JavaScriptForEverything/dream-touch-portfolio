@@ -1,4 +1,4 @@
-import type { Size } from '@/types/component';
+import type { Size } from '@/types/component'
 
 type Props = React.ComponentProps<'button'> & {
     children: React.ReactNode;

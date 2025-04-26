@@ -34,16 +34,16 @@ export const TextField = (props: Props) => {
 	return (
 		<div>
 			<fieldset className={`
-				pointer-events-none focus-within:border-blue-500 invalid:border-red-500
+				pointer-events-none focus-within:border-slate-500 invalid:border-red-500
 				group invalid:focus-within:border-red-500 peer
-				${border ? 'border border-slate-500 pl-2.5 rounded-md ' : ''}
+				${border ? 'border border-slate-400/60 pl-2.5 rounded-md ' : ''}
 				${disabled ? 'bg-slate-200' : ''}
 			`}
 			>
 
 				<legend className={`
 					px-1.5 text-slate-700 text-sm font-light
-					group-focus-within:text-blue-700 group-invalid:text-red-500
+					group-focus-within:text-slate-700 group-invalid:text-red-500
 					group-invalid:group-focus-within:text-red-500
 						${required ? 'after:content-["*"] after:ml-1 after:text-red-500' : ''}
 					`}

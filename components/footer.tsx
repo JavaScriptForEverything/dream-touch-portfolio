@@ -5,7 +5,6 @@ import { EmbeddedMap } from '@/components'
 import WhatsappChat from './whatsappChat'
 
 
-
 type Props = {
 	children?: Readonly<React.ReactNode>
 	className?: React.ComponentProps<'main'>['className']
