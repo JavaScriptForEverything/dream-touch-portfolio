@@ -7,6 +7,9 @@ import GoogleReview from '@/components/home/googleReview'
 import AnimationButton from '@/components/animationButton'
 import CardReview from '@/components/review/cardReview'
 import Link from 'next/link'
+import { AboutBlockOne } from './about-us/aboutBlockOne'
+import { AboutBlockTwo } from './about-us/aboutBlockTwo'
+import { directorInfo } from '@/data'
 // import FooterBlock from '@/components/footer/footerBlock'
 
 
@@ -69,6 +72,13 @@ const Home = () => {
 
 				</div>
 			</div>
+
+
+			<div className="">
+			<AboutBlockOne />
+			<AboutBlockTwo />
+			</div>
+
 
 			<div data-name="hero-content-container" className='text-slate-600 font-light '>
 				<h1 className=' 
@@ -334,7 +344,7 @@ const Home = () => {
 						flex flex-col justify-end
 					">
 						<Image 
-							src={'/best-interior-designer-in-bangladesh.webp'}
+							src={directorInfo.photo}
 							alt='modern interior design studio'
 							fill
 							className=' object-cover
@@ -345,8 +355,8 @@ const Home = () => {
 							z-10 relative 
 							">
 							<div className="">
-								<h2> LN. Salauddin Manik </h2>
-								<p> Director & CEO </p>
+								<h2>{directorInfo.name}</h2>
+								<p>{directorInfo.designation}</p>
 							</div>
 
 							<DoubleQuoteRight />
