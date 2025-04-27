@@ -3,30 +3,53 @@ import { Button, TextField } from '@/components/mui'
 import { LoadingIcon } from '@/icons/loadingIcon'
 import { useState } from 'react'
 
+// interface FormField {
+// 	label: string
+// 	placeholder: string
+// 	type: 'text' | 'email' | 'number' | 'checkbox' | 'textarea' | 'select' | 'radio' | 'file' | 'password'
+// 	helperText: string
+// 	required?: boolean
+// 	autoFocus?: boolean
+// }
+
+// const formFields:Record<string, FormField> = {
 const formFields = {
-	name: { label: 'Your Name', placeholder: 'Riajul Islam', type: 'text', helperText: '', required: true, autoFocus: true },
-	phone: { label: 'Your Phone No', placeholder: '018xxxxxxxx', type: 'text', helperText: '' },
-	email: { label: 'Your Email', placeholder: 'abc@gmail.com', type: 'email', helperText: '', required: true },
-	subject: { label: 'Your Subject', placeholder: 'your subject goes here', type: 'text', helperText: '', required: true },
-	message: { label: 'Your Message', placeholder: 'your message goes here...', type: 'text', helperText: '', required: true },
+	name: { label: 'Your Name', placeholder: 'Riajul Islam', type: 'text', helperText: '', required: true, autoFocus: true, multiline: false, rows: undefined },
+	phone: { label: 'Your Phone No', placeholder: '018xxxxxxxx', type: 'text', helperText: '', multiline: false, rows: undefined },
+	email: { label: 'Your Email', placeholder: 'abc@gmail.com', type: 'email', helperText: '', required: true, multiline: false, rows: undefined },
+	subject: { label: 'Your Subject', placeholder: 'your subject goes here', type: 'text', helperText: '', required: true, multiline: false, rows: undefined },
+	message: { label: 'Your Message', placeholder: 'your message goes here...', type: 'text', helperText: '', required: true, multiline: true, rows: 3 },
 }
 
+interface InitialFieldsType {
+	name: string
+	phone: string
+	email: string
+	subject: string
+	message: string
+}
 
-const ContactForm = () => {
-	const [ loading, setLoading ] = useState(false)
-	const [ fields, setFields ] = useState({
+// const initialFields = Object.keys(formFields).reduce((acc, key) => ({ ...acc, [key]: '' }), {} as InitialFieldsType) 
+const initialFields: InitialFieldsType = {
 		name: '',
 		phone: '',
 		email: '',
 		subject: '',
 		message: ''
-	})
-	const [ fieldsError, setFieldsError ] = useState({
-		name: '',
-		email: '',
-		subject: '',
-		message: ''
-	})
+}
+
+const ContactForm = () => {
+	const [ loading, setLoading ] = useState(false)
+	const [ fields, setFields ] = useState<InitialFieldsType>( initialFields)
+	const [ fieldsError, setFieldsError ] = useState<InitialFieldsType>( initialFields)
+	// const [ fieldsError, setFieldsError ] = useState({
+	// 	name: '',
+	// 	phone: '',
+	// 	email: '',
+	// 	subject: '',
+	// 	message: ''
+	// })
+
 
 	const changeHandler = (name: string) => (evt: React.ChangeEvent<HTMLInputElement>) => {
 		setFields({
@@ -63,6 +86,13 @@ const ContactForm = () => {
 						<TextField key={key} {...field}
 							onChange={changeHandler(key)}
 							value={fields[key as keyof typeof fields]}
+							multiline={field.multiline}
+							rows={field.rows}
+							// helperText={fieldsError[key as keyof typeof fieldsError]}
+							// required={field.required}
+							// autoFocus={field.autoFocus}
+							// disabled={loading}
+							// placeholder={field.placeholder}
 						/>
 				))}
 

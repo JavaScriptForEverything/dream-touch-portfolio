@@ -3,3 +3,30 @@ in home page
 	- youtube video loading slow down page load
 
 	
+
+Tasks
+
+	- Create formValidate() function, with any type, not just string
+	- Check React App production ready, so that React-Router's nested route works properly on VPS server
+	- Learn React-Router v7 							: from doc
+	- Learn Data Fetching in React app 		: https://react.dev/learn
+
+
+
+
+
+
+https://dreamdoor.com.bd/
+https://dreamtouch-bd.com/
+
+
+
+
+Sample sites:
+	- https://dreamtouch-bd.com/
+
+	- https://www.decorilla.com/reviews 				(Mine)
+	- https://www.barnomalainterior.com/
+	- https://bdinterior.net/
+
+-------------
