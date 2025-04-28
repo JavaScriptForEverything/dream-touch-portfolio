@@ -36,16 +36,16 @@ export const DrawerPanel = () => {
 						className='mx-8 h-20'
 					/>
 
-					<section className='bg-slate-50 text-slate-800 w-64 '>
+					<section className='bg-slate-50 text-slate-900 w-64 '>
 
 						<nav className="flex flex-col">
 							{headerNavItems.map( ({ label, path, Icon }) => (
 								<Link key={label} href={path}className={` flex gap-4 items-center
 									whitespace-nowrap hover:text-red-500 transition-colors duration-300 capitalize 
 									py-2 px-8
-									bg-red-100 
+									bg-red-100/10 
 
-									${isActive(path)? 'bg-red-200' : 'hover:bg-red-200'}
+									${isActive(path)? 'bg-red-100/80' : 'hover:bg-red-100'}
 
 									active:bg-red-300 
 									border-b 

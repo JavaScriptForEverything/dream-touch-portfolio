@@ -6,6 +6,10 @@ export const contactUsSocialIcons = [
 	{ label: 'instagram', Icon: InstagramIcon, path: 'https://www.instagram.com/dreamtouchbd' },
 ]
 
+export const companyInfo = {
+	name: 'Dream Touch Architects Ltd.',
+	location: 'not-set-yet'
+}
 
 export const directorInfo = {
 	name: ' LN. Salauddin Manik',

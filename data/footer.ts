@@ -38,11 +38,13 @@ export const socialMediaItems = [
 export const footerLinkItems = [
 	{ 
 		title: 'Pages', 
-		child: headerNavItems.map(({ label, path }) => ({
-			label,
-			placeholder: label,
-			href: path,
-		})),
+		child: [
+			...headerNavItems.map(({ label, path }) => ({
+				label,
+				placeholder: label,
+				href: path,
+			})),
+		],
 	},
 	{ 
 		title: 'Policies', 
@@ -61,6 +63,21 @@ export const footerLinkItems = [
 				label: 'privacy policy',
 				placeholder:'privacy policy',
 				href: 'privacy-policy', 	
+			},
+		],
+	},
+	{ 
+		title: 'Utility', 
+		child: [
+			{ 
+				label: 'Review', 	
+				placeholder:'review',	
+				href: '/review', 
+			},
+			{ 
+				label: 'Appointment', 	
+				placeholder:'appointment',	
+				href: '/appointment', 
 			},
 		],
 	},

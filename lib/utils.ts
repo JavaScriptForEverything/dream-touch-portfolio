@@ -47,8 +47,31 @@ export const isDataURL = (url: unknown): boolean  => {
 }
 
 
-// console.log( new Date().toLocaleDateString())
+//  new Date().toLocaleDateString()  			// => 04/28/2025 	: ?
+//  new Date().toISOString()  						// => 2025-04-28 	: Mongodb Database Format
 export const formatToDate = (date: string|undefined) => date?.split("T")[0]  || ''
+
+
+/* ISO Date: 2025-04-28T11:00:17.409Z 		=> April 28, 2025 
+
+	let isoDate = new Date().toISOString() 						: => 
+	    isoDate = "2025-04-28T11:00:17.409Z"; 				: => Comes from MongoDB
+	const formattedDate = formatISODate(isoDate);
+*/
+export const formatISODate = (isoDate: string): string => {
+  const date = new Date(isoDate);
+
+  if (isNaN(date.getTime())) throw new Error("Invalid ISO date string")
+  
+
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  }).format(date)
+}
+
+
 
 
 /**

@@ -3,7 +3,6 @@ export * from '@/components/breadCrumbs'
 
 export * from '@/components/header'
 export * from '@/components/header/headerNavbar'
-export * from '@/components/subHeader'
 export * from '@/components/footer'
 
 export * from '@/components/drawerPanel'
@@ -28,3 +27,5 @@ export * from '@/components/clientLikeDislike'
 export * from '@/components/embadedMap'
 export * from '@/components/whatsappChat'
 export * from '@/components/videoGallery'
+
+export * from '@/components/diagonallySlicedButton'

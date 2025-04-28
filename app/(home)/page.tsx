@@ -9,6 +9,7 @@ import { AboutBlockOne } from './about-us/aboutBlockOne'
 import { AboutBlockTwo } from './about-us/aboutBlockTwo'
 import { directorInfo } from '@/data'
 import { IconButton } from '@/components/mui'
+import { DiagonallySlicedButton, SlicedButton } from '@/components'
 // import FooterBlock from '@/components/footer/footerBlock'
 
 
@@ -32,7 +33,7 @@ const Home = () => {
 		<div className='min-h-screen w-full flex flex-col '>
 
 			<div data-name="hero-image-container" className='-mx-20' >
-				<div data-name="hero-image" className='relative h-72 md:h-96 bg-red-100 text-red-700 '>
+				<div data-name="hero-image" className='relative h-72 md:h-96 bg-red-100 text-red-600 '>
 					<Image 
 						src='/images/home/hero-image.png'
 						alt='hero image missing'
@@ -58,7 +59,7 @@ const Home = () => {
 							Inspired by living
 						</p>
 
-						<Link href='#' className='bg-red-100 border-red-400 px-3 py-1.5 rounded
+						<Link href='/about-us' className='bg-red-100 border-red-400 px-3 py-1.5 rounded
 							hover:border-red-500	
 							hover:text-red-600	
 							active:text-red-800	
@@ -72,11 +73,6 @@ const Home = () => {
 				</div>
 			</div>
 
-
-			{/* <div className="">
-			<AboutBlockOne />
-			<AboutBlockTwo />
-			</div> */}
 
 
 			<div data-name="hero-content-container" className="-mx-8 md:-mx-20 p-8 bg-white ">
@@ -100,35 +96,14 @@ const Home = () => {
 							</p>
 
 
-							<div className='my-6 '>
-								<div className='
-									px-6 py-3
-									bg-slate-800 relative
-									text-white
-									rounded-lg
-									inline-block
-								'
-								
-								>
-									<div className=' relative z-10 flex justify-between items-center gap-4 '>
-										<span>More About Us</span>
-										<ForwardIcon className='w-8 h-8' />
-									</div>
-
-									<span 
-										className="
-											px-6 py-3 
-											absolute inset-0
-											bg-red-600 
-											rounded-tl-lg rounded-bl-lg
-										"
-										style={{
-											clipPath: 'polygon(0 0, 75% 0, 65% 100%, 0% 100%)',
-										}}
-									></span>
-								</div>
-
+							<div data-name='diagonally-sliced-button-container' className="my-6">
+								<DiagonallySlicedButton 
+									label='More About Us'
+									icon={<ForwardIcon className="w-8 h-8" />}
+									href='/about-us'
+								/>
 							</div>
+
 
 						</div>
 
@@ -179,6 +154,8 @@ const Home = () => {
 			</div>
 
 
+			<AboutBlockOne />
+
 
 			<div data-name="portfolio-container" className="-mx-8 md:-mx-20 p-8 bg-slate-100 ">
 				<div className=' mb-16 bg-slate-100/70 text-slate-600 font-light '>
@@ -194,33 +171,33 @@ const Home = () => {
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 ">
 					{portfolioImages.map((item) => (
 						<div key={item.image} className="
-						relative overflow-hidden
+						relative 
 						bg-white
-
-
-
-						rounded-3xl
-						p-6
+						rounded-xl
 						group
+						group/image
 						">
 
 				{/* border
 						border-red-200 hover:outline 
 						hover:border-red-300
 						hover:outline-red-400/40  */}
+						<div className="m-1 overflow-hidden">
+
 							<Image 
 								src={item.image}
 								alt={item.image}
 								width={350}
 								height={250}
-								className='w-full rounded-3xl h-60 
-								group-hover:scale-105 duration-500 
+								className='w-full h-60 
+								rounded-tl-xl
+								rounded-tr-xl
+								group-hover/image:scale-105 duration-500 
 								'
 							/>
+						</div>
 
-							<div className="p-4 
-								bg-white
-							">
+							<div className="p-4 bg-white ">
 								<Link href={item.url}>
 									<h3 className='text-red-700 font-extrabold text-lg truncate overflow-hidden whitespace-nowrap hover:text-red-700 '>{item.title}</h3>
 								</Link>
@@ -249,7 +226,7 @@ const Home = () => {
 											group-hover:text-slate-50	
 											group-active:bg-red-700
 											group-active:text-slate-50	
-
+											transition-colors duration-300
 										'>
 											<ArrowRightIcon className='w-6 h-6 inline-block ' />
 										</Link>
@@ -265,12 +242,15 @@ const Home = () => {
 
 
 
-			<AnimationButton 
-				Icon={<MessageIcon fontSize={32} className='text-white' />}
-				text='Book An Appointment'
-				link='#'
-			/>
+			<div className="my-8 flex justify-center items-center">
+				<DiagonallySlicedButton 
+					label='Book Appointment'
+					icon={<MessageIcon fontSize={24} />}
+					href='/appointment'
+				/>
+			</div>
 
+			<AboutBlockTwo />
 
 			<div data-name="clients-container" className=' p-8 border border-slate-300 rounded text-red-600 font-extrabold mt-8'>
 				<h2 className='uppercase text-2xl mb-4'>Our Happy Clients</h2>
@@ -291,7 +271,7 @@ const Home = () => {
 			</div>
 
 
-			<div data-name="review-container" className='mt-8 bg-sky-50 text-red-600 font-extrabold '>
+			<div data-name="review-container" className='mt-8  text-red-600 font-extrabold '>
 				<h2 className='capitalize text-2xl mb-6'>What our clients say about us</h2>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 ">
@@ -305,18 +285,18 @@ const Home = () => {
 					))}
 				</div>
 
-
-				<div className="mt-8">
-					<AnimationButton 
-						Icon={<StarIcon className='text-white w-5 h-5' />}
-						text='Check All Reviews'
-						link='#'
+				<div className="my-8 flex justify-center items-center">
+					<DiagonallySlicedButton 
+						label='All Reviews'
+						icon={<StarIcon className='w-5 h-5' />}
+						href='/review'
 					/>
 				</div>
+
 			</div> 
 
 
-			<div data-name="recent-project-container" className='mt-12 text-slate-600 font-light '>
+			<div data-name="recent-project-container" className='my-12 text-slate-600 font-light '>
 				<h1 className=' 
 					text-slate-800
 					text-shadow-2xs
@@ -326,7 +306,7 @@ const Home = () => {
 					Recently completed interior projects
 				 </h1>
 
-				<p className="text-slate-600 text-center text-xl ">
+				<p className="text-slate-600 text-justify">
 					As one of the best interior design companies in Bangladesh, our team has successfully delivered exceptional design solutions that exceed our client's expectations. Our completed projects speak for themselves and demonstrate our dedication to delivering innovative and functional designs.
 				</p>
 			</div>

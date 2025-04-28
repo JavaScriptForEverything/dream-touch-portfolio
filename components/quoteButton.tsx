@@ -7,7 +7,7 @@ import { MessageIcon } from '@/icons'
 export default function GetAQuoteButton() {
   return (
     <button className="flex overflow-hidden rounded-md shadow-md cursor-pointer group ">
-      <span className="bg-red-500/80 text-white px-4 py-3 text-sm font-semibold hover:bg-red-500 group-hover:bg-red-500 ">
+      <span className="bg-red-500 text-white px-4 py-3 text-sm font-semibold hover:bg-red-500/90 group-hover:bg-red-500 ">
         Get A Quote
       </span>
       <span className="bg-slate-700/80 px-3 py-2 flex items-center justify-center group-hover:bg-slate-700 ">

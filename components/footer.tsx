@@ -1,6 +1,6 @@
 import { ArrowRightIcon } from '@/icons'
 import FooterBlock from './footer/footerBlock'
-import { contactInfo, footerLinkItems, socialMediaItems } from '@/data'
+import { companyInfo, contactInfo, footerLinkItems, socialMediaItems } from '@/data'
 import { EmbeddedMap } from '@/components'
 import WhatsappChat from './whatsappChat'
 import Link from 'next/link'
@@ -27,7 +27,7 @@ export const Footer = ({ className }: Props) => {
 					border-b-[1px] border-dashed border-slate-300/20
 					
 					">
-						<Link href='#' className='text-red-500 hover:text-slate-50'> Read more </Link>
+						<Link href='/about-us' className='text-red-500 hover:text-slate-50'> Read more </Link>
 						<ArrowRightIcon />
 					</div>
 				</FooterBlock>
@@ -110,7 +110,7 @@ export const Footer = ({ className }: Props) => {
 
 
 			<p className='py-1 bg-[rgb(32,32,32)] text-center' >
- 				All Right Reserved &copy;HashTAG 
+ 				All Right Reserved &copy; {companyInfo.name}
 			</p>
 		</footer>
 	)
