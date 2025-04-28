@@ -1,15 +1,14 @@
 import type { Metadata } from "next"
 import Image from 'next/image'
 import { clientImages, missionItems, portfolioImages } from '@/data/home'
-import { ArrowRight } from 'lucide-react'
-import { DoubleQuoteRight, MessageIcon, StarIcon, YoutubeIcon } from '@/icons'
-import GoogleReview from '@/components/home/googleReview'
+import { ArrowRightIcon, DoubleQuoteRight, ForwardIcon, MessageIcon, PlayIcon, StarIcon, YoutubeIcon } from '@/icons'
 import AnimationButton from '@/components/animationButton'
 import CardReview from '@/components/review/cardReview'
 import Link from 'next/link'
 import { AboutBlockOne } from './about-us/aboutBlockOne'
 import { AboutBlockTwo } from './about-us/aboutBlockTwo'
 import { directorInfo } from '@/data'
+import { IconButton } from '@/components/mui'
 // import FooterBlock from '@/components/footer/footerBlock'
 
 
@@ -30,10 +29,10 @@ export const metadata: Metadata = {
 const Home = () => {
 
 	return (
-		<div className='min-h-screen w-full flex flex-col gap-8'>
+		<div className='min-h-screen w-full flex flex-col '>
 
 			<div data-name="hero-image-container" className='-mx-20' >
-				<div data-name="hero-image" className='relative h-72 md:h-96 bg-red-500 text-red-700 '>
+				<div data-name="hero-image" className='relative h-72 md:h-96 bg-red-100 text-red-700 '>
 					<Image 
 						src='/images/home/hero-image.png'
 						alt='hero image missing'
@@ -74,84 +73,196 @@ const Home = () => {
 			</div>
 
 
-			<div className="">
+			{/* <div className="">
 			<AboutBlockOne />
 			<AboutBlockTwo />
-			</div>
+			</div> */}
 
 
-			<div data-name="hero-content-container" className='text-slate-600 font-light '>
-				<h1 className=' 
-					text-slate-800
-					text-shadow-2xs
-				 text-2xl md:text-4xl font-extrabold my-4 capitalize mb-8 
-				 '>
-					We provide the best interior design services in Bangladesh
-				</h1>
+			<div data-name="hero-content-container" className="-mx-8 md:-mx-20 p-8 bg-white ">
+				<div className=' mb-16 text-slate-600 font-light '>
+					<h1 className=' text-slate-950 text-shadow-2xs text-2xl md:text-4xl font-extrabold my-4 capitalize mb-8 '>
+						best interior design services in Bangladesh
+					</h1>
 
-				<p className="text-slate-600 text-justify text-sm 
-					md:text-lg 
-				">
-					As a leading interior design company in Bangladesh, we provide the best interior design services. We have professional designers who create beautiful, functional environments that reflect your unique style and vision. Transform your space with the best interior designs today!
-				</p>
-			</div>
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+						<div className="flex flex-col gap-4">
+							<p className="text-slate-800 text-justify text-sm md:text-lg md:pr-4 ">
+								As a leading interior design company in Bangladesh, we provide the best interior design services. We have professional designers who create beautiful, functional environments that reflect your unique style and vision. Transform your space with the best interior designs today!
+							</p>
+
+							<p className="text-slate-800 text-justify text-sm md:text-lg md:pr-4 ">
+								As a leading interior design company in Bangladesh, we provide the best interior design services. We have professional designers who create beautiful, functional environments that reflect your unique style and vision. Transform your space with the best interior designs today!
+							</p>
+
+							<p className="text-slate-800 text-justify text-sm md:text-lg md:pr-4 ">
+								As a leading interior design company in Bangladesh, we provide the best interior design services. We have professional designers who create beautiful, functional environments that reflect your unique style and vision. Transform your space with the best interior designs today!
+							</p>
 
 
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 ">
-				{portfolioImages.map((item) => (
-					<div key={item.image} className="
-					border
-					border-red-200 hover:outline 
-					hover:border-red-300
-					hover:outline-red-400/40 
-
-					rounded-3xl
-					bg-slate-100
-					p-6
-					group
-					">
-						<Image 
-							src={item.image}
-							alt={item.image}
-							width={350}
-							height={250}
-							className='w-full rounded-3xl h-60 
-							group-hover:scale-110 duration-500 
-							'
-						/>
-
-						<div className="p-4 bg-slate-100">
-							<Link href={item.url}>
-								<h3 className='text-red-700 font-extrabold text-lg truncate overflow-hidden whitespace-nowrap hover:text-red-700 '>{item.title}</h3>
-							</Link>
-							<p className="border-b border-red-700 my-4 w-0 group-hover:w-full
-							duration-500
-							"></p>
-
-							<p className='text-slate-600 line-clamp-2 my-2 '>{item.description}</p>
-							<div className="flex justify-end">
-								<Link href={item.url} className='
+							<div className='my-6 '>
+								<div className='
+									px-6 py-3
+									bg-slate-800 relative
+									text-white
+									rounded-lg
+									inline-block
+								'
 								
-									p-3 rounded-full
-									-rotate-45
+								>
+									<div className=' relative z-10 flex justify-between items-center gap-4 '>
+										<span>More About Us</span>
+										<ForwardIcon className='w-8 h-8' />
+									</div>
 
-									text-red-600
-									bg-red-100 
+									<span 
+										className="
+											px-6 py-3 
+											absolute inset-0
+											bg-red-600 
+											rounded-tl-lg rounded-bl-lg
+										"
+										style={{
+											clipPath: 'polygon(0 0, 75% 0, 65% 100%, 0% 100%)',
+										}}
+									></span>
+								</div>
 
-									group-hover:bg-red-600
-									group-hover:text-slate-50	
-									group-active:bg-red-700
-									group-active:text-slate-50	
-
-								'>
-									<ArrowRight className='w-6 h-6 inline-block ' />
-								</Link>
 							</div>
-					</div>
+
+						</div>
+
+						<div data-name='image-container' className=" relative w-full min-h-40 ">
+							<Image 
+								src={'/coverPhoto.png'}
+								alt='modern interior design studio'
+								fill
+								className=' object-cover '
+							/>
+
+							<div data-name='image-container' className=" p-4 
+								absolute left-1/2 top-1/2 -translate-1/2  md:left-0
+								border-8 border-slate-50 rounded-full 
+								overflow-hidden
+							">
+								<Image 
+									src={'/best-interior-designer-in-bangladesh.webp'}
+									alt='modern interior design studio'
+									fill
+									className=' object-cover '
+								/>
+								<PlayIcon className='z-10 relative text-red-500
+									w-16 h-16 
+									hover:scale-110 duration-400
+									active:scale-105 active:text-red-700
+									cursor-pointer
+								' />
+							</div>
+
+							{/* <div data-name='image-container' className=" w-20 h-20 
+								absolute left-1/2 top-1/2 -translate-1/2 p-4 
+								border border-red-500 rounded-full overflow-hidden
+							">
+								<Image 
+									src={'/coverPhoto.png'}
+									alt='modern interior design studio'
+									fill
+									className=' object-cover '
+								/>
+							</div> */}
+
+						</div>
 
 					</div>
-				))}
+
+				</div>
 			</div>
+
+
+
+			<div data-name="portfolio-container" className="-mx-8 md:-mx-20 p-8 bg-slate-100 ">
+				<div className=' mb-16 bg-slate-100/70 text-slate-600 font-light '>
+					<h1 className=' text-slate-950 text-shadow-2xs text-xl md:text-2xl font-extrabold my-4 capitalize mb-8 '>
+						We provide the best interior design services in Bangladesh
+					</h1>
+
+					<p className="text-slate-800 text-justify text-sm md:text-lg ">
+						As a leading interior design company in Bangladesh, we provide the best interior design services. We have professional designers who create beautiful, functional environments that reflect your unique style and vision. Transform your space with the best interior designs today!
+					</p>
+				</div>
+
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 ">
+					{portfolioImages.map((item) => (
+						<div key={item.image} className="
+						relative overflow-hidden
+						bg-white
+
+
+
+						rounded-3xl
+						p-6
+						group
+						">
+
+				{/* border
+						border-red-200 hover:outline 
+						hover:border-red-300
+						hover:outline-red-400/40  */}
+							<Image 
+								src={item.image}
+								alt={item.image}
+								width={350}
+								height={250}
+								className='w-full rounded-3xl h-60 
+								group-hover:scale-105 duration-500 
+								'
+							/>
+
+							<div className="p-4 
+								bg-white
+							">
+								<Link href={item.url}>
+									<h3 className='text-red-700 font-extrabold text-lg truncate overflow-hidden whitespace-nowrap hover:text-red-700 '>{item.title}</h3>
+								</Link>
+								<p className="border-b border-red-700 my-4 w-0 group-hover:w-full
+								duration-500
+								"></p>
+
+								<p className='text-slate-600 line-clamp-2 my-2 '>{item.description}</p>
+
+								<div className="
+								absolute -bottom-4 -right-4 w-24 h-24 rounded-full
+						bg-slate-100
+								">
+
+									<div className="flex items-center justify-center w-full h-full
+
+									">
+										<Link href={item.url} className='
+											p-3 rounded-full
+											-rotate-45
+
+											text-red-600
+											bg-white
+
+											group-hover:bg-red-600
+											group-hover:text-slate-50	
+											group-active:bg-red-700
+											group-active:text-slate-50	
+
+										'>
+											<ArrowRightIcon className='w-6 h-6 inline-block ' />
+										</Link>
+									</div>
+								</div>
+
+						</div>
+
+						</div>
+					))}
+				</div>
+			</div>
+
 
 
 			<AnimationButton 
