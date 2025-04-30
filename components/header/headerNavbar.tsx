@@ -1,6 +1,7 @@
 'use client'
 import { usePathname } from 'next/navigation'
 import { headerNavItems } from '@/data'
+import Link from 'next/link'
 
 export const HeaderNavBar = () => {
 	const pathname = usePathname()
@@ -10,15 +11,17 @@ export const HeaderNavBar = () => {
   }
 
 	return (
-		<nav className="hidden md:flex gap-4">
+		<nav className="h-full hidden md:flex items-center gap-4">
+
 			{headerNavItems.map( ({ label, path }) => (
-				<a key={label} href={path} className={`
+				<Link key={label} href={path} className={`
 				whitespace-nowrap 
 				${isActive(path) ? 'text-red-500' : ''}
 				hover:text-red-500 
 				transition-colors 
-				duration-300 uppercase `} >{label}</a>
+				duration-300 uppercase `} >{label}</Link>
 			))}
+
 		</nav>
 	)
 }

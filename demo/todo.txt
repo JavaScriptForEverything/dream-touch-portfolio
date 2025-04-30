@@ -1,9 +1,24 @@
+---------------
+$ cd ~/Document/dream-touch
+$ rsync -a --progress --exclude='*/node_modules/*' --exclude='*/.next/*' frontend dream-touch:~/
+$ pm2 start yarn --name frontend -- start
+---------------
+
+
+
+
 Outline:
 	- 
 
 - in contact-us: in add mission and vision add sir's details
 
 
+Problem:
+	- header blink on clicking navigation bars: wet same height for inital and loaded
+		Solved: replace <a> with <Link>
+
+
+- add another card hover over card or image (full/half)
 
 
 
@@ -11,9 +26,7 @@ Outline:
 
 
 
-
-
-
+check-react-app-production-ready-so-that-react-router-nested-route-works-properly-on-vps-server
 
 
 

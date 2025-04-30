@@ -1,10 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { HomeMenuButton } from './homeMenuButton'
-// import { cartLabel, topRightConrnerMenuItems } from '@/data'
-// import { SearchWithFilter } from './searchWithFilter'
-// import { ClientBadge } from './clientBadge'
-// import { MessageIcon } from '@/icons'
 import GetAQuoteButton from './quoteButton'
 import { HeaderNavBar } from './header/headerNavbar'
 import { contactInfo } from '@/data/home'
@@ -18,7 +14,7 @@ type Props = {
 export const Header = async ({}: Props) => {
 
 	return (
-		<div className=" max-h-20 sticky top-0 z-20 bg-[#292929] text-slate-50 py-4">
+		<div className="sticky top-0 z-20 bg-[#292929] text-slate-50 py-4">
 			<div className="container mx-auto px-8 lg:px-20 flex items-center gap-4">
 				<Link href='/' className='mr-12 ' >
 					<Image 
@@ -26,6 +22,7 @@ export const Header = async ({}: Props) => {
 						alt='/logo.svg'
 						width={80}
 						height={80}
+						className=''
 					/>
 				</Link>
 

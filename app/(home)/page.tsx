@@ -2,23 +2,12 @@ import type { Metadata } from "next"
 import Image from 'next/image'
 import { clientImages, missionItems, portfolioImages } from '@/data/home'
 import { ArrowRightIcon, DoubleQuoteRight, ForwardIcon, MessageIcon, PlayIcon, StarIcon, YoutubeIcon } from '@/icons'
-import AnimationButton from '@/components/animationButton'
 import CardReview from '@/components/review/cardReview'
 import Link from 'next/link'
 import { AboutBlockOne } from './about-us/aboutBlockOne'
 import { AboutBlockTwo } from './about-us/aboutBlockTwo'
 import { directorInfo } from '@/data'
-import { IconButton } from '@/components/mui'
-import { DiagonallySlicedButton, SlicedButton } from '@/components'
-// import FooterBlock from '@/components/footer/footerBlock'
-
-
-// const productItems = [
-// 	{ title: 't-shart for Man lorem lorem lorem', rating: 4, price: '$5.00', image: '/images/headphone.jpg', path: '/product/1' },
-// 	{ title: 't-shart for Kid', rating: 5, price: '$8.00', image: '/images/headphone.jpg', path: '/product/2' },
-// 	{ title: 'Skaff for wemon', rating: 5, price: '$5.00', image: '/images/headphone.jpg', path: '/product/3' },
-// 	{ title: 't-shart for women', rating: 3, price: '$7.00', image: '/images/headphone.jpg', path: '/product/4' },
-// ]
+import { DiagonallySlicedButton } from '@/components'
 
 
 export const metadata: Metadata = {
@@ -205,15 +194,14 @@ const Home = () => {
 								duration-500
 								"></p>
 
-								<p className='text-slate-600 line-clamp-2 my-2 '>{item.description}</p>
+								<p className='text-slate-600 line-clamp-2 mt-2 mb-20 
+								'>{item.description}</p>
 
-								<div className="
-								absolute -bottom-4 -right-4 w-24 h-24 rounded-full
-						bg-slate-100
+								<div className=" absolute -bottom-4 -right-4 w-24 h-24 rounded-full
+								bg-slate-100
 								">
 
 									<div className="flex items-center justify-center w-full h-full
-
 									">
 										<Link href={item.url} className='
 											p-3 rounded-full
@@ -317,9 +305,9 @@ const Home = () => {
 					<div key={item.title} className="
 						border border-red-400
 						rounded-lg
-						p-4
+						p-2
 						relative
-						h-80
+						h-56
 						overflow-hidden
 						group
 					">
@@ -328,18 +316,16 @@ const Home = () => {
 						absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4
 						group-hover:w-24 group-hover:h-24 duration-500
 						transition-all
-						">
-						</span>
+						" />
 
 
 						<Image 
-							// src='/images/home/portfolios/apartment-decor-r13paque78wtipjj12u3ofnnjvgiwt23rmsk70pi2w.webp'
 							src={item.image}
 							alt={item.image}
 							width={350}
 							height={350}
-							className='w-full rounded-lg h-80
-								absolute -bottom-2 -right-2
+							className='w-full rounded-lg aspect-video relative
+								hover:scale-[1.01] duration-100
 							'
 						/>
 
@@ -353,6 +339,7 @@ const Home = () => {
 							bg-slate-600
 							text-slate-50
 							capitalize
+							hover:bg-slate-700
 						">
 							{item.title}
 						</span>

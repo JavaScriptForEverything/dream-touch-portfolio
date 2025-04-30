@@ -20,8 +20,8 @@ const Portfolio = () => {
 
 	return (
 		<>
-			{/* <BreadCrumbs /> */}
-			<div data-name="hero-image-container" className='-mx-20
+			<BreadCrumbs />
+			{/* <div data-name="hero-image-container" className='-mx-20
 			' >
 				<div data-name="hero-image" className='relative h-40 md:h-60 bg-red-100 text-red-600 '>
 					<Image 
@@ -31,37 +31,8 @@ const Portfolio = () => {
 						className="object-cover"
 					/>
 
-
-					{/* <div data-name="hero-image-content"
-						className='absolute left-1/2 top-1/2 -translate-1/2
-							bg-slate-50/10 w-full py-4
-							text-shadow-2xs
-							flex flex-col items-center
-						'
-					>
-						<p className='my-2 capitalize text-shadow'>
-							passion is the fual that drives us forward
-						</p>
-						<p className='tracking-widest text-4xl font-extrabold
-							uppercase
-							mb-8
-						'>
-							Inspired by living
-						</p>
-
-						<Link href='/about-us' className='bg-red-100 border-red-400 px-3 py-1.5 rounded
-							hover:border-red-500	
-							hover:text-red-600	
-							active:text-red-800	
-							active:bg-red-200	
-						'>
-							more
-						</Link>
-					</div> */}
-
-
 				</div>
-			</div>
+			</div> */}
 
 			<div data-name="hero-content-container" className="-mx-8 md:-mx-20 p-8 bg-white ">
 				<div className=' mb-16 text-slate-600 font-light '>
@@ -96,18 +67,20 @@ const Portfolio = () => {
 							overflow-hidden
 							group
 							">
-								<Image 
-									src={portfolio.image}
-									alt={portfolio.image}
-									width={350}
-									height={250}
-									className='w-full h-60 
-									group-hover:scale-100 duration-500 
-									'
-								/>
+								<Link href={`/portfolio/${portfolio.url}`}>
+									<Image 
+										src={portfolio.image}
+										alt={portfolio.image}
+										width={350}
+										height={250}
+										className='w-full h-60 
+										group-hover:scale-100 duration-500 
+										'
+									/>
+								</Link>
 
 								<div className="p-4 bg-slate-100">
-									<Link href={portfolio.url}>
+									<Link href={`/portfolio/${portfolio.url}`}>
 										<h3 className='
 										text-red-600 
 										font-extrabold text-lg truncate overflow-hidden 
@@ -145,13 +118,13 @@ const Portfolio = () => {
 											<ArrowRightIcon className='w-6 h-6 inline-block ' />
 										</Link> */}
 
-										<Link href={portfolio.url} className='
+										<Link href={`/portfolio/${portfolio.url}`} className='
 											px-3 py-1.5 rounded-md
 
-											text-red-600
-											bg-red-100 
+											text-white
+											bg-red-600
 
-											hover:bg-red-600
+											hover:bg-red-600/90
 											hover:text-slate-50	
 											active:bg-red-700
 											active:text-slate-50	
