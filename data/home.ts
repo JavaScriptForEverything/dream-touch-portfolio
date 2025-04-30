@@ -2,7 +2,7 @@ export const contactInfo = {
     phone: '+8801955-521500',
 };
 
-export const clientImages = [
+export const clients = [
     {
         image: '/images/home/clients/best-interior-design-company-in-bangladesh.webp',
         title: 'Best Interior Design Company in Bangladesh',
@@ -78,7 +78,7 @@ export const clientImages = [
 ];
 
 
-export const portfolioImages = [
+export const portfolioes = [
   {
     image: '/images/home/portfolios/apartment-decor-r13paque78wtipjj12u3ofnnjvgiwt23rmsk70pi2w.webp',
     title: 'Apartment Decor',
@@ -86,6 +86,17 @@ export const portfolioImages = [
     url: 'link-1',
 		createdAt: new Date().toISOString(),
 		location: 'badda, dhaka',
+		images: [
+			'/images/home/portfolios/apartment-decor-r13paque78wtipjj12u3ofnnjvgiwt23rmsk70pi2w.webp',
+			'/images/home/portfolios/home-decor-ideas-r13phfh2su282vtzzyuleqxnmiihnble0psv1uspu0.webp',
+			'/images/home/portfolios/home-design-trends-r13pgle8q4x1rd1ovluj6yiwm6mqt09z8kxbp01bd4.webp',
+			'/images/home/portfolios/home-interior-planning-r13plsg4i613xrhzjcpah5bmtv0scrwkaaqy72byyw.webp',
+			'/images/home/portfolios/interior-setup-r13pl24n6t12wok7t1bqjbyq72mid902uohcrbezt4.webp',
+			'/images/home/portfolios/modern-space-design-r13pfkqjbliv6kixto02zprxg5nfgt8g3jhdz7jo3s.webp',
+			'/images/home/portfolios/residential-design-1-r13peh9bck0tmy4a86xr2zqkhz20hivpy42ztl67d4.webp',
+			'/images/home/portfolios/residential-design-r13pblv2gs3a5uagzy8sgptv5l7myth8vwbl15fidk.webp',
+			'/images/home/portfolios/space-organization-r13pig4s7dgenocr1wp1lzomsjhszimx5r8srnad3c.webp',
+		],
   },
   {
     image: '/images/home/portfolios/home-decor-ideas-r13phfh2su282vtzzyuleqxnmiihnble0psv1uspu0.webp',
@@ -94,6 +105,17 @@ export const portfolioImages = [
     url: 'link-2',
 		createdAt: new Date().toISOString(),
 		location: 'badda, dhaka',
+		images: [
+			'/images/home/portfolios/apartment-decor-r13paque78wtipjj12u3ofnnjvgiwt23rmsk70pi2w.webp',
+			'/images/home/portfolios/home-decor-ideas-r13phfh2su282vtzzyuleqxnmiihnble0psv1uspu0.webp',
+			'/images/home/portfolios/home-design-trends-r13pgle8q4x1rd1ovluj6yiwm6mqt09z8kxbp01bd4.webp',
+			'/images/home/portfolios/home-interior-planning-r13plsg4i613xrhzjcpah5bmtv0scrwkaaqy72byyw.webp',
+			'/images/home/portfolios/interior-setup-r13pl24n6t12wok7t1bqjbyq72mid902uohcrbezt4.webp',
+			'/images/home/portfolios/modern-space-design-r13pfkqjbliv6kixto02zprxg5nfgt8g3jhdz7jo3s.webp',
+			'/images/home/portfolios/residential-design-1-r13peh9bck0tmy4a86xr2zqkhz20hivpy42ztl67d4.webp',
+			'/images/home/portfolios/residential-design-r13pblv2gs3a5uagzy8sgptv5l7myth8vwbl15fidk.webp',
+			'/images/home/portfolios/space-organization-r13pig4s7dgenocr1wp1lzomsjhszimx5r8srnad3c.webp',
+		],
   },
   {
     image: '/images/home/portfolios/home-design-trends-r13pgle8q4x1rd1ovluj6yiwm6mqt09z8kxbp01bd4.webp',
@@ -102,6 +124,17 @@ export const portfolioImages = [
     url: 'link-3',
 		createdAt: new Date().toISOString(),
 		location: 'badda, dhaka',
+		images: [
+			'/images/home/portfolios/apartment-decor-r13paque78wtipjj12u3ofnnjvgiwt23rmsk70pi2w.webp',
+			'/images/home/portfolios/home-decor-ideas-r13phfh2su282vtzzyuleqxnmiihnble0psv1uspu0.webp',
+			'/images/home/portfolios/home-design-trends-r13pgle8q4x1rd1ovluj6yiwm6mqt09z8kxbp01bd4.webp',
+			'/images/home/portfolios/home-interior-planning-r13plsg4i613xrhzjcpah5bmtv0scrwkaaqy72byyw.webp',
+			'/images/home/portfolios/interior-setup-r13pl24n6t12wok7t1bqjbyq72mid902uohcrbezt4.webp',
+			'/images/home/portfolios/modern-space-design-r13pfkqjbliv6kixto02zprxg5nfgt8g3jhdz7jo3s.webp',
+			'/images/home/portfolios/residential-design-1-r13peh9bck0tmy4a86xr2zqkhz20hivpy42ztl67d4.webp',
+			'/images/home/portfolios/residential-design-r13pblv2gs3a5uagzy8sgptv5l7myth8vwbl15fidk.webp',
+			'/images/home/portfolios/space-organization-r13pig4s7dgenocr1wp1lzomsjhszimx5r8srnad3c.webp',
+		],
   },
   {
     image: '/images/home/portfolios/home-interior-planning-r13plsg4i613xrhzjcpah5bmtv0scrwkaaqy72byyw.webp',
@@ -110,6 +143,17 @@ export const portfolioImages = [
     url: 'link-4',
 		createdAt: new Date().toISOString(),
 		location: 'badda, dhaka',
+		images: [
+			'/images/home/portfolios/apartment-decor-r13paque78wtipjj12u3ofnnjvgiwt23rmsk70pi2w.webp',
+			'/images/home/portfolios/home-decor-ideas-r13phfh2su282vtzzyuleqxnmiihnble0psv1uspu0.webp',
+			'/images/home/portfolios/home-design-trends-r13pgle8q4x1rd1ovluj6yiwm6mqt09z8kxbp01bd4.webp',
+			'/images/home/portfolios/home-interior-planning-r13plsg4i613xrhzjcpah5bmtv0scrwkaaqy72byyw.webp',
+			'/images/home/portfolios/interior-setup-r13pl24n6t12wok7t1bqjbyq72mid902uohcrbezt4.webp',
+			'/images/home/portfolios/modern-space-design-r13pfkqjbliv6kixto02zprxg5nfgt8g3jhdz7jo3s.webp',
+			'/images/home/portfolios/residential-design-1-r13peh9bck0tmy4a86xr2zqkhz20hivpy42ztl67d4.webp',
+			'/images/home/portfolios/residential-design-r13pblv2gs3a5uagzy8sgptv5l7myth8vwbl15fidk.webp',
+			'/images/home/portfolios/space-organization-r13pig4s7dgenocr1wp1lzomsjhszimx5r8srnad3c.webp',
+		],
   },
   {
     image: '/images/home/portfolios/interior-setup-r13pl24n6t12wok7t1bqjbyq72mid902uohcrbezt4.webp',
@@ -118,6 +162,17 @@ export const portfolioImages = [
     url: 'link-5',
 		createdAt: new Date().toISOString(),
 		location: 'badda, dhaka',
+		images: [
+			'/images/home/portfolios/apartment-decor-r13paque78wtipjj12u3ofnnjvgiwt23rmsk70pi2w.webp',
+			'/images/home/portfolios/home-decor-ideas-r13phfh2su282vtzzyuleqxnmiihnble0psv1uspu0.webp',
+			'/images/home/portfolios/home-design-trends-r13pgle8q4x1rd1ovluj6yiwm6mqt09z8kxbp01bd4.webp',
+			'/images/home/portfolios/home-interior-planning-r13plsg4i613xrhzjcpah5bmtv0scrwkaaqy72byyw.webp',
+			'/images/home/portfolios/interior-setup-r13pl24n6t12wok7t1bqjbyq72mid902uohcrbezt4.webp',
+			'/images/home/portfolios/modern-space-design-r13pfkqjbliv6kixto02zprxg5nfgt8g3jhdz7jo3s.webp',
+			'/images/home/portfolios/residential-design-1-r13peh9bck0tmy4a86xr2zqkhz20hivpy42ztl67d4.webp',
+			'/images/home/portfolios/residential-design-r13pblv2gs3a5uagzy8sgptv5l7myth8vwbl15fidk.webp',
+			'/images/home/portfolios/space-organization-r13pig4s7dgenocr1wp1lzomsjhszimx5r8srnad3c.webp',
+		],
   },
   {
     image: '/images/home/portfolios/modern-space-design-r13pfkqjbliv6kixto02zprxg5nfgt8g3jhdz7jo3s.webp',
@@ -126,6 +181,17 @@ export const portfolioImages = [
     url: 'link-6',
 		createdAt: new Date().toISOString(),
 		location: 'badda, dhaka',
+		images: [
+			'/images/home/portfolios/apartment-decor-r13paque78wtipjj12u3ofnnjvgiwt23rmsk70pi2w.webp',
+			'/images/home/portfolios/home-decor-ideas-r13phfh2su282vtzzyuleqxnmiihnble0psv1uspu0.webp',
+			'/images/home/portfolios/home-design-trends-r13pgle8q4x1rd1ovluj6yiwm6mqt09z8kxbp01bd4.webp',
+			'/images/home/portfolios/home-interior-planning-r13plsg4i613xrhzjcpah5bmtv0scrwkaaqy72byyw.webp',
+			'/images/home/portfolios/interior-setup-r13pl24n6t12wok7t1bqjbyq72mid902uohcrbezt4.webp',
+			'/images/home/portfolios/modern-space-design-r13pfkqjbliv6kixto02zprxg5nfgt8g3jhdz7jo3s.webp',
+			'/images/home/portfolios/residential-design-1-r13peh9bck0tmy4a86xr2zqkhz20hivpy42ztl67d4.webp',
+			'/images/home/portfolios/residential-design-r13pblv2gs3a5uagzy8sgptv5l7myth8vwbl15fidk.webp',
+			'/images/home/portfolios/space-organization-r13pig4s7dgenocr1wp1lzomsjhszimx5r8srnad3c.webp',
+		],
   },
   {
     image: '/images/home/portfolios/residential-design-1-r13peh9bck0tmy4a86xr2zqkhz20hivpy42ztl67d4.webp',
@@ -134,6 +200,17 @@ export const portfolioImages = [
     url: 'link-7',
 		createdAt: new Date().toISOString(),
 		location: 'badda, dhaka',
+		images: [
+			'/images/home/portfolios/apartment-decor-r13paque78wtipjj12u3ofnnjvgiwt23rmsk70pi2w.webp',
+			'/images/home/portfolios/home-decor-ideas-r13phfh2su282vtzzyuleqxnmiihnble0psv1uspu0.webp',
+			'/images/home/portfolios/home-design-trends-r13pgle8q4x1rd1ovluj6yiwm6mqt09z8kxbp01bd4.webp',
+			'/images/home/portfolios/home-interior-planning-r13plsg4i613xrhzjcpah5bmtv0scrwkaaqy72byyw.webp',
+			'/images/home/portfolios/interior-setup-r13pl24n6t12wok7t1bqjbyq72mid902uohcrbezt4.webp',
+			'/images/home/portfolios/modern-space-design-r13pfkqjbliv6kixto02zprxg5nfgt8g3jhdz7jo3s.webp',
+			'/images/home/portfolios/residential-design-1-r13peh9bck0tmy4a86xr2zqkhz20hivpy42ztl67d4.webp',
+			'/images/home/portfolios/residential-design-r13pblv2gs3a5uagzy8sgptv5l7myth8vwbl15fidk.webp',
+			'/images/home/portfolios/space-organization-r13pig4s7dgenocr1wp1lzomsjhszimx5r8srnad3c.webp',
+		],
   },
   {
     image: '/images/home/portfolios/residential-design-r13pblv2gs3a5uagzy8sgptv5l7myth8vwbl15fidk.webp',
@@ -142,6 +219,17 @@ export const portfolioImages = [
     url: 'link-8',
 		createdAt: new Date().toISOString(),
 		location: 'badda, dhaka',
+		images: [
+			'/images/home/portfolios/apartment-decor-r13paque78wtipjj12u3ofnnjvgiwt23rmsk70pi2w.webp',
+			'/images/home/portfolios/home-decor-ideas-r13phfh2su282vtzzyuleqxnmiihnble0psv1uspu0.webp',
+			'/images/home/portfolios/home-design-trends-r13pgle8q4x1rd1ovluj6yiwm6mqt09z8kxbp01bd4.webp',
+			'/images/home/portfolios/home-interior-planning-r13plsg4i613xrhzjcpah5bmtv0scrwkaaqy72byyw.webp',
+			'/images/home/portfolios/interior-setup-r13pl24n6t12wok7t1bqjbyq72mid902uohcrbezt4.webp',
+			'/images/home/portfolios/modern-space-design-r13pfkqjbliv6kixto02zprxg5nfgt8g3jhdz7jo3s.webp',
+			'/images/home/portfolios/residential-design-1-r13peh9bck0tmy4a86xr2zqkhz20hivpy42ztl67d4.webp',
+			'/images/home/portfolios/residential-design-r13pblv2gs3a5uagzy8sgptv5l7myth8vwbl15fidk.webp',
+			'/images/home/portfolios/space-organization-r13pig4s7dgenocr1wp1lzomsjhszimx5r8srnad3c.webp',
+		],
   },
   {
     image: '/images/home/portfolios/space-organization-r13pig4s7dgenocr1wp1lzomsjhszimx5r8srnad3c.webp',
@@ -150,6 +238,17 @@ export const portfolioImages = [
     url: 'link-9',
 		createdAt: new Date().toISOString(),
 		location: 'badda, dhaka',
+		images: [
+			'/images/home/portfolios/apartment-decor-r13paque78wtipjj12u3ofnnjvgiwt23rmsk70pi2w.webp',
+			'/images/home/portfolios/home-decor-ideas-r13phfh2su282vtzzyuleqxnmiihnble0psv1uspu0.webp',
+			'/images/home/portfolios/home-design-trends-r13pgle8q4x1rd1ovluj6yiwm6mqt09z8kxbp01bd4.webp',
+			'/images/home/portfolios/home-interior-planning-r13plsg4i613xrhzjcpah5bmtv0scrwkaaqy72byyw.webp',
+			'/images/home/portfolios/interior-setup-r13pl24n6t12wok7t1bqjbyq72mid902uohcrbezt4.webp',
+			'/images/home/portfolios/modern-space-design-r13pfkqjbliv6kixto02zprxg5nfgt8g3jhdz7jo3s.webp',
+			'/images/home/portfolios/residential-design-1-r13peh9bck0tmy4a86xr2zqkhz20hivpy42ztl67d4.webp',
+			'/images/home/portfolios/residential-design-r13pblv2gs3a5uagzy8sgptv5l7myth8vwbl15fidk.webp',
+			'/images/home/portfolios/space-organization-r13pig4s7dgenocr1wp1lzomsjhszimx5r8srnad3c.webp',
+		],
   },
 ];
 

@@ -5,6 +5,8 @@ $ pm2 start yarn --name frontend -- start
 ---------------
 
 
+Learn:
+	- ShadCN
 
 
 Outline:

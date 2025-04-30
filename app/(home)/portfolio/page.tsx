@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { BreadCrumbs } from '@/components'
 import Image from 'next/image'
 import { companyInfo } from '@/data'
-import { portfolioImages } from '@/data/home'
+import { portfolioes } from '@/data/home'
 import { ArrowRightIcon } from '@/icons'
 import { formatISODate, formatToDate } from '@/lib/utils'
 
@@ -21,18 +21,38 @@ const Portfolio = () => {
 	return (
 		<>
 			<BreadCrumbs />
-			{/* <div data-name="hero-image-container" className='-mx-20
-			' >
+			<div data-name="hero-image-container" className='-mx-20' >
 				<div data-name="hero-image" className='relative h-40 md:h-60 bg-red-100 text-red-600 '>
 					<Image 
-						src='/coverPhoto.png'
+						src='/images/portfolio/portfolio-hero-image.webp'
 						alt='hero image missing'
 						fill
-						className="object-cover"
+						className="object-cover
+						brightness-75
+						"
 					/>
 
+					<div data-name="hero-image-content"
+						className='absolute left-1/2 top-1/2 -translate-1/2
+							bg-slate-500/20 w-full py-4
+							text-shadow-2xs
+							flex flex-col items-center
+						'
+					>
+						<p className='tracking-widest text-4xl font-extrabold
+							uppercase
+						'>
+							Portfolio
+						</p>
+
+						<p className='my-2 capitalize text-shadow text-white italic
+						'>
+							We turn ideas into works of art
+						</p>
+					</div>
+
 				</div>
-			</div> */}
+			</div>
 
 			<div data-name="hero-content-container" className="-mx-8 md:-mx-20 p-8 bg-white ">
 				<div className=' mb-16 text-slate-600 font-light '>
@@ -42,22 +62,7 @@ const Portfolio = () => {
 
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
-						{/* <div className="flex flex-col gap-4">
-							<p className="text-slate-800 text-justify text-sm md:text-lg md:pr-4 ">
-								As a leading interior design company in Bangladesh, we provide the best interior design services. We have professional designers who create beautiful, functional environments that reflect your unique style and vision. Transform your space with the best interior designs today!
-							</p>
-
-							<p className="text-slate-800 text-justify text-sm md:text-lg md:pr-4 ">
-								As a leading interior design company in Bangladesh, we provide the best interior design services. We have professional designers who create beautiful, functional environments that reflect your unique style and vision. Transform your space with the best interior designs today!
-							</p>
-
-							<p className="text-slate-800 text-justify text-sm md:text-lg md:pr-4 ">
-								As a leading interior design company in Bangladesh, we provide the best interior design services. We have professional designers who create beautiful, functional environments that reflect your unique style and vision. Transform your space with the best interior designs today!
-							</p>
-
-						</div> */}
-
-						{portfolioImages.map((portfolio) => (
+						{portfolioes.map((portfolio) => (
 							<div key={portfolio.image} className="
 							border
 							border-red-50 

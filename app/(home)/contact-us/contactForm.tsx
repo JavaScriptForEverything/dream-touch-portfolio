@@ -104,7 +104,7 @@ const ContactForm = () => {
 					disabled={loading}
 					color='error'
 					fullWidth
-					className='mt-1'
+					className='mt-1 cursor-pointer'
 				>
 					<span className='flex justify-center'> {loading ? <LoadingIcon /> : 'Send Message'} </span> 
 				</Button>

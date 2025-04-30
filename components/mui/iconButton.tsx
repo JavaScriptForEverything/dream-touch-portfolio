@@ -20,7 +20,7 @@ export const IconButton = (props: Props) => {
     ...rest
 	} = props
 
-  const baseStyles = 'rounded-full flex items-center justify-center focus:outline-none transition duration-150 ease-in-out'
+  const baseStyles = 'cursor-pointer rounded-full flex items-center justify-center focus:outline-none transition duration-150 ease-in-out'
 	const disabledStyles = 'disabled:bg-slate-300 disabled:text-slate-500 disabled:border-slate-400/30'
     
 	const sizeStyles = {

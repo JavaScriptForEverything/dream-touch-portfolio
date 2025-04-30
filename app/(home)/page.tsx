@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Image from 'next/image'
-import { clientImages, missionItems, portfolioImages } from '@/data/home'
+import { clients, missionItems, portfolioes } from '@/data/home'
 import { ArrowRightIcon, DoubleQuoteRight, ForwardIcon, MessageIcon, PlayIcon, StarIcon, YoutubeIcon } from '@/icons'
 import CardReview from '@/components/review/cardReview'
 import Link from 'next/link'
@@ -158,8 +158,8 @@ const Home = () => {
 				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 ">
-					{portfolioImages.map((item) => (
-						<div key={item.image} className="
+					{portfolioes.map((portfolio) => (
+						<div key={portfolio.image} className="
 						relative 
 						bg-white
 						rounded-xl
@@ -174,8 +174,8 @@ const Home = () => {
 						<div className="m-1 overflow-hidden">
 
 							<Image 
-								src={item.image}
-								alt={item.image}
+								src={portfolio.image}
+								alt={portfolio.image}
 								width={350}
 								height={250}
 								className='w-full h-60 
@@ -187,15 +187,15 @@ const Home = () => {
 						</div>
 
 							<div className="p-4 bg-white ">
-								<Link href={item.url}>
-									<h3 className='text-red-700 font-extrabold text-lg truncate overflow-hidden whitespace-nowrap hover:text-red-700 '>{item.title}</h3>
+								<Link href={portfolio.url}>
+									<h3 className='text-red-700 font-extrabold text-lg truncate overflow-hidden whitespace-nowrap hover:text-red-700 '>{portfolio.title}</h3>
 								</Link>
 								<p className="border-b border-red-700 my-4 w-0 group-hover:w-full
 								duration-500
 								"></p>
 
 								<p className='text-slate-600 line-clamp-2 mt-2 mb-20 
-								'>{item.description}</p>
+								'>{portfolio.description}</p>
 
 								<div className=" absolute -bottom-4 -right-4 w-24 h-24 rounded-full
 								bg-slate-100
@@ -203,7 +203,7 @@ const Home = () => {
 
 									<div className="flex items-center justify-center w-full h-full
 									">
-										<Link href={item.url} className='
+										<Link href={portfolio.url} className='
 											p-3 rounded-full
 											-rotate-45
 
@@ -244,11 +244,11 @@ const Home = () => {
 				<h2 className='uppercase text-2xl mb-4'>Our Happy Clients</h2>
 				<div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-9 gap-2">
 
-					{clientImages.map((item) => (
-						<Link href='' title={item.title} key={item.image} className="p-4 w-auto h-auto border border-red-500/70 rounded hover:outline hover:outline-red-500/40 ">
+					{clients.map((client) => (
+						<Link href='' title={client.title} key={client.image} className="p-4 w-auto h-auto border border-red-500/70 rounded hover:outline hover:outline-red-500/40 ">
 							<Image 
-								src={item.image}
-								alt={item.image}
+								src={client.image}
+								alt={client.image}
 								width={250}
 								height={250}
 								className=' hover:scale-110 duration-200 '
@@ -263,8 +263,8 @@ const Home = () => {
 				<h2 className='capitalize text-2xl mb-6'>What our clients say about us</h2>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 ">
-					{[1, 2, 3, 4, 5, 6].map((item) => (
-						<CardReview key={item}
+					{[1, 2, 3, 4, 5, 6].map((review) => (
+						<CardReview key={review}
 							numberOfStars={5}
 							reviewText='I recently came across Barnomala Architect & Interior and Im absolutely thrilled with their services! The attention to detail, creativity, and professionalism they bring to the table is truly commendable. I highly recommend them for any interior design needs!'
 							reviewerName='John Doe'
@@ -301,8 +301,8 @@ const Home = () => {
 
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 ">
 
-				{portfolioImages.map((item) => (
-					<div key={item.title} className="
+				{portfolioes.map((portfolio) => (
+					<div key={portfolio.title} className="
 						border border-red-400
 						rounded-lg
 						p-2
@@ -320,8 +320,8 @@ const Home = () => {
 
 
 						<Image 
-							src={item.image}
-							alt={item.image}
+							src={portfolio.image}
+							alt={portfolio.image}
 							width={350}
 							height={350}
 							className='w-full rounded-lg aspect-video relative
@@ -329,7 +329,7 @@ const Home = () => {
 							'
 						/>
 
-					<Link href={item.url} >
+					<Link href={portfolio.url} >
 						<YoutubeIcon className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' fontSize={60} />
 					</Link>
 
@@ -341,7 +341,7 @@ const Home = () => {
 							capitalize
 							hover:bg-slate-700
 						">
-							{item.title}
+							{portfolio.title}
 						</span>
 					</div>
 				))} 

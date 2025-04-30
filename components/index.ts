@@ -29,3 +29,4 @@ export * from '@/components/whatsappChat'
 export * from '@/components/videoGallery'
 
 export * from '@/components/diagonallySlicedButton'
+export * from '@/components/imageCaroselModal'
