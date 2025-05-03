@@ -68,8 +68,8 @@ const PortfolioDetailsPage = () => {
 					</h1>
 
 					{portfolioImagesChunks.map((chunks, chunkIndex) => (
-						<div className="">
-							<div key={chunkIndex} className="grid grid-cols-1 md:grid-cols-3 gap-4">
+						<div key={chunkIndex} >
+							<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 								{chunks.map((image, index) => (
 									<div 
 										key={image} 
@@ -156,6 +156,12 @@ const PortfolioDetailsPage = () => {
           onClose={() => setIsModalOpen(false)}
         />
       )}
+
+
+
+			<div data-name='' className="">
+
+			</div>
     
 		</>
 	)

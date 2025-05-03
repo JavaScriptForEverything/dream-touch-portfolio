@@ -79,6 +79,11 @@ export const footerLinkItems = [
 				placeholder:'appointment',	
 				href: '/appointment', 
 			},
+			{ 
+				label: 'Site Map', 	
+				placeholder:'Site Map',	
+				href: '/site-map', 
+			},
 		],
 	},
 	{ 

@@ -4,6 +4,7 @@ import { companyInfo, contactInfo, footerLinkItems, socialMediaItems } from '@/d
 import { EmbeddedMap } from '@/components'
 import WhatsappChat from './whatsappChat'
 import Link from 'next/link'
+import SiteMap from './footer/siteMap'
 
 
 type Props = {
@@ -69,26 +70,7 @@ export const Footer = ({ className }: Props) => {
 			</div>
 
 			<div className="container mx-auto px-8 lg:px-20 grid grid-cols-1 gap-4">
-				<FooterBlock title='Links'>
-					<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
-						{footerLinkItems.map((link) => (
-							<div key={link.title} className="flex flex-col gap-4">
-								<p className='underline underline-offset-6'>{link.title}</p>
-								<ul className="flex flex-col gap-2">
-									{link.child.map(({ label, href }) => (
-										<li key={label} className="text-sm text-slate-400 hover:text-slate-300/90">
-											<Link href={href} className="flex items-center gap-2 capitalize truncate ">
-												{label}
-											</Link>
-										</li>
-									))}
-								</ul>
-
-							</div>
-						))}
-					</div>
-
-				</FooterBlock>
+				<SiteMap childClass='text-slate-400 hover:text-slate-200/90' />
 			</div>
 
 

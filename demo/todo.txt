@@ -7,6 +7,9 @@ $ pm2 start yarn --name frontend -- start
 
 Learn:
 	- ShadCN
+	- ShadCN : Vite instaltion: shows how to configure path alias too
+	- https://ui.shadcn.com/docs/components/form
+	- https://ui.shadcn.com/docs/components/pagination#
 
 
 Outline:
@@ -67,3 +70,10 @@ Sample sites:
 	- https://bdinterior.net/
 
 -------------
+
+Hover Effect:
+	- https://demo.misbahwp.com/interior-decor-consultation/our-projects/
+
+
+Footer
+	- Site Map 				: create seperate pages for links
