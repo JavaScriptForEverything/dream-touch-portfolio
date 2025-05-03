@@ -1,5 +1,6 @@
 
 export * from './phoneIcon'
+export * from './callRingIcong'
 export * from './emailIcon'
 export * from './locationIcon'
 

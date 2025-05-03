@@ -78,7 +78,7 @@ const ContactUs = () => {
 
 				<div data-name="contact-up-form" className="col-span-12 md:col-span-5">
 					<h1 className="text-red-600/80 text-xl font-extrabold mb-4">Send Message</h1>
-					<ContactForm />
+					<ContactForm isAutoFocus={true} />
 				</div>
 			</div>
 

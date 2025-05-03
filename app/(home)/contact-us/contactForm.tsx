@@ -38,7 +38,11 @@ const initialFields: InitialFieldsType = {
 		message: ''
 }
 
-const ContactForm = () => {
+interface Props {
+	isAutoFocus?: boolean
+}
+
+const ContactForm = ({ isAutoFocus = false }: Props) => {
 	const [ loading, setLoading ] = useState(false)
 	const [ fields, setFields ] = useState<InitialFieldsType>( initialFields)
 	const [ fieldsError, setFieldsError ] = useState<InitialFieldsType>( initialFields)
@@ -82,8 +86,9 @@ const ContactForm = () => {
 		<form onSubmit={submitHandler}>
 			<div className="flex flex-col gap-4">
 
-				{	Object.entries(formFields).map(([key, field]) => (
+				{	Object.entries(formFields).map(([key, field], index) => (
 						<TextField key={key} {...field}
+						autoFocus={index === 0 && isAutoFocus}
 							onChange={changeHandler(key)}
 							value={fields[key as keyof typeof fields]}
 							multiline={field.multiline}

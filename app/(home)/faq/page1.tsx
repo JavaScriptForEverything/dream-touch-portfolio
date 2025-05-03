@@ -2,31 +2,30 @@
 import { useState } from 'react'
 import { BreadCrumbs } from '@/components'
 import ContactForm from '../contact-us/contactForm'
-import { CallRingIcon } from '@/icons'
-import { contactInfo } from '@/data/home'
-import Image from 'next/image'
 
 const faqData = [
     {
-        question: "What services does Dream Touch Interiors offer?",
-        answer: "We specialize in interior design for custom furniture, including doors, chairs, tables, and more. Our services include personalized design recommendations, manufacturing, and delivery."
+			category: '',
+			question: "What services does Dream Touch Interiors offer?",
+			answer: "We specialize in interior design for custom furniture, including doors, chairs, tables, and more. Our services include personalized design recommendations, manufacturing, and delivery."
     },
     {
-        question: "How can I place an order?",
-        answer: "You can place an order by submitting an inquiry through our website or contacting us directly. Our team will guide you through the process."
+			question: "How can I place an order?",
+			answer: "You can place an order by submitting an inquiry through our website or contacting us directly. Our team will guide you through the process."
     },
     {
-        question: "What is the estimated delivery time for custom furniture?",
-        answer: "The delivery time depends on the complexity of the design and the type of furniture. Typically, it takes 2-4 weeks for custom orders to be completed and delivered."
+			question: "What is the estimated delivery time for custom furniture?",
+			answer: "The delivery time depends on the complexity of the design and the type of furniture. Typically, it takes 2-4 weeks for custom orders to be completed and delivered."
     },
     {
-        question: "Do you offer warranties on your furniture?",
-        answer: "Yes, we offer warranties on our furniture to ensure customer satisfaction. The warranty details will be provided at the time of purchase."
+			question: "Do you offer warranties on your furniture?",
+			answer: "Yes, we offer warranties on our furniture to ensure customer satisfaction. The warranty details will be provided at the time of purchase."
     },
     {
-        question: "How can I contact Dream Touch Interiors for support?",
-        answer: "You can contact us at <a href='mailto:info@dreamtouch.com.bd' class='text-blue-600 underline'>info@dreamtouch.com.bd</a> or call our customer support team for assistance."
-    }
+			question: "How can I contact Dream Touch Interiors for support?",
+			answer: "You can contact us at <a href='mailto:info@dreamtouch.com.bd' class='text-blue-600 underline'>info@dreamtouch.com.bd</a> or call our customer support team for assistance."
+    },
+
 ]
 
 const FAQ = () => {
@@ -34,6 +33,7 @@ const FAQ = () => {
 	const [searchQuery, setSearchQuery] = useState('')
 	const [currentPage, setCurrentPage] = useState(1)
 	const itemsPerPage = 3
+	const [selectedFaq, setSelectedFaq] = useState(0)
 
 	const toggleFAQ = (index: number) => {
 		setActiveIndex(activeIndex === index ? null : index)
@@ -54,45 +54,82 @@ const FAQ = () => {
 			<BreadCrumbs />
 				
 			<div className="bg-slate-100/50 py-2 mb-40">
+
+				{/* <div className="px-6 text-slate-700 leading-relaxed
+					grid grid-cols-12 gap-12
+					mb-12
+				">
+					<div className="col-span-1 md:col-span-3">
+						category
+					</div>
+					<div className="col-span-1 md:col-span-6">
+
+						<div className="mb-6">
+							<input
+								type="text"
+								placeholder="Search FAQs..."
+								value={searchQuery}
+								onChange={(e) => setSearchQuery(e.target.value)}
+								className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+							/>
+						</div>
+
+					</div>
+					<div className="col-span-1 md:col-span-3">
+						phone
+					</div>
+
+				</div> */}
+
 				<h1 className="text-slate-900 text-center text-4xl font-extrabold my-6 md:my-8 capitalize">
 					Frequently Asked Questions
 				</h1>
 
-				<div className="px-6 md:px-12 lg:px-24 text-slate-700 leading-relaxed">
+				<div className="px-6 text-slate-700 leading-relaxed">
+					<p className="text-center mb-8">
+						Welcome to the FAQ section of Dream Touch Interiors. Here, you'll find answers to some of the most common questions about our services and products.
+					</p>
+				</div>
 
-
-				<div className="text-slate-700 leading-relaxed
-					grid grid-cols-12 gap-4
+				<div className="px-6 text-slate-700 leading-relaxed
+					grid grid-cols-12 gap-12
 					mb-12
-					items-center justify-center
 				">
 
-					<div className="col-span-12 md:col-span-9 
-					">
-						<input
-							type="text"
-							placeholder="Search FAQs..."
-							value={searchQuery}
-							onChange={(e) => setSearchQuery(e.target.value)}
-							className="w-full px-4 py-2.5 border border-slate-300 
-							rounded-lg focus:outline-none focus:border-red-200"
-						/>
-					</div>
-					<div className="col-span-1 hidden
-						md:flex gap-3
-						items-center justify-start
-					">
-						<div className="">
-							<CallRingIcon />
-						</div>
-						<div className="">
-							<p className="text-slate-400 text-xs">Call us now</p>
-							<p className="text-slate-900 font-bold 
-								whitespace-nowrap
-							">{contactInfo.phone}</p>
+					<div className="col-span-12 md:col-span-5 border border-red-100/50 hover:border-red-100 rounded p-4">
+						<p className='text-red-600 text-center font-bold text-2xl mb-6'>FAQ</p>
+
+						<div data-name='faq-container' className="max-h-96 overflow-y-scroll ">
+							<ul className='flex flex-col gap-0.5'>
+								{faqData.map( (faq, index) => (
+									<li key={faq.question} className={`
+										px-1.5 py-1 rounded line-clamp-1
+										cursor-pointer
+										hover:bg-red-100
+										${selectedFaq === index ? 'bg-red-600 hover:bg-red-600/90 text-slate-100' : ''}
+									`}
+									onClick={() => { setSelectedFaq(index)}}
+									>{faq.question}</li>
+								))}
+							</ul>
 						</div>
 					</div>
+
+					<div className="col-span-12 md:col-span-7">
+						<h2 className='font-bold text-slate-800 border-b border-slate-300 mb-8 py-2 '
+							dangerouslySetInnerHTML={{ __html: faqData[selectedFaq].question }}
+						/> 
+						<p dangerouslySetInnerHTML={{ __html: faqData[selectedFaq].answer }} /> 
+					</div>
+
 				</div>
+
+				<div className="px-6 text-slate-700 leading-relaxed">
+					<p className="text-center mb-8">
+						Welcome to the FAQ section of Dream Touch Interiors. Here, you'll find answers to some of the most common questions about our services and products.
+					</p>
+
+
 
 					{/* FAQ Accordion */}
 					<div className="space-y-4">
@@ -137,14 +174,13 @@ const FAQ = () => {
 					</div>
 
 					{/* Contact Us Form */}
-					<div className="grid grid-cols-12 gap-8">
-
-						<div className="mt-12 col-span-12 md:col-span-7">
+					<div className="grid grid-cols-12">
+						<div className="mt-12 col-span-12 md:col-span-5">
 							<h2 className="text-2xl font-bold text-center mb-4 text-red-600">
 								Have Question?
 							</h2>
 
-							<ContactForm />
+							{/* <ContactForm /> */}
 
 							{/* <form className="space-y-4">
 								<div>
@@ -181,24 +217,9 @@ const FAQ = () => {
 							</form> */}
 
 						</div>
-
-
-						<div className="mt-12 col-span-12 md:col-span-5
-							hidden
-							md:flex items-center justify-center
-						">
-							<div data-name='image-container' className="relative w-full h-60 md:h-96 ">
-								<Image 
-									src={'/images/contact-us/interior-design-help-line.webp'}
-									alt='modern interior design studio'
-									fill
-									className=' object-cover '
-								/>
-							</div>
-						</div>
-
 					</div>
 				</div>
+
 			</div>
 		</div>
 	)
