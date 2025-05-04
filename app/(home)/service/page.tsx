@@ -1,58 +1,132 @@
+import Link from 'next/link'
 import { BreadCrumbs } from '@/components'
 import Image from 'next/image'
+import { services } from '@/data/service'
+import { formatISODate } from '@/lib/utils'
+
 
 const Service = () => {
 
-	// return (
-	// 	<>
-	// 		<BreadCrumbs />
-	// 	Service page
-	// 	</>
-	// )
-
 	return (
-		<div className=''>
+		<>
+			<BreadCrumbs />
+			<div data-name="hero-image-container" className='-mx-20' >
+				<div data-name="hero-image" className='relative h-40 md:h-60 bg-red-100 text-red-600 '>
+					<Image 
+						src='/images/service/service-hero-image.webp'
+						alt='hero image missing'
+						fill
+						className="object-cover
+						brightness-75
+						"
+					/>
 
-			<div className="">
+					<div data-name="hero-image-content"
+						className='absolute left-1/2 top-1/2 -translate-1/2
+							bg-slate-500/20 w-full py-4
+							text-shadow-2xs
+							flex flex-col items-center
+						'
+					>
+						<p className='tracking-widest text-4xl font-extrabold
+							uppercase
+						'>
+							Service
+						</p>
 
-			</div>
-
-			<div data-name='image-container' className="
-				-mx-8 md:-mx-20
-				relative w-screen h-[300px] md:h-[500px] lg:h-[600px] xl:h-[700px] 
-			 ">
-				<Image 
-					src={'/images/home/hero-image.png'}
-					alt='modern interior design studio'
-					fill
-					className=' object-cover '
-				/>
-
-				<div className="">
-
-					<div className="absolute inset-0 bg-black/10 flex items-center justify-center">
-						<h1 className="text-white text-4xl md:text-6xl font-bold">Service</h1>
-					</div>
-
-					<div className="absolute top-1/8 bottom-1/8 right-0 bg-black flex items-center justify-center">	
-						<BreadCrumbs />
+						<p className='my-2 capitalize text-shadow text-white italic
+						'>
+							We turn ideas into works of art
+						</p>
 					</div>
 
 				</div>
-
 			</div>
 
-			<p className="">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis optio, illo adipisci commodi culpa odit quas ex unde quaerat et corporis consequatur? Sint beatae modi commodi dolore nihil, ducimus doloremque.
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis optio, illo adipisci commodi culpa odit quas ex unde quaerat et corporis consequatur? Sint beatae modi commodi dolore nihil, ducimus doloremque.
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis optio, illo adipisci commodi culpa odit quas ex unde quaerat et corporis consequatur? Sint beatae modi commodi dolore nihil, ducimus doloremque.
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis optio, illo adipisci commodi culpa odit quas ex unde quaerat et corporis consequatur? Sint beatae modi commodi dolore nihil, ducimus doloremque.
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis optio, illo adipisci commodi culpa odit quas ex unde quaerat et corporis consequatur? Sint beatae modi commodi dolore nihil, ducimus doloremque.
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis optio, illo adipisci commodi culpa odit quas ex unde quaerat et corporis consequatur? Sint beatae modi commodi dolore nihil, ducimus doloremque.
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis optio, illo adipisci commodi culpa odit quas ex unde quaerat et corporis consequatur? Sint beatae modi commodi dolore nihil, ducimus doloremque.
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis optio, illo adipisci commodi culpa odit quas ex unde quaerat et corporis consequatur? Sint beatae modi commodi dolore nihil, ducimus doloremque.
-			</p>
-		</div>
+			<div data-name="hero-content-container" className="-mx-8 md:-mx-20 p-8 bg-white ">
+				<div className=' mb-16 text-slate-600 font-light '>
+					<h1 className=' text-slate-950 text-shadow-2xs text-2xl md:text-4xl font-extrabold my-4 capitalize mb-8 '>
+						Our Services
+					</h1>
+
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+						{services.map((service) => (
+							<div key={service.coverPhoto} className="
+							border
+							border-red-50 
+							hover:border-red-200
+							rounded-sm
+							bg-slate-100
+							overflow-hidden
+							group
+							">
+								<Link href={`/service/${service.slug}`}>
+									<Image 
+										src={service.coverPhoto}
+										alt={service.coverPhoto}
+										width={350}
+										height={250}
+										className='w-full h-60 
+										group-hover:scale-100 duration-500 
+										'
+									/>
+								</Link>
+
+								<div className="p-4 bg-slate-100">
+									<Link href={`/service/${service.slug}`}>
+										<h3 className='
+										text-red-600 
+										font-extrabold text-lg truncate overflow-hidden 
+										whitespace-nowrap hover:text-red-700 '>{service.title}</h3>
+									</Link>
+
+									<p className='text-xs text-slate-800 hover:text-slate-950 
+									line-clamp-1 my-0.5 flex gap-1
+									'>
+										<span className=''> {formatISODate(service.createdAt)} </span>
+										<span> | </span>
+										<span className='capitalize line-clamp-1'> {service.location} </span>
+									</p>
+
+									<p className="border-b border-red-300 my-2 w-0 group-hover:w-full
+									duration-500
+									"></p>
+
+									<p className='text-slate-600 line-clamp-6 mt-6 '>{service.description}</p>
+									<div className="flex justify-start mt-6">
+
+
+										<Link href={`/service/${service.slug}`} className='
+											px-3 py-1.5 rounded-md
+
+											text-white
+											bg-red-600
+
+											hover:bg-red-600/90
+											hover:text-slate-50	
+											active:bg-red-700
+											active:text-slate-50	
+											transition-colors duration-300
+
+										'>
+											Details
+										</Link>
+									</div>
+							</div>
+
+							</div>
+						))}
+
+					</div>
+
+				</div>
+			</div>
+
+
+    
+    
+		</>
 	)
 }
 export default Service

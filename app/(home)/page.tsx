@@ -159,7 +159,7 @@ const Home = () => {
 
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 ">
 					{portfolioes.map((portfolio) => (
-						<div key={portfolio.image} className="
+						<div key={portfolio.coverPhoto} className="
 						relative 
 						bg-white
 						rounded-xl
@@ -174,8 +174,8 @@ const Home = () => {
 						<div className="m-1 overflow-hidden">
 
 							<Image 
-								src={portfolio.image}
-								alt={portfolio.image}
+								src={portfolio.coverPhoto}
+								alt={portfolio.coverPhoto}
 								width={350}
 								height={250}
 								className='w-full h-60 
@@ -187,7 +187,7 @@ const Home = () => {
 						</div>
 
 							<div className="p-4 bg-white ">
-								<Link href={portfolio.url}>
+								<Link href={portfolio.slug}>
 									<h3 className='text-red-700 font-extrabold text-lg truncate overflow-hidden whitespace-nowrap hover:text-red-700 '>{portfolio.title}</h3>
 								</Link>
 								<p className="border-b border-red-700 my-4 w-0 group-hover:w-full
@@ -203,7 +203,7 @@ const Home = () => {
 
 									<div className="flex items-center justify-center w-full h-full
 									">
-										<Link href={portfolio.url} className='
+										<Link href={portfolio.slug} className='
 											p-3 rounded-full
 											-rotate-45
 
@@ -320,8 +320,8 @@ const Home = () => {
 
 
 						<Image 
-							src={portfolio.image}
-							alt={portfolio.image}
+							src={portfolio.coverPhoto}
+							alt={portfolio.coverPhoto}
 							width={350}
 							height={350}
 							className='w-full rounded-lg aspect-video relative
@@ -329,7 +329,7 @@ const Home = () => {
 							'
 						/>
 
-					<Link href={portfolio.url} >
+					<Link href={portfolio.slug} >
 						<YoutubeIcon className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' fontSize={60} />
 					</Link>
 
@@ -347,7 +347,7 @@ const Home = () => {
 				))} 
 
 				{/* {portfolioImages.map((item) => (
-					<div key={item.image} className="
+					<div key={item.coverPhoto} className="
 					border
 					border-red-200 hover:outline 
 					hover:border-red-300
@@ -359,8 +359,8 @@ const Home = () => {
 					group
 					">
 						<Image 
-							src={item.image}
-							alt={item.image}
+							src={item.coverPhoto}
+							alt={item.coverPhoto}
 							width={350}
 							height={250}
 							className='w-full rounded-3xl h-60 

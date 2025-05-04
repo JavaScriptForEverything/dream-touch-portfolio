@@ -27,6 +27,7 @@ Problem:
 
 
 Tasks:
+	- pagination / infinite scroll
 	- portfolio need categoryId: and show filter based on category too
 	- Add React-Cuell or TextEditor in portfolioDetails ...
 	- add another card hover over card or image (full/half)

@@ -5,19 +5,19 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { BreadCrumbs } from '@/components'
 import { useParams } from 'next/navigation'
-import { portfolioes } from '@/data/home'
+import { services } from '@/data/service'
 import ImageCarouselModal from '@/components/imageCaroselModal'
 import ContactForm from '../../contact-us/contactForm'
 
 
 
-const PortfolioDetailsPage = () => {
-	const { portfolioId} = useParams()
+const ServiceDetailsPage = () => {
+	const { serviceId } = useParams()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState(0)
 
-	const portfolio = portfolioes.find( portfolio => portfolio.slug === portfolioId)
-	const portfolioImages = portfolio?.images || []
+	const service = services.find( service => service.slug === serviceId )
+	const portfolioImages = service?.images || []
 	const imageSlicerLength = 6
 
  	// Slice image array into multiple nested array of given length: ( [1,2,3,4,5,6], 2 ) => [ [1,2], [3,4], [5,6] ]
@@ -44,7 +44,7 @@ const PortfolioDetailsPage = () => {
 			<div data-name="hero-image-container" className='-mx-20' >
 				<div data-name="hero-image" className='relative h-40 md:h-60 bg-red-100 text-red-600 '>
 					<Image 
-						src={portfolio?.coverPhoto || '/images/portfolio/portfolio-hero-image.webp' }
+						src={service?.coverPhoto || '/images/service/service-hero-image.webp' }
 						alt='hero image missing'
 						fill
 						className="object-cover brightness-75 "
@@ -56,13 +56,25 @@ const PortfolioDetailsPage = () => {
 							text-shadow-2xs
 							flex flex-col items-center
 						'>
-						<p className='tracking-widest text-4xl font-extrabold uppercase '> Portfolio </p>
+						<p className='tracking-widest text-4xl font-extrabold uppercase '> service </p>
 						<p className='my-2 capitalize text-shadow text-white italic '>
 							We turn ideas into works of art
 						</p>
 					</div>
 
 				</div>
+			</div>
+
+			<div className="grid grid-cols-4
+				-mx-8 md:-mx-20 p-8 
+			bg-slate-200
+
+			">
+
+				<div className="">div1</div>
+				<div className="">div2</div>
+				<div className="">div3</div>
+				<div className="">div4</div>
 			</div>
 
 			<div data-name="hero-content-container" className="-mx-8 md:-mx-20 p-8 bg-slate-100/80 ">
@@ -115,7 +127,7 @@ const PortfolioDetailsPage = () => {
 										"
 									>
 											<Image 
-												// src={'/images/portfolio/portfolio-hero-image.webp'}
+												// src={'/images/service/service-hero-image.webp'}
 												src={chunks[0] || ''}
 												alt={''}
 												width={350}
@@ -166,9 +178,9 @@ const PortfolioDetailsPage = () => {
 
 			<div data-name="content-container" className="-mx-8 md:-mx-20 p-8 bg-slate-50/80 ">
 
-				<div data-name="portfolio-details" className="bg-slate-100/50 py-8 px-6 md:px-12 lg:px-24 text-slate-700 leading-relaxed">
+				<div data-name="service-details" className="bg-slate-100/50 py-8 px-6 md:px-12 lg:px-24 text-slate-700 leading-relaxed">
 						<h1 className="text-slate-900 text-center text-4xl font-extrabold my-6 md:my-8 capitalize">
-									{portfolio?.title}
+									{service?.title}
 						</h1>
 
 						<p>
@@ -220,16 +232,16 @@ const PortfolioDetailsPage = () => {
 			</div>
 
 			<div data-name="content-container" className="-mx-8 md:-mx-20 p-8 ">
-				<div data-name="portfolio-details" className="py-8 px-6 md:px-12 lg:px-24 text-slate-700 leading-relaxed">
+				<div data-name="service-details" className="py-8 px-6 md:px-12 lg:px-24 text-slate-700 leading-relaxed">
 					<h1 className="text-slate-900 text-center text-4xl font-extrabold my-6 md:my-8 capitalize">
-						{portfolio?.title}
+						{service?.title}
 					</h1>
 
-					{portfolio?.content && (
+					{service?.content && (
 						<div 
 							data-name="content-container" 
 							className="ql-editor"
-							dangerouslySetInnerHTML = {{ __html: portfolio.content  }}
+							dangerouslySetInnerHTML = {{ __html: service.content  }}
 						/>
 					)}
 				</div>
@@ -238,7 +250,7 @@ const PortfolioDetailsPage = () => {
 		</>
 	)
 }
-export default PortfolioDetailsPage
+export default ServiceDetailsPage
 
 
 

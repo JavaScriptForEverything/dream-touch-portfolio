@@ -1,10 +1,9 @@
 import Link from 'next/link'
 import { BreadCrumbs } from '@/components'
 import Image from 'next/image'
-import { companyInfo } from '@/data'
+// import { companyInfo } from '@/data'
 import { portfolioes } from '@/data/home'
-import { ArrowRightIcon } from '@/icons'
-import { formatISODate, formatToDate } from '@/lib/utils'
+import { formatISODate } from '@/lib/utils'
 
 const navItems = [
 	{ name: 'Real Project', href: '/portfolio/real-project' },
@@ -57,7 +56,8 @@ const Portfolio = () => {
 			<div data-name="hero-content-container" className="-mx-8 md:-mx-20 p-8 bg-white ">
 				<div className=' mb-16 text-slate-600 font-light '>
 					<h1 className=' text-slate-950 text-shadow-2xs text-2xl md:text-4xl font-extrabold my-4 capitalize mb-8 '>
-						Portfolio Projects by {companyInfo.name} & Interior
+						Portfolio Projects 
+						{/* Portfolio Projects by {companyInfo.name} & Interior */}
 					</h1>
 
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -72,7 +72,7 @@ const Portfolio = () => {
 							overflow-hidden
 							group
 							">
-								<Link href={`/portfolio/${portfolio.url}`}>
+								<Link href={`/portfolio/${portfolio.slug}`}>
 									<Image 
 										src={portfolio.coverPhoto}
 										alt={portfolio.coverPhoto}
@@ -85,7 +85,7 @@ const Portfolio = () => {
 								</Link>
 
 								<div className="p-4 bg-slate-100">
-									<Link href={`/portfolio/${portfolio.url}`}>
+									<Link href={`/portfolio/${portfolio.slug}`}>
 										<h3 className='
 										text-red-600 
 										font-extrabold text-lg truncate overflow-hidden 
@@ -107,7 +107,7 @@ const Portfolio = () => {
 									<p className='text-slate-600 line-clamp-6 mt-6 '>{portfolio.description}</p>
 									<div className="flex justify-start mt-6">
 
-										{/* <Link href={portfolio.url} className='
+										{/* <Link href={portfolio.slug} className='
 											p-3 rounded-full
 											-rotate-45
 
@@ -123,7 +123,7 @@ const Portfolio = () => {
 											<ArrowRightIcon className='w-6 h-6 inline-block ' />
 										</Link> */}
 
-										<Link href={`/portfolio/${portfolio.url}`} className='
+										<Link href={`/portfolio/${portfolio.slug}`} className='
 											px-3 py-1.5 rounded-md
 
 											text-white
