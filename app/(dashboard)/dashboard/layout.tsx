@@ -12,6 +12,9 @@ const DashboardLayout = ({ children }: Props) => {
 
 	return (
 		<>
+		<head>
+			<link rel="icon" href="/favicon.png" />
+		</head>
 		{/* <Header /> */}
 		{children}
 		</>

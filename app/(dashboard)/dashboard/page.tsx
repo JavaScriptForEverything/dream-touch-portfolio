@@ -1,7 +1,9 @@
 'use client'
 
+import QuillEditor from '@/components/dashboard/product/QuillEditor'
 import { Button } from '@/components/mui'
 import { DashboardIcon, FilterIcon, GiftIcon, Group3Icon, GroupIcon, ListIcon, SettingsIcon } from '@/icons'
+import Link from 'next/link'
 
 
 const leftPanelItems = [
@@ -25,16 +27,18 @@ const Dashboard = () => {
 
 			{/* ----------[ left panel ]---------- */}
 			<aside className="col-span-2 border border-slate-200">
-				{leftPanelItems.map( ({ label, Icon }) => (
-					<div key={label} className='hover:bg-blue-50 cursor-pointer border border-slate-100 hover:border-blue-200/50
-						active:bg-blue-200/50 active:border-blue-200 active:text-slate-700
-						flex items-center gap-4 p-4 capitalize text-xl
-						group relative
-					'>
-						<Icon fontSize={30} className='peer' />
-						{/* <span className='group-hover:block md:block absolute top-0 left-12'>{label}</span> */}
-						<span className='hidden md:block'>{label}</span>
-					</div>
+				{leftPanelItems.map( ({ label, path, Icon }) => (
+					<Link key={label} href={path} className=''>
+						<div className='hover:bg-blue-50 cursor-pointer border border-slate-100 hover:border-blue-200/50
+							active:bg-blue-200/50 active:border-blue-200 active:text-slate-700
+							flex items-center gap-4 p-4 capitalize text-xl
+							group relative
+						'>
+							<Icon className='peer shrink-0' fontSize={24} />
+							{/* <span className='group-hover:block md:block absolute top-0 left-12'>{label}</span> */}
+							<span className='hidden md:block'>{label}</span>
+						</div>
+					</Link>
 				))}
 			</aside>
 
@@ -42,6 +46,11 @@ const Dashboard = () => {
 			<aside className="col-span-10 grid grid-cols-2 gap-4">
 				{/* ----------[ right: left-panel ]---------- */}
 				<aside className="col-span-2 md:col-span-1 p-2 border border-blue-500">
+
+					<div className="mb-8">
+
+						<QuillEditor />
+					</div>
 
 					<div className="flex items-center gap-1">
 						{filterIcons.map(({ label, Icon}) => (

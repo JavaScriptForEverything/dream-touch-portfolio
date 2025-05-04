@@ -63,7 +63,7 @@ const Portfolio = () => {
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
 						{portfolioes.map((portfolio) => (
-							<div key={portfolio.image} className="
+							<div key={portfolio.coverPhoto} className="
 							border
 							border-red-50 
 							hover:border-red-200
@@ -74,8 +74,8 @@ const Portfolio = () => {
 							">
 								<Link href={`/portfolio/${portfolio.url}`}>
 									<Image 
-										src={portfolio.image}
-										alt={portfolio.image}
+										src={portfolio.coverPhoto}
+										alt={portfolio.coverPhoto}
 										width={350}
 										height={250}
 										className='w-full h-60 

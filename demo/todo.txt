@@ -23,10 +23,13 @@ Problem:
 		Solved: replace <a> with <Link>
 
 
-- add another card hover over card or image (full/half)
 
 
 
+Tasks:
+	- portfolio need categoryId: and show filter based on category too
+	- Add React-Cuell or TextEditor in portfolioDetails ...
+	- add another card hover over card or image (full/half)
 
 
 
@@ -77,3 +80,44 @@ Hover Effect:
 
 Footer
 	- Site Map 				: create seperate pages for links
+
+
+
+
+
+
+	---------------
+
+const cleanHtml = sanitizeHtml(dirtyHtml, {
+  allowedTags: [
+    'h1', 'h2', 'h3', 'p', 'ul', 'ol', 'li',
+    'b', 'i', 'strong', 'em', 'a', 'br', 'img'
+  ],
+  allowedAttributes: {
+    a: ['href', 'target'],
+    img: ['src', 'alt', 'width', 'height'],
+  },
+  allowedSchemes: ['http', 'https', 'data'],
+  allowedSchemesByTag: {
+    img: ['http', 'https', 'data'], // data URIs allowed if needed
+  },
+  allowedSchemesAppliedToAttributes: ['href', 'src'],
+  transformTags: {
+    img: sanitizeHtml.simpleTransform('img', { loading: 'lazy' })
+  },
+});
+
+const dom = new JSDOM(cleanHtml);
+const imgs = dom.window.document.querySelectorAll('img');
+imgs.forEach((img) => {
+  const src = img.getAttribute('src');
+  if (!src.startsWith('https://your-cloudinary-domain.com')) {
+    img.remove(); // or replace with placeholder
+  }
+});
+cleanHtml = dom.serialize();
+
+
+
+
+yarn add react-quill@beta quill
