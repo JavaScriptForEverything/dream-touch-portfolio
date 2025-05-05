@@ -4,6 +4,7 @@ import QuillEditor from '@/components/dashboard/product/QuillEditor'
 import { Button } from '@/components/mui'
 import { DashboardIcon, FilterIcon, GiftIcon, Group3Icon, GroupIcon, ListIcon, SettingsIcon } from '@/icons'
 import Link from 'next/link'
+import { useState } from 'react'
 
 
 const leftPanelItems = [
@@ -21,6 +22,13 @@ const filterIcons = [
 ]
 
 const Dashboard = () => {
+
+  const [content, setContent] = useState<string>('');
+
+  const handleContentChange = (data: string) => {
+    setContent(data);
+    console.log('Editor Content:', data);
+  };
 
 	return (
 		<main className='container mx-auto min-h-screen grid grid-cols-12 gap-4 px-4 md:px-0 text-slate-600 '>
@@ -49,7 +57,13 @@ const Dashboard = () => {
 
 					<div className="mb-8">
 
-						<QuillEditor />
+						<QuillEditor
+							// value={content}
+							// onChange={handleContentChange}
+							// uploadImageEndpoint="/api/upload" // Replace with your backend upload endpoint
+							// deleteImageEndpoint="/api/delete" // Replace with your backend delete endpoint
+						/>
+
 					</div>
 
 					<div className="flex items-center gap-1">

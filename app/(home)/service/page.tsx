@@ -49,10 +49,10 @@ const Service = () => {
 						Our Services
 					</h1>
 
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
 						{services.map((service) => (
-							<div key={service.coverPhoto} className="
+							<div key={service.title} className="
 							border
 							border-red-50 
 							hover:border-red-200
@@ -63,8 +63,8 @@ const Service = () => {
 							">
 								<Link href={`/service/${service.slug}`}>
 									<Image 
-										src={service.coverPhoto}
-										alt={service.coverPhoto}
+										src={service.coverPhoto.secure_url}
+										alt={service.coverPhoto.secure_url}
 										width={350}
 										height={250}
 										className='w-full h-60 

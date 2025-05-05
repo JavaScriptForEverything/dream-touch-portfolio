@@ -60,7 +60,7 @@ const Portfolio = () => {
 						{/* Portfolio Projects by {companyInfo.name} & Interior */}
 					</h1>
 
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
 						{portfolioes.map((portfolio) => (
 							<div key={portfolio.coverPhoto} className="
