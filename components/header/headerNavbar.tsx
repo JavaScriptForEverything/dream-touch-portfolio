@@ -15,6 +15,7 @@ export const HeaderNavBar = () => {
 
 			{headerNavItems.map( ({ label, path }) => (
 				<Link key={label} href={path} className={`
+					shrink-0
 				whitespace-nowrap 
 				${isActive(path) ? 'text-red-500' : ''}
 				hover:text-red-500 

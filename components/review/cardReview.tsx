@@ -20,7 +20,7 @@ const CardReview = (props: Props) => {
 	return (
 		<div className='p-4 flex flex-col gap-4 
 		bg-slate-50
-		border border-slate-300 md:border-0
+		border border-slate-300 md:border-slate-200/50
 		rounded-lg
 		'>
 		
@@ -28,14 +28,14 @@ const CardReview = (props: Props) => {
 				<div data-name='avatar-container' className="flex justify-between items-center">
 					<Image 
 						src={props.reviewerImage || '/images/user/default.jpg'}
-						alt='user image'
+						alt=''
 						width={60}
 						height={60}
 						className='rounded-full border-2 border-slate-300/70'
 					/>
 				</div>
 
-				<div data-name='top-right-section' className="text-red-600 flex flex-col gap-1 ">
+				<div data-name='top-right-section' className="text-slate-900 flex flex-col gap-1 ">
 					<h1>{props.reviewerName}</h1>
 
 					<div data-name='star-container' className="flex gap-1 justify-start items-center">
@@ -59,9 +59,9 @@ const CardReview = (props: Props) => {
 					{/* {reviewText.length > reviewTextLength && ( */}
 						<button onClick={toggleMoreHandle} className='
 							text-xs
-							text-red-500 font-semibold
+							text-red-500 font-extralight
 							underline underline-offset-2 decoration-1 decoration-red-500/70
-							hover:text-red-700
+							hover:text-red-600
 							cursor-pointer
 							uppercase
 						'>Show {isOpen ? 'less' : 'more'}</button>

@@ -8,6 +8,7 @@ import { AboutBlockOne } from './about-us/aboutBlockOne'
 import { AboutBlockTwo } from './about-us/aboutBlockTwo'
 import { directorInfo } from '@/data'
 import { DiagonallySlicedButton } from '@/components'
+import { reviews } from '@/data/review'
 
 
 export const metadata: Metadata = {
@@ -263,12 +264,13 @@ const Home = () => {
 				<h2 className='capitalize text-2xl mb-6'>What our clients say about us</h2>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 ">
-					{[1, 2, 3, 4, 5, 6].map((review) => (
-						<CardReview key={review}
+					{reviews.map((review) => (
+						<CardReview key={review.review}
+						// <CardReview key={review.createdAt}
 							numberOfStars={5}
-							reviewText='I recently came across Barnomala Architect & Interior and Im absolutely thrilled with their services! The attention to detail, creativity, and professionalism they bring to the table is truly commendable. I highly recommend them for any interior design needs!'
-							reviewerName='John Doe'
-							reviewerImage='/images/user/default.jpg'
+							reviewText={review.review}
+							reviewerName={review.user.name}
+							reviewerImage={review.user.avatar.secure_url || '/images/user/default.jpg'}
 						/>
 					))}
 				</div>

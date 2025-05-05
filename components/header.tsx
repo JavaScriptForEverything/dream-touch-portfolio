@@ -22,7 +22,6 @@ export const Header = async ({}: Props) => {
 						alt='/logo.svg'
 						width={80}
 						height={80}
-						className=''
 					/>
 				</Link>
 

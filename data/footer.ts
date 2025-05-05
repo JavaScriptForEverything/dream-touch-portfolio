@@ -84,6 +84,11 @@ export const footerLinkItems = [
 				placeholder:'Site Map',	
 				href: '/site-map', 
 			},
+			{ 
+				label: 'Google Map', 	
+				placeholder:'Google Map',	
+				href: '/maps/google', 
+			},
 		],
 	},
 	{ 

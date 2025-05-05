@@ -1,6 +1,10 @@
 ---------------
-$ cd ~/Document/dream-touch
+$ cd ~/Documents/dream-touch
 $ rsync -a --progress --exclude='*/node_modules/*' --exclude='*/.next/*' frontend dream-touch:~/
+$ ssh dream-touch
+$ cd frontend
+
+$ yarn build
 $ pm2 start yarn --name frontend -- start
 ---------------
 
@@ -27,6 +31,10 @@ Problem:
 
 
 Tasks:
+	- page remains: 
+		- appoitment
+		- reviews
+
 	- pagination / infinite scroll
 	- portfolio need categoryId: and show filter based on category too
 	- Add React-Cuell or TextEditor in portfolioDetails ...
