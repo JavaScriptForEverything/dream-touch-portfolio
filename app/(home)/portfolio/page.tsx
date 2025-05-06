@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { BreadCrumbs } from '@/components'
 import Image from 'next/image'
 // import { companyInfo } from '@/data'
-import { portfolioes } from '@/data/home'
+import { portfolioes } from '@/data/portfolio'
 import { formatISODate } from '@/lib/utils'
 
 const navItems = [

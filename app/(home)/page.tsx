@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Image from 'next/image'
-import { clients, missionItems, portfolioes } from '@/data/home'
+import { clients, missionItems } from '@/data/home'
+import { portfolioes } from '@/data/portfolio'
 import { ArrowRightIcon, DoubleQuoteRight, ForwardIcon, MessageIcon, PlayIcon, StarIcon, YoutubeIcon } from '@/icons'
 import CardReview from '@/components/review/cardReview'
 import Link from 'next/link'
@@ -235,7 +236,7 @@ const Home = () => {
 				<DiagonallySlicedButton 
 					label='Book Appointment'
 					icon={<MessageIcon fontSize={24} />}
-					href='/appointment'
+					href='/contact-us'
 				/>
 			</div>
 
@@ -246,10 +247,10 @@ const Home = () => {
 				<div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-9 gap-2">
 
 					{clients.map((client) => (
-						<Link href='' title={client.title} key={client.image} className="p-4 w-auto h-auto border border-red-500/70 rounded hover:outline hover:outline-red-500/40 ">
+						<Link href='' title={client.title} key={client.id} className="p-4 w-auto h-auto border border-red-500/70 rounded hover:outline hover:outline-red-500/40 ">
 							<Image 
-								src={client.image}
-								alt={client.image}
+								src={client.image.secure_url}
+								alt={client.image.secure_url}
 								width={250}
 								height={250}
 								className=' hover:scale-110 duration-200 '
@@ -348,59 +349,6 @@ const Home = () => {
 					</div>
 				))} 
 
-				{/* {portfolioImages.map((item) => (
-					<div key={item.coverPhoto} className="
-					border
-					border-red-200 hover:outline 
-					hover:border-red-300
-					hover:outline-red-400/40 
-
-					rounded-3xl
-					bg-slate-100
-					p-6
-					group
-					">
-						<Image 
-							src={item.coverPhoto}
-							alt={item.coverPhoto}
-							width={350}
-							height={250}
-							className='w-full rounded-3xl h-60 
-							group-hover:scale-110 duration-500 
-							'
-						/>
-
-						<div className="p-4 bg-slate-100">
-							<Link href={item.url}>
-								<h3 className='text-red-700 font-extrabold text-lg truncate overflow-hidden whitespace-nowrap hover:text-red-700 '>{item.title}</h3>
-							</Link>
-							<p className="border-b border-red-700 my-4 w-0 group-hover:w-full
-							duration-500
-							"></p>
-
-							<p className='text-slate-600 line-clamp-2 my-2 '>{item.description}</p>
-							<div className="flex justify-end">
-								<Link href={item.url} className='
-								
-									p-3 rounded-full
-									-rotate-45
-
-									text-red-600
-									bg-red-100 
-
-									group-hover:bg-red-600
-									group-hover:text-slate-50	
-									group-active:bg-red-700
-									group-active:text-slate-50	
-
-								'>
-									<ArrowRight className='w-6 h-6 inline-block ' />
-								</Link>
-							</div>
-					</div>
-
-					</div>
-				))} */}
 			</div>
 
 

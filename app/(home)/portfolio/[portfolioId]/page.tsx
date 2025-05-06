@@ -5,7 +5,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { BreadCrumbs } from '@/components'
 import { useParams } from 'next/navigation'
-import { portfolioes } from '@/data/home'
+import { portfolioes } from '@/data/portfolio'
 import ImageCarouselModal from '@/components/imageCaroselModal'
 import ContactForm from '../../contact-us/contactForm'
 
@@ -17,7 +17,7 @@ const PortfolioDetailsPage = () => {
   const [selectedIndex, setSelectedIndex] = useState(0)
 
 	const portfolio = portfolioes.find( portfolio => portfolio.slug === portfolioId)
-	const portfolioImages = portfolio?.images || []
+	const portfolioImages = portfolio?.images.map(image => image.secure_url) || [];
 	const imageSlicerLength = 6
 
  	// Slice image array into multiple nested array of given length: ( [1,2,3,4,5,6], 2 ) => [ [1,2], [3,4], [5,6] ]
