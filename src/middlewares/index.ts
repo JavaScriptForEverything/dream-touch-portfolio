@@ -1,1 +1,1 @@
-export * from '@/middlewares/orderMiddleware'
+export * from '@/middlewares/authMiddleware'

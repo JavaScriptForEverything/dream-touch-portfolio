@@ -81,7 +81,8 @@ export const globalErrorHandler:ErrorRequestHandler = (err, _req, res, _next) =>
 
 export const routeNotFound:RequestHandler = (req, _res, next) => {
 	// next(appError(`route ${req.originalUrl} not found`, 404, 'NotFound'))
-	next(appError<'NotFound'>(`route ${req.originalUrl} not found`, 404, 'NotFound'))
+	// next(appError<'NotFound'>(`route ${req.originalUrl} not found`, 404, 'NotFound'))
+  next(appError(`The requested endpoint [${req.method}] ${req.originalUrl} does not exist`, 404, 'NotFound'));
 }
 
 

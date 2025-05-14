@@ -1,36 +1,38 @@
 export const maxImageSize = 1024 * 1024 * 5 			// => 5 MB
 
 export enum Collection {
+	Service = 'Service',
 	User = 'User',
-	Brand = 'Brand',
 
-	Category = 'Category',
-	SubCategory = 'SubCategory',
-	ChildCategory = 'ChildCategory',
-	Product = 'Product',
-	Review = 'Review',
-	Blog = 'Blog',
-	Site = 'Site',
-	Offer = 'Offer',
-	BlogCategory = 'BlogCategory',
-	WishList = 'WishList',
-	Coupon = 'Coupon',
-	ProductReviewLike = 'ProductReviewLike',
-	Policy = 'Policy',
+	// Brand = 'Brand',
 
-	Faq = 'Faq',
-	FaqCategory = 'FaqCategoryaq',
-	FaqQuestion = 'FaqQuestion',
+	// Category = 'Category',
+	// SubCategory = 'SubCategory',
+	// ChildCategory = 'ChildCategory',
+	// Product = 'Product',
+	// Review = 'Review',
+	// Blog = 'Blog',
+	// Site = 'Site',
+	// Offer = 'Offer',
+	// BlogCategory = 'BlogCategory',
+	// WishList = 'WishList',
+	// Coupon = 'Coupon',
+	// ProductReviewLike = 'ProductReviewLike',
+	// Policy = 'Policy',
 
-	Home = 'Home',
-	AboutUs = 'AboutUs',
-	ContactUs = 'ContactUs',
+	// Faq = 'Faq',
+	// FaqCategory = 'FaqCategoryaq',
+	// FaqQuestion = 'FaqQuestion',
 
-	Subscribe = 'Subscribe',
+	// Home = 'Home',
+	// AboutUs = 'AboutUs',
+	// ContactUs = 'ContactUs',
 
-	ShippingInfo = 'ShippingInfo',
-	BillingInfo = 'BillingInfo',
-	Order = 'Order',
+	// Subscribe = 'Subscribe',
+
+	// ShippingInfo = 'ShippingInfo',
+	// BillingInfo = 'BillingInfo',
+	// Order = 'Order',
 }
 
 

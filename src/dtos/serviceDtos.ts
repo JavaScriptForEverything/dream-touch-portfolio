@@ -1,20 +1,23 @@
-import type { CreatePolicy, PolicyDocument, UpdatePolicy } from '@/types/policy'
+import type { CreateService, UpdateService, ServiceDocument } from '@/types/service'
 import { filterObjectByArray } from '@/lib/utils'
 
 const commonAllowedFields = [
-	'type',
-
+	'coverPhoto',
 	'title',
-	'description',
-	'effectiveDate',
-	'expireDate',
+	'slug',
+	'slogan',
+	'content',
 
+	'rows',
+	'location',
+	'summary',
+	'description',
 	'isVisible',
 ]
 
 
-// POST 	/api/policies
-export const filterBodyForCreatePolicy = (body: CreatePolicy) => {
+// POST 	/api/services
+export const filterBodyForCreateService = (body: CreateService) => {
 	const allowedFields = [
 		...commonAllowedFields,
 	]
@@ -22,8 +25,8 @@ export const filterBodyForCreatePolicy = (body: CreatePolicy) => {
 	return filterObjectByArray(body, allowedFields)
 }
 
-// policy => policy._doc
-export const filterPolicyDocument = (body: PolicyDocument) => {
+// doc => doc._doc
+export const filterWishListDocument = (body: ServiceDocument) => {
 	const allowedFields = [
 		...commonAllowedFields,
 
@@ -36,8 +39,8 @@ export const filterPolicyDocument = (body: PolicyDocument) => {
 }
 
 
-// PATCH 	/api/policies/:policyId
-export const filterBodyForUpdatePolicy = (body: UpdatePolicy) => {
+// PATCH 	/api/wishlists/:wishListId
+export const filterBodyForUpdateWishList = (body: UpdateService) => {
 
 	const allowedFields = [
 		...commonAllowedFields,

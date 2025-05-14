@@ -1,4 +1,4 @@
-import type { Product } from '@/types/product'
+// import type { Product } from '@/types/product'
 import { Types } from 'mongoose'
 
 import crypto from 'node:crypto'

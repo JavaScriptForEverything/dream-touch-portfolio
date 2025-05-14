@@ -1,8 +1,8 @@
-import Product from '@/models/productModel'
+// import Product from '@/models/productModel'
 
 export const seederDelete = async () => {
 	try {
-		await Product.deleteMany({})
+		// await Product.deleteMany({})
 		console.log('products collection deleted successfully !!!')
 		
 	} catch (err: unknown) {

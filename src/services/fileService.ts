@@ -3,31 +3,25 @@ import crypto from 'node:crypto'
 import fsPromises from 'node:fs/promises'
 import fs from 'node:fs'
 import { appError } from '@/controllers/errorController'
-import { getDataUrlSize } from '@/lib/utils'
+import { getDataUrlSize, saveBase64ToFile } from '@/lib/utils'
+import { FileUploadReaturn, Image, SEOData } from '@/types/common'
 // const { Buffer } = require('node:buffer')
 // const { appError } = require('../controllers/errorController');
 // const Jimp = require('jimp')
 
 const baseDir = '/upload'
 
+const maxImageSize = 5 * 1024 * 1024; // 5MB
+// const baseDir = 'public/uploads'; // Base directory for uploads
+
+
 
 /*---------------[ upload file ]----------------
 */
 
-type Image = {
-	public_id: string
-	secure_url: string
-}
-type UploadReturn = {
-	error: string
-	image: Image | null
-}
-
-export const handleBase64File = async (dataUrl: string, subDir='/users', _fileType='image', _aspectRatio='video'): Promise<UploadReturn> => {
+export const handleBase64File = async (dataUrl: string, subDir='/users', seo: SEOData, _fileType='image', ): Promise<FileUploadReaturn> => {
 	try {
-		const tempObj: UploadReturn = { error: 'dataUrl is empty or not string', image: null }
-
-		if(!dataUrl || typeof dataUrl !== 'string' ) return tempObj
+		if(!dataUrl || typeof dataUrl !== 'string' ) return { error: 'dataUrl is empty or not string', image: null }
 		if( !dataUrl?.startsWith('data') ) return { error: `'${dataUrl}' is not valid dataUrl`, image: null  }
 
 
@@ -47,11 +41,11 @@ export const handleBase64File = async (dataUrl: string, subDir='/users', _fileTy
 
 		// Step-3: Generate unique filename for file
 		const filename = crypto.randomUUID() + '.' + ext
-		// const filename = crypto.randomUUID() + '.png' 					// Jimp only support: jpej|png|gim|bmp|tiff
 		const filePath = path.join(destination, filename)
-		const buffer = Buffer.from(base64, 'base64')
 
-		await fsPromises.writeFile(filePath, buffer) 				// Without resize
+		// const buffer = Buffer.from(base64, 'base64')
+		// await fsPromises.writeFile(filePath, buffer) 				// Without resize
+		await saveBase64ToFile(base64, filePath)
 
 
 		return {
@@ -59,6 +53,7 @@ export const handleBase64File = async (dataUrl: string, subDir='/users', _fileTy
 			image: {
 				public_id: crypto.randomUUID(),
 				secure_url: path.join(baseDir, subDir, filename),
+				...seo,
 			}
 		}
 
@@ -76,47 +71,55 @@ export const handleBase64File = async (dataUrl: string, subDir='/users', _fileTy
 
 
 
+// Main upload function (handles both URLs and data URLs)
+export const uploadFile = async (url: string, uploadTo: string, seo: SEOData = {}): Promise<FileUploadReaturn> => {
+  try {
+    if (!url?.trim()) return { error: 'URL is empty', image: null };
+    
 
+    // Handle HTTP URLs
+    if (url.startsWith('http')) {
+      return {
+        error: '',
+        image: { public_id: crypto.randomUUID(), secure_url: url, ...seo, }
+      }
+    }
 
-// to handle both absolute url and dataUrl
-export const uploadFile = async (url: string, uploadTo: string): Promise<UploadReturn> => {
-	if(!url?.trim()) return { error: `url is empty: ${url}`, image: null }
+    // Handle Data URLs
+    if (url.startsWith('data:')) {
+      const imageSize = getDataUrlSize(url)
+      if (imageSize > maxImageSize) return { error: `Image exceeds maximum size of ${maxImageSize / 1024 / 1024}MB`, image: null }
+      
 
-	if(url.startsWith('http')) {
-		return {
-			error: '',
-			image: {
-				public_id: crypto.randomUUID(),
-				secure_url: url
-			}
-		} 
+      const { error, image } = await handleBase64File(url, uploadTo, seo)
+			
+      if (error || !image) {
+        if (image?.secure_url) await removeFile(image.secure_url)
+        
+        return { error: error || 'Image upload failed', image: null }
+      }
 
-	} else if(url.startsWith('data:')) {
-		const imageSize = getDataUrlSize(url)
-		const maxImageSize = 1024 * 1024 * 400 			// => 400 MB
-		if(imageSize > maxImageSize) return { error: 'return ', image: null }
+      return { error: '', image }
+    }
 
-		const { error, image } = await handleBase64File(url, uploadTo)
-		if(error || !image) return { error: error || 'image upload failed', image: null }
-		
-		return { error: '', image } 
-	} 
-
-	return { error: 'Unknown', image: null }
+    return { error: 'Unsupported URL format', image: null }
+  } catch (err) {
+    console.error('Upload error:', err)
+    return { error: err instanceof Error ? err.message : 'Unknown upload error', image: null }
+  }
 }
 
 
-/*
-		setTimeout(() => {
-			promisify(fileService.removeFile)(req.body.thumbnail?.secure_url)
-		}, 1000)
 
-		setTimeout(() => {
-			req.body.images.forEach( (image: Image) => {
-				promisify(fileService.removeFile)(image?.secure_url)
-			})
-		}, 1000)
-*/
+
+
+
+
+
+
+
+
+
 export const removeFile = (relativePath: string) => {
 	if(typeof relativePath !== 'string') return appError(`file path must be string, but got '${relativePath}'`)
 	if(relativePath.startsWith('http'))  return

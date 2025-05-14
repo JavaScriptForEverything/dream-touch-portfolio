@@ -1,5 +1,4 @@
 import 'dotenv/config'
-import { Buffer } from 'node:buffer'
 import crypto from 'node:crypto'
 export * from '@/lib/apiFeatures'
 export * from '@/lib/logger'
@@ -7,6 +6,7 @@ export * from '@/lib/customTranform'
 export * from '@/lib/nodemailer'
 export * from '@/lib/appLogs'
 export * from '@/lib/logger'
+export * from '@/lib/fileHandler'
 
 
 type CustomIdProps = {
@@ -22,15 +22,7 @@ type TempObj = {
 
 
 
-export const getDataUrlSize = (dataUrl: string) => {
-	if( !dataUrl?.startsWith('data') ) throw new Error(`'${dataUrl}' is not valid dataUrl`) 
-	
-	const base64 = dataUrl.split(';base64,').pop()
-	if(!base64) throw new Error(`base64: ${base64} is empty`)
 
-	const buffer = Buffer.from(base64, 'base64')
-	return buffer.byteLength
-}
 
 
 

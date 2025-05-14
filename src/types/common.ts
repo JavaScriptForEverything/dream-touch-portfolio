@@ -30,11 +30,25 @@ export interface ResponseData<Data = any> {
 	limit?: number
 }
 
-export interface Image {
+// export interface Image {
+// 	public_id: string
+// 	secure_url: string
+// }
+
+export interface SEOData {
+  alt?: string;
+  title?: string;
+  caption?: string;
+  description?: string;
+}
+export interface Image extends SEOData {
 	public_id: string
 	secure_url: string
 }
-
+export interface FileUploadReaturn {
+	error: string
+	image: Image | null
+}
 
 // export type Role = 'vendor' | 'user' | 'admin' 
 export type Role = (typeof Roles)[keyof typeof Roles] 						// => type Role = "vendor" | "user" | "admin"

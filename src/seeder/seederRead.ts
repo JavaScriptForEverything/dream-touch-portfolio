@@ -1,10 +1,10 @@
-import Product from '@/models/productModel'
+// import Product from '@/models/productModel'
 
 export const seederRead = async () => {
 	try {
-		// Step-1: Get all products
-		const insertedProducts = await Product.find({})
-		console.log(insertedProducts)
+		// // Step-1: Get all products
+		// const insertedProducts = await Product.find({})
+		// console.log(insertedProducts)
 		
 	} catch (err: unknown) {
 

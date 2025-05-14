@@ -206,10 +206,20 @@ const userSchema = new Schema<UserDocument>({
 	coverPhoto: {
 		public_id: String,
 		secure_url: String,
+
+		title: String,
+		alt: String,
+		description: String,
+		caption: String,
 	},
 	avatar: {
 		public_id: String,
-		secure_url: String
+		secure_url: String,
+
+		title: String,
+		alt: String,
+		description: String,
+		caption: String,
 	},
 
 
