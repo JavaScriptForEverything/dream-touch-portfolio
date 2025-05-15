@@ -44,14 +44,16 @@ const privacyPolicyData = [
 const PrivacyPolicy = () => {
     return (
         <div className='min-h-screen'>
-            <BreadCrumbs />
+					<div className="px-2 md:px-20">
+						<BreadCrumbs />
+					</div>
             
             <div className="bg-slate-100/50 py-2 mb-40">
                 <h1 className="text-slate-900 text-center text-4xl font-extrabold my-6 md:my-8 capitalize">
                     Privacy Policy
                 </h1>
 
-                <div className="px-6 md:px-12 lg:px-24 text-slate-700 leading-relaxed">
+                <div className="px-2 md:px-20 text-slate-700 leading-relaxed">
                     <p>
                         At Dream Touch Interiors, we value your privacy and are committed to protecting your personal information. This Privacy Policy outlines how we collect, use, and safeguard your data when you interact with our website or services related to interior design for doors, chairs, tables, and other furniture.
                     </p>

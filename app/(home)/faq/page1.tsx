@@ -51,7 +51,9 @@ const FAQ = () => {
 
 	return (
 		<div className='min-h-screen'>
-			<BreadCrumbs />
+			<div className="px-2">
+				<BreadCrumbs />
+			</div>
 				
 			<div className="bg-slate-100/50 py-2 mb-40">
 

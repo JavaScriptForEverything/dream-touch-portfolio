@@ -8,11 +8,11 @@ type Props = {
 }
 
 export const ReduxProvider = ({ children }: Props) => {
-  return (
 
-	<Provider store={store}>
-		{children}
-	</Provider>
+  return (
+		<Provider store={store}>
+			{children}
+		</Provider>
 	)
 }
 

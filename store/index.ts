@@ -1,15 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { reducer as layoutReducer } from './layoutReducer'
-import { reducer as userReducer } from './userReducer'
-import { reducer as productReducer } from './productReducer'
-// import { reducer as reviewReducer } from './reviewReducer'
+import { reducer as layoutReducer } from '@/store/layoutReducer'
+import { reducer as userReducer } from '@/store/userReducer'
+import { reducer as serviceReducer } from '@/store/serviceReducer'
 
+// export const makeStore = () => configureStore({
 export const store = configureStore({
   reducer: {
 		layout: layoutReducer,
 		user: userReducer,
-		product: productReducer,
-		// review: reviewReducer,
+		service: serviceReducer,
 	},
 })
 

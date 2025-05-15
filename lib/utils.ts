@@ -1,6 +1,18 @@
+import { ResponseData } from '@/types/common'
 import type { AppDispatch, RootState } from '../store'
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
 import { isEmail } from 'validator'
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 	const changeHandler = (name: string) => async (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,6 +29,17 @@ import { isEmail } from 'validator'
 
 
 */
+
+
+
+
+
+
+
+
+
+
+
 
 export const readAsDataURL = (file: File, { type='image' } = {}): Promise<string> => {
 	return new Promise((resolve, reject) => {

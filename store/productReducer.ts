@@ -1,10 +1,10 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
-import type { AppDispatch, RootState } from '.'
-import type { InitialState, ProductDocument, SetProductsPayload } from '../types/product'
+import type { AppDispatch, RootState } from '@/store'
+import type { InitialState, ProductDocument, SetProductsPayload } from '@/types/product'
 import { createSlice } from '@reduxjs/toolkit'
-import { catchAsyncDispatch } from '../lib/utils'
-// import { ORIGIN } from '../lib/config'
-import { apiRequest } from '../lib/api'
+import { catchAsyncDispatch } from '@/lib/utils'
+// import { ORIGIN } from '@/lib/config'
+import { apiRequest } from '@/lib/api'
 
 
 const initialState: InitialState = {
@@ -129,16 +129,16 @@ export const clearError = () => (dispatch: AppDispatch): void => {
 // }, actions.failed)
 
 
-export const getProducts = () => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
-	dispatch(actions.request())
+// export const getProducts = () => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
+// 	dispatch(actions.request())
 
-	const limit = getState().product.limit;
-	const { status, message, data, count, total } = await apiRequest<any>( `/api/products?_sort=-createdAt&_limit=${limit}`)
+// 	const limit = getState().product.limit;
+// 	const { status, message, data, count, total } = await apiRequest<any>( `/api/products?_sort=-createdAt&_limit=${limit}`)
 
-	if (status !== "success") dispatch(actions.failed(message))
-	else dispatch(actions.setProducts({ products: data, count: count, total: total }))
+// 	if (status !== "success") dispatch(actions.failed(message))
+// 	else dispatch(actions.setProducts({ products: data, count: count, total: total }))
 
-}, actions.failed)
+// }, actions.failed)
 
 
 // export const getProduct = (idOrSlug: string) => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {

@@ -1,10 +1,10 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
-import type { AppDispatch, RootState } from '.'
-import type { InitialState, LoginData, SetUsersPayload } from '../types/user'
-import type { UserDocument } from '../types/user'
+import type { AppDispatch, RootState } from '@/store'
+import type { InitialState, LoginData, SetUsersPayload } from '@/types/user'
+import type { UserDocument } from '@/types/user'
 import { createSlice } from '@reduxjs/toolkit'
-import { catchAsyncDispatch } from '../lib/utils'
-import { ORIGIN } from '../lib/config'
+import { catchAsyncDispatch } from '@/lib/utils'
+import { ORIGIN } from '@/lib/config'
 
 
 const initialState: InitialState = {

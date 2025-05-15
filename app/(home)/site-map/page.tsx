@@ -5,9 +5,11 @@ const Service = () => {
 
 	return (
 		<div className='min-h-screen '>
-			<BreadCrumbs />
+			<div className="px-2 md:px-20">
+				<BreadCrumbs />
+			</div>
 			
-			<div className="bg-slate-100/50 min-h-full -mx-8 lg:-mx-20 px-8 lg:px-20">
+			<div className="bg-slate-100/50 min-h-full px-2 md:px-20">
 				<SiteMap className='text-slate-700' 
 					titleClass=''
 					childClass=' hover:text-slate-950'

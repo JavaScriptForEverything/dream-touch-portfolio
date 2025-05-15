@@ -1,10 +1,11 @@
 export type ResponseStatus = 'created' | 'updated' | 'deleted' | 'none'
-export type ResponseData<Data = unknown> = {
+export interface ResponseData<Data = unknown> {
 	status: ResponseStatus
 	count?: number
 	total?: number
 	data?: Data,
 	message?: string
+	error?: string
 }
 
 
@@ -14,7 +15,13 @@ export type TempObj = {
 
 
 
-export type Image = {
+interface SEOData {
+  alt?: string;
+  title?: string;
+  caption?: string;
+  description?: string;
+}
+export interface Image extends SEOData {
 	public_id: string
 	secure_url: string
 }
@@ -22,7 +29,7 @@ export type Image = {
 export type Status = 'active' | 'inactive'
 export type Currency = string
 
-export type Address = {
+export interface Address {
   street: string
 	city: string
 	state: string
@@ -42,3 +49,6 @@ export type Role = 'vendor' | 'user' | 'admin'
 //   color: string
 //   price: number
 // }
+
+
+

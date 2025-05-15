@@ -1,8 +1,6 @@
-import type { Metadata } from "next"
-// import localFont from "next/font/local"
-import { Roboto } from "next/font/google"
-// import { Poppins as Roboto } from "next/font/google"
 import "./globals.css"
+import type { Metadata } from "next"
+import { Roboto } from "next/font/google"
 import { DrawerPanel, ReduxProvider } from '@/components'
 
 // const geistSans = localFont({
@@ -32,6 +30,8 @@ type Props = {
 }
 
 const RootLayout = ({ children, }: Props) => {
+
+
   return (
     <html lang="en">
       {/* <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} > */}

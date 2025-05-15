@@ -12,7 +12,7 @@ interface Portfolio {
 	content: string
 }
 // portfolio need categoryId: and show filter based on category too
-export const portfolioes: Portfolio[] = [
+export const portfolios: Portfolio[] = [
   {
     id: '1',
     coverPhoto: '/images/home/portfolios/apartment-decor-r13paque78wtipjj12u3ofnnjvgiwt23rmsk70pi2w.webp',

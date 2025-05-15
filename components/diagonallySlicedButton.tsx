@@ -9,7 +9,7 @@ interface Props {
 export const DiagonallySlicedButton = ({ label, icon, href='#' }: Props) => {
 	return (
 		<Link href={href} className="
-			px-6 py-3
+			px-3 py-3
 			bg-slate-800 
 			relative
 			text-white
@@ -17,9 +17,9 @@ export const DiagonallySlicedButton = ({ label, icon, href='#' }: Props) => {
 			inline-block
 			group 
 		">
-			<div className="relative z-10 flex justify-between items-center gap-4">
+			<div className="relative z-10 flex justify-evenly items-center gap-8">
 				<span>{label}</span>
-				{icon}
+				<span className='px-4'> {icon} </span>
 			</div>
 
 			<span className="

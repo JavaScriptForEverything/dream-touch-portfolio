@@ -1,3 +1,4 @@
+p-4 md:-mx-20
 ---------------
 $ cd ~/Documents/dream-touch
 $ rsync -a --progress --exclude='*/node_modules/*' --exclude='*/.next/*' frontend dream-touch:~/
@@ -5,6 +6,8 @@ $ ssh dream-touch
 $ cd frontend
 
 $ yarn build
+$ pm2 restart frontend
+
 $ pm2 start yarn --name frontend -- start
 ---------------
 
@@ -14,6 +17,12 @@ Learn:
 	- ShadCN : Vite instaltion: shows how to configure path alias too
 	- https://ui.shadcn.com/docs/components/form
 	- https://ui.shadcn.com/docs/components/pagination#
+
+
+
+Tasks:
+	- add proper alt,title,description,caption for image 		: => for SEO
+	- add lazy loading for images and components 						: => for Optimization
 
 
 Outline:
@@ -31,23 +40,9 @@ Problem:
 
 
 Tasks:
-	- page remains: 
-		- appoitment
-		- reviews
-
 	- pagination / infinite scroll
 	- portfolio need categoryId: and show filter based on category too
-	- Add React-Cuell or TextEditor in portfolioDetails ...
 	- add another card hover over card or image (full/half)
-
-
-
-
-check-react-app-production-ready-so-that-react-router-nested-route-works-properly-on-vps-server
-
-
-
-
 
 
 
@@ -57,6 +52,7 @@ in home page
 	
 
 Tasks
+	- how to implement redux store globally from server-side
 
 	- Create formValidate() function, with any type, not just string
 	- Check React App production ready, so that React-Router's nested route works properly on VPS server
@@ -129,4 +125,17 @@ cleanHtml = dom.serialize();
 
 
 
-yarn add react-quill@beta quill
+
+-----------------------------------------------------
+
+
+SEO
+	- Content & Keyworks
+	- backlinks
+	- optimized for "answer boxes
+	- Google with indexed pages
+
+	- Add pictures, videos, and examples (Google loves this).
+
+
+

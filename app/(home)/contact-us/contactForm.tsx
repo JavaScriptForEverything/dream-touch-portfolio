@@ -88,7 +88,7 @@ const ContactForm = ({ isAutoFocus = false }: Props) => {
 
 				{	Object.entries(formFields).map(([key, field], index) => (
 						<TextField key={key} {...field}
-						autoFocus={index === 0 && isAutoFocus}
+							autoFocus={index === 0 && isAutoFocus}
 							onChange={changeHandler(key)}
 							value={fields[key as keyof typeof fields]}
 							multiline={field.multiline}

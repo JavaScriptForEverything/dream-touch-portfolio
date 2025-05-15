@@ -15,13 +15,14 @@ export const Header = async ({}: Props) => {
 
 	return (
 		<div className="sticky top-0 z-20 bg-[#292929] text-slate-50 py-4">
-			<div className="container mx-auto px-8 lg:px-20 flex items-center gap-4">
-				<Link href='/' className='mr-12 ' >
+			<div className="container mx-auto px-2 lg:px-20 flex items-center gap-4">
+				<Link href='/' className='mr-4 ' >
 					<Image 
 						src='/logo.svg'
 						alt='/logo.svg'
 						width={80}
 						height={80}
+						className='min-w-20'
 					/>
 				</Link>
 

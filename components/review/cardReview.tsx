@@ -19,8 +19,8 @@ const CardReview = (props: Props) => {
 	}
 	return (
 		<div className='p-4 flex flex-col gap-4 
-		bg-slate-50
-		border border-slate-300 md:border-slate-200/50
+		bg-slate-50/50
+		border border-slate-200 md:border-slate-200/50
 		rounded-lg
 		'>
 		

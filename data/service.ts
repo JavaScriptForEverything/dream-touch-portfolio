@@ -37,9 +37,11 @@ interface Row {
 	text: string
 	image?: Image
 	isChangeOrder: boolean
+	isVisible?: boolean
 }
 
 interface Service {
+	id: string
 	coverPhoto: Image
 	title: string
 	slug: string
@@ -51,13 +53,13 @@ interface Service {
 	location: string
 	summary: string
 	description: string
-
-	// images: string[]
-	// descriptions: string[]
+	isVisible: boolean
 }
 // Service need categoryId: and show filter based on category too
 export const services: Service[] = [
   {
+		id: '1',
+		isVisible: false,
     coverPhoto: {
 			public_id: '1',
 			secure_url: '/images/service/portfolios/apartment-decor-r13paque78wtipjj12u3ofnnjvgiwt23rmsk70pi2w.webp',
@@ -99,6 +101,8 @@ export const services: Service[] = [
 		content: `<p>Dream Touch Interiors is a leading interior design company in Bangladesh, specializing in residence interior design. Since our inception in 2010, we have successfully completed numerous prestigious residential projects across the country.</p><p><br></p><p>Every client has unique needs, and we tailor our designs to reflect their personality and lifestyle. At Dream Touch Interiors, we work tirelessly to turn our clients' dreams into reality. While some may consider designing their interiors themselves, hiring a professional interior designer can save time, money, and effort while ensuring a flawless result.</p><p><br></p><p><br></p><h2><strong>Why Hire an Interior Designer?</strong></h2><p>Without an interior designer, residence interior design can become chaotic. Designers are trained professionals who understand space requirements, furniture placement, and color psychology. They ensure that your space is both functional and aesthetically pleasing.</p><p><br></p><h3><strong>Avoiding Aesthetic Mismatches</strong></h3><p>Interior designers have a trained eye for textures, colors, and materials. They can quickly decide on wall colors, wallpapers, and accent designs that suit your space. Without professional guidance, you may end up with mismatched designs or colors that don't meet your expectations, leading to wasted time and money.</p><p><br></p><h3><strong>Material Collection</strong></h3><p>Interior designers have access to a wide range of high-quality materials, textures, and finishes. They know where to source the best materials at competitive prices. At Dream Touch Interiors, we ensure that all materials used in our projects are of premium quality, ensuring durability and longevity.</p><p><br></p><h3><strong>Qualified Team for Residential Interior Design</strong></h3><p>A successful residence interior design project requires a team of skilled professionals, including electricians, plumbers, carpenters, and contractors. At Dream Touch Interiors, we have a qualified team that works together seamlessly to deliver exceptional results.</p><p><br></p><p><br></p><h2><strong>Our Services</strong></h2><p>Dream Touch Interiors offers a wide range of services for residence interior design, including:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Living room interior design</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Bedroom interior design</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Dining room interior design</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Kitchen cabinet design and installation</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Custom furniture design</li></ol><p><br></p><h3><strong>How We Work</strong></h3><p>Our process begins with understanding your style, preferences, and budget. We then design the space to meet your requirements and source the best materials for the project. Our skilled team works together to complete the project efficiently and to the highest standards.</p><p><br></p><p><br></p>`
   },
   {
+		id: '2',
+		isVisible: false,
     coverPhoto: {
 			public_id: '2',
     	secure_url: '/images/home/portfolios/home-decor-ideas-r13phfh2su282vtzzyuleqxnmiihnble0psv1uspu0.webp',
@@ -126,6 +130,8 @@ export const services: Service[] = [
 		`
   },
   {
+		id: '3',
+		isVisible: false,
     coverPhoto: {
 			public_id: '1',
     	secure_url: '/images/home/portfolios/home-design-trends-r13pgle8q4x1rd1ovluj6yiwm6mqt09z8kxbp01bd4.webp',
@@ -170,6 +176,8 @@ export const services: Service[] = [
 		`
   },
   {
+		id: '4',
+		isVisible: false,
     coverPhoto: {
 			public_id: '1',
     	secure_url: '/images/home/portfolios/home-interior-planning-r13plsg4i613xrhzjcpah5bmtv0scrwkaaqy72byyw.webp',

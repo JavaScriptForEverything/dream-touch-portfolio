@@ -77,7 +77,7 @@ export const footerLinkItems = [
 			{ 
 				label: 'Appointment', 	
 				placeholder:'appointment',	
-				href: '/appointment', 
+				href: '/contact-us', 
 			},
 			{ 
 				label: 'Site Map', 	

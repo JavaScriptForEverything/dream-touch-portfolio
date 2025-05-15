@@ -51,50 +51,43 @@ const FAQ = () => {
 
 	return (
 		<div className='min-h-screen'>
-			<BreadCrumbs />
+			<div className="p-2 md:px-20">
+				<BreadCrumbs />
+			</div>
 				
-			<div className="bg-slate-100/50 py-2 mb-40">
-				<h1 className="text-slate-900 text-center text-4xl font-extrabold my-6 md:my-8 capitalize">
+			<div className="bg-slate-100/10 py-2 mb-40">
+				<h1 className="text-slate-900 text-center text-2xl md:text-4xl font-extrabold my-6 md:my-8 capitalize">
 					Frequently Asked Questions
 				</h1>
 
 				<div className="px-6 md:px-12 lg:px-24 text-slate-700 leading-relaxed">
 
-
-				<div className="text-slate-700 leading-relaxed
-					grid grid-cols-12 gap-4
-					mb-12
-					items-center justify-center
-				">
-
-					<div className="col-span-12 md:col-span-9 
-					">
-						<input
-							type="text"
-							placeholder="Search FAQs..."
-							value={searchQuery}
-							onChange={(e) => setSearchQuery(e.target.value)}
-							className="w-full px-4 py-2.5 border border-slate-300 
-							rounded-lg focus:outline-none focus:border-red-200"
-						/>
-					</div>
-					<div className="col-span-1 hidden
-						md:flex gap-3
-						items-center justify-start
-					">
-						<div className="">
-							<CallRingIcon />
+					<div className="text-slate-700 leading-relaxed grid grid-cols-12 gap-4 mb-12 items-center justify-center ">
+						<div className="col-span-12 md:col-span-9 ">
+							<input
+								type="text"
+								placeholder="Search FAQs..."
+								value={searchQuery}
+								onChange={(e) => setSearchQuery(e.target.value)}
+								className="w-full px-4 py-2.5 border border-slate-300 
+								rounded-lg focus:outline-none focus:border-red-200"
+							/>
 						</div>
-						<div className="">
-							<p className="text-slate-400 text-xs">Call us now</p>
-							<p className="text-slate-900 font-bold 
-								whitespace-nowrap
-							">{contactInfo.phone}</p>
+
+						<div className="col-span-1 hidden md:flex gap-3 items-center justify-start ">
+							<div className="">
+								<CallRingIcon />
+							</div>
+							<div className="">
+								<p className="text-slate-400 text-xs">Call us now</p>
+								<p className="text-slate-900 font-bold 
+									whitespace-nowrap
+								">{contactInfo.phone}</p>
+							</div>
 						</div>
 					</div>
-				</div>
 
-					{/* FAQ Accordion */}
+
 					<div className="space-y-4">
 						{paginatedFAQs.map((faq, index) => (
 							<div
@@ -103,7 +96,8 @@ const FAQ = () => {
 							>
 								<button
 									onClick={() => toggleFAQ(index)}
-									className="w-full text-left px-4 py-3 bg-slate-200 hover:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 flex justify-between items-center"
+									className="w-full text-left px-4 py-3 bg-slate-100 
+									hover:bg-slate-200 focus:outline-none focus:ring focus:ring-blue-500 flex justify-between items-center"
 								>
 									<span className="text-lg font-semibold">{faq.question}</span>
 									<span className="text-xl">
@@ -119,7 +113,6 @@ const FAQ = () => {
 						))}
 					</div>
 
-					{/* Pagination */}
 					<div className="flex justify-center items-center mt-6 space-x-2">
 						{Array.from({ length: totalPages }, (_, i) => (
 							<button
@@ -136,50 +129,14 @@ const FAQ = () => {
 						))}
 					</div>
 
-					{/* Contact Us Form */}
-					<div className="grid grid-cols-12 gap-8">
+					<div className="grid grid-cols-1 md:grid-cols-12 gap-8">
 
 						<div className="mt-12 col-span-12 md:col-span-7">
-							<h2 className="text-2xl font-bold text-center mb-4 text-red-600">
+							<h2 className="text-2xl font-bold text-center mb-4 text-slate-900">
 								Have Question?
-							</h2>
+							</h2> 
 
 							<ContactForm />
-
-							{/* <form className="space-y-4">
-								<div>
-										<label className="block text-sm font-medium mb-1">Name</label>
-										<input
-												type="text"
-												placeholder="Your Name"
-												className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-										/>
-								</div>
-								<div>
-										<label className="block text-sm font-medium mb-1">Email</label>
-										<input
-												type="email"
-												placeholder="Your Email"
-												className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-										/>
-								</div>
-								<div>
-										<label className="block text-sm font-medium mb-1">Message</label>
-										<textarea
-												placeholder="Your Message"
-												className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-												rows={4}
-										></textarea>
-								</div>
-
-								<button
-										type="submit"
-										className="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-								>
-										Submit
-								</button>
-							</form> */}
-
 						</div>
 
 
@@ -198,6 +155,7 @@ const FAQ = () => {
 						</div>
 
 					</div>
+
 				</div>
 			</div>
 		</div>

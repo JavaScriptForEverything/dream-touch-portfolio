@@ -1,7 +1,18 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from "next"
+import { ORIGIN } from '@/lib/config'
+const { hostname } = new URL(ORIGIN)
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+	images: {
+		remotePatterns: [
+			{
+				hostname: hostname,
+			},
+			{
+				hostname: 'via.placeholder.com'
+			},
+		],
+	}
+}
 
-export default nextConfig;
+export default nextConfig
