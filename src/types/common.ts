@@ -21,12 +21,11 @@ export interface MyError<Status extends string = ErrorStatus> extends Error {
 export type ResponseStatus = 'success' | 'fialed' | 'error'
 export interface ResponseData<Data = any> {
 	status: ResponseStatus
+	message?: string, 		// if status === 'success' then message is success message, else error message
+	data?: Data,
+
 	count?: number
 	total?: number
-	data?: Data,
-	message?: string,
-	error?: string,
-
 	limit?: number
 }
 

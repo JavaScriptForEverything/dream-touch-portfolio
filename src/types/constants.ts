@@ -2,9 +2,9 @@ export const maxImageSize = 1024 * 1024 * 5 			// => 5 MB
 
 export enum Collection {
 	Service = 'Service',
-	User = 'User',
+	Portfolio = 'Portfolio',
 
-	// Brand = 'Brand',
+	User = 'User',
 
 	// Category = 'Category',
 	// SubCategory = 'SubCategory',

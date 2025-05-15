@@ -10,6 +10,6 @@ router.route('/')
 	.post(serviceController.createService)
 
 router.route('/:serviceId')
-	.get(serviceController.getAboutUsByIdOrSlug)
+	.get(serviceController.getServiceByIdOrSlug)
 	.patch(serviceController.updateServiceByIdOrSlug)
 	.delete(serviceController.deleteServiceById)

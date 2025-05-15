@@ -86,7 +86,7 @@ export const createService: RequestHandler =  async (req, res, next) => {
 }
 
 // GET /api/services/:serviceId
-export const getAboutUsByIdOrSlug:RequestHandler = catchAsync(async (req, res, next) => {
+export const getServiceByIdOrSlug:RequestHandler = catchAsync(async (req, res, next) => {
 	const serviceId = req.params.serviceId
 	const filter = (isValidObjectId(serviceId)) ?  { _id: serviceId } : { slug: serviceId }
 
@@ -97,7 +97,10 @@ export const getAboutUsByIdOrSlug:RequestHandler = catchAsync(async (req, res, n
 		status: 'success',
 		data: service
 	}
+	setTimeout(() => {
+		
 	res.status(200).json( responseData )
+	}, 2000);
 })
 
 
@@ -137,7 +140,7 @@ export const updateServiceByIdOrSlug:RequestHandler = catchAsync(async (req, res
 		}
 
 
-		const filteredBody = serviceDtos.filterBodyForCreateService(req.body)
+		const filteredBody = serviceDtos.filterBodyForUpdateService(req.body)
 
 		const updatedService = await Service.findOneAndUpdate(filter, filteredBody, { new: true })
 		if(!updatedService) return next(appError('service update failed'))

@@ -1,23 +1,22 @@
-import type { CreateService, UpdateService, ServiceDocument } from '@/types/service'
+import type { CreatePortfolio, UpdatePortfolio, PortfolioDocument } from '@/types/portfolio'
 import { filterObjectByArray } from '@/lib/utils'
 
 const commonAllowedFields = [
-	'coverPhoto',
 	'title',
 	'slug',
-	'slogan',
-	'content',
-
-	'rows',
 	'location',
 	'summary',
 	'description',
+	'content',
 	'isVisible',
+
+	'coverPhoto',
+	'images',
 ]
 
 
-// POST 	/api/services
-export const filterBodyForCreateService = (body: CreateService) => {
+// POST 	/api/portfolios
+export const filterBodyForCreatePortfolio = (body: CreatePortfolio) => {
 	const allowedFields = [
 		...commonAllowedFields,
 	]
@@ -26,7 +25,7 @@ export const filterBodyForCreateService = (body: CreateService) => {
 }
 
 // doc => doc._doc
-export const filterServiceDocument = (body: ServiceDocument) => {
+export const filterPortfolioDocument = (body: PortfolioDocument) => {
 	const allowedFields = [
 		...commonAllowedFields,
 
@@ -39,8 +38,8 @@ export const filterServiceDocument = (body: ServiceDocument) => {
 }
 
 
-// PATCH 	/api/services/:serviceId
-export const filterBodyForUpdateService = (body: UpdateService) => {
+// PATCH 	/api/portfolios/:portfolioId
+export const filterBodyForUpdatePortfolio = (body: UpdatePortfolio) => {
 
 	const allowedFields = [
 		...commonAllowedFields,
