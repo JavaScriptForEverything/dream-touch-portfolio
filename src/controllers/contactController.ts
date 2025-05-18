@@ -36,6 +36,7 @@ export const addContact: RequestHandler =  catchAsync(async (req, res, next) => 
 		status: 'success',
 		data: contact,
 	}
+		
 	res.status(201).json( responseData )
 })
 

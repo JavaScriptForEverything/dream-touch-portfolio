@@ -4,7 +4,7 @@ import { NODE_ENV } from '@/config/config'
 // List of allowed origins
 export const allowedOrigins = [
 
-	'http://localhost:300', 												// => frontend	
+	'http://localhost:3000', 												// => frontend	
 	'http://localhost:5173', 												// => dashboard
 
 
