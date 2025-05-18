@@ -1,4 +1,4 @@
-import { ResponseData } from '@/types/common'
+import { ResponseData, TempObj } from '@/types/common'
 import type { AppDispatch, RootState } from '../store'
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
 import { isEmail } from 'validator'
@@ -172,47 +172,72 @@ type FormFields = {
 		icon: '',
 	})
 */
-export const isFormValid = <T extends Record<string, any>>(
-  fields: T,
-  setFieldsError: React.Dispatch<React.SetStateAction<Partial<Record<keyof T, string>>>>
-): boolean => {
-  const tempObj: Partial<Record<keyof T, string>> = {};
 
-  // Extract email, password, and confirmPassword with type assertion
-  const { email, password, confirmPassword } = fields as {
-    email?: string;
-    password?: string;
-    confirmPassword?: string;
-  };
+// export const isFormValid = <T extends Record<string, any>>(
+//   fields: T,
+//   setFieldsError: React.Dispatch<React.SetStateAction<Partial<Record<keyof T, string>>>>
+// ): boolean => {
+//   const tempObj: Partial<Record<keyof T, string>> = {};
 
-  // Validate email if it exists
-  if (email !== undefined && email !== '' && !isEmail(email)) {
-    (tempObj as Record<string, string>).email = 'Invalid Email Address';
-  }
+//   // Extract email, password, and confirmPassword with type assertion
+//   const { email, password, confirmPassword } = fields as {
+//     email?: string;
+//     password?: string;
+//     confirmPassword?: string;
+//   };
 
-  // Validate password if it exists
-  if (password !== undefined && password !== '' && password.length < 8) {
-    (tempObj as Record<string, string>).password = 'Password must be at least 8 characters long';
-  }
+//   // Validate email if it exists
+//   if (email !== undefined && email !== '' && !isEmail(email)) {
+//     (tempObj as Record<string, string>).email = 'Invalid Email Address';
+//   }
 
-  // Validate confirmPassword if it exists
-  if (confirmPassword !== undefined && confirmPassword !== '' && confirmPassword !== password) {
-    (tempObj as Record<string, string>).confirmPassword = 'Passwords do not match';
-  }
+//   // Validate password if it exists
+//   if (password !== undefined && password !== '' && password.length < 8) {
+//     (tempObj as Record<string, string>).password = 'Password must be at least 8 characters long';
+//   }
+
+//   // Validate confirmPassword if it exists
+//   if (confirmPassword !== undefined && confirmPassword !== '' && confirmPassword !== password) {
+//     (tempObj as Record<string, string>).confirmPassword = 'Passwords do not match';
+//   }
+
+//   // Validate all fields for emptiness
+//   Object.keys(fields).forEach((field) => {
+//     if (fields[field as keyof T] === '') {
+//       (tempObj as Record<string, string>)[field] = `${field.charAt(0).toUpperCase() + field.slice(1)} is required`;
+//     }
+//   });
+
+//   // Set the error state
+//   setFieldsError(tempObj);
+
+//   // Return whether the form is valid (i.e., no error messages)
+//   return Object.keys(tempObj).length === 0;
+// };
+
+
+// Assuming TempObj and FormFields types are defined appropriately
+export const isFormValid = ( fields: any, setFieldsError: React.Dispatch<React.SetStateAction<any>>): boolean => {
+  const tempObj: TempObj = {}
+  const { email, password, confirmPassword } = fields
+
+  if (email && !isEmail(email)) tempObj.email = 'Invalid Email Address'
+  if (password && password.length < 8) tempObj.password = 'Password must be at least 8 characters long'
+  if (confirmPassword && confirmPassword !== password) tempObj.confirmPassword = 'Passwords do not match'
 
   // Validate all fields for emptiness
-  Object.keys(fields).forEach((field) => {
-    if (fields[field as keyof T] === '') {
-      (tempObj as Record<string, string>)[field] = `${field.charAt(0).toUpperCase() + field.slice(1)} is required`;
+  Object.keys(fields).forEach(field => {
+    if (fields[field] === '') {
+      tempObj[field] = `${field.charAt(0).toUpperCase() + field.slice(1)} is required`
     }
-  });
+  })
 
   // Set the error state
-  setFieldsError(tempObj);
+  setFieldsError(tempObj)
 
   // Return whether the form is valid (i.e., no error messages)
-  return Object.keys(tempObj).length === 0;
-};
+  return Object.keys(tempObj).length === 0
+}
 
 
 /*

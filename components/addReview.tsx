@@ -10,7 +10,7 @@ type Props = React.ComponentProps<'div'> & {
 }
 export const AddReview = ({ avatar, className, ...rest }: Props) => {
 	const dispatch = useAppDispatch()
-	const { replyTo } = useAppSelector(state => state.layout)
+	// const { replyTo } = useAppSelector(state => state.layout)
 
 	const [ searchValue, setSearchValue ] = useState('')
 	const [ errorValue, setErrorValue ] = useState('')
@@ -20,19 +20,19 @@ export const AddReview = ({ avatar, className, ...rest }: Props) => {
 	const inputRef = useRef<HTMLInputElement>(null)
 
 
-	useEffect(() => {
-		setIsHaveReplyTo(replyTo !== null)
-	}, [replyTo])
+	// useEffect(() => {
+	// 	setIsHaveReplyTo(replyTo !== null)
+	// }, [replyTo])
 
-	useEffect(() => {
-   	if (inputRef.current) {
-			inputRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center', 				// This centers the input in the viewport
-        inline: 'nearest', 			// This keeps the horizontal scroll behavior as it is
-      })
-    }
-	}, [replyTo])
+	// useEffect(() => {
+  //  	if (inputRef.current) {
+	// 		inputRef.current.scrollIntoView({
+  //       behavior: 'smooth',
+  //       block: 'center', 				// This centers the input in the viewport
+  //       inline: 'nearest', 			// This keeps the horizontal scroll behavior as it is
+  //     })
+  //   }
+	// }, [replyTo])
 
 	useEffect(() => {
 		setErrorValue('')
@@ -54,14 +54,14 @@ export const AddReview = ({ avatar, className, ...rest }: Props) => {
 		
 		if(!searchValue.trim()) return setErrorValue('your review is empty')
 
-		if(replyTo) {
-			console.log({ replyTo: searchValue })
-			dispatch(layoutReducer.resetReplyTo())
+		// if(replyTo) {
+		// 	console.log({ replyTo: searchValue })
+		// 	dispatch(layoutReducer.resetReplyTo())
 			
-		} else {
+		// } else {
 
-			console.log({ review: searchValue })
-		}
+		// 	console.log({ review: searchValue })
+		// }
 		
 		setIsDisabled(true)
 		setSearchValue('')

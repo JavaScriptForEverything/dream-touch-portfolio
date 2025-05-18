@@ -7,9 +7,9 @@ import { PortFolioModal } from '@/components/portfolio'
 
 
 interface Props {
-	params: {
+	params: Promise<{
 		portfolioId: string
-	}
+	}>
 }
 const PortfolioDetailsPage = async ({ params }: Props) => {
 	const { portfolioId: portfolioSlug } = await params

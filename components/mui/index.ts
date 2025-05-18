@@ -10,5 +10,6 @@ export * from './textField'
 export * from './fileInput'
 export * from './select'
 export * from './alert'
+export * from './snackbar'
 export * from './list'
 

@@ -139,3 +139,12 @@ SEO
 
 
 
+
+Google Review:
+
+| Option        | Method                  | JSON API Available?    | Recommended   |
+| ------------- | ----------------------- | ---------------------- | ------------- |
+| EmbedSocial   | Paid 3rd-party API      | ✅ Yes                  | ✅ Best option |
+| SociableKIT   | Paid 3rd-party API      | ✅ Yes                  | ✅ Good        |
+| Scraping      | Custom Puppeteer script | ✅ (hacky)              | ❌ Risky       |
+| Official APIs | Google/Facebook         | ❌ No access to reviews | ❌ Not useful  |

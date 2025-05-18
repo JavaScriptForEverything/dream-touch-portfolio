@@ -1,7 +1,12 @@
 'use client'
+import { useEffect, useState } from 'react'
 import { Button, TextField } from '@/components/mui'
 import { LoadingIcon } from '@/icons/loadingIcon'
-import { useState } from 'react'
+import { useAppDispatch, useAppSelector } from '@/hooks/redux'
+import * as layoutReducer from '@/store/layoutReducer'
+import * as contactReducer from '@/store/contactReducer'
+import { actionApiRequest } from '@/actions/api'
+import { isFormValid } from '@/lib/utils'
 
 // interface FormField {
 // 	label: string
@@ -23,7 +28,7 @@ const formFields = {
 
 interface InitialFieldsType {
 	name: string
-	phone: string
+	phone?: string
 	email: string
 	subject: string
 	message: string
@@ -31,11 +36,11 @@ interface InitialFieldsType {
 
 // const initialFields = Object.keys(formFields).reduce((acc, key) => ({ ...acc, [key]: '' }), {} as InitialFieldsType) 
 const initialFields: InitialFieldsType = {
-		name: '',
-		phone: '',
-		email: '',
-		subject: '',
-		message: ''
+	name: '',
+	// phone: '',
+	email: '',
+	subject: '',
+	message: ''
 }
 
 interface Props {
@@ -43,16 +48,41 @@ interface Props {
 }
 
 const ContactForm = ({ isAutoFocus = false }: Props) => {
-	const [ loading, setLoading ] = useState(false)
-	const [ fields, setFields ] = useState<InitialFieldsType>( initialFields)
-	const [ fieldsError, setFieldsError ] = useState<InitialFieldsType>( initialFields)
+	const dispatch = useAppDispatch()
+	const { status, loading, error, contacts } = useAppSelector( state => state.contact )
+
+	const [ fields, setFields ] = useState<InitialFieldsType>(initialFields)
+	const [ fieldsError, setFieldsError ] = useState(initialFields)
 	// const [ fieldsError, setFieldsError ] = useState({
 	// 	name: '',
-	// 	phone: '',
+	// 	// phone: '',
 	// 	email: '',
 	// 	subject: '',
 	// 	message: ''
 	// })
+
+	useEffect(() => {
+		if(status === 'created') {
+
+			dispatch( layoutReducer.setIsOpenSnackbar( true, {
+				severity: 'success',
+				message: 'your message is sent',
+				autoClose: true,
+			}))
+
+			dispatch(contactReducer.clearError())
+		}
+
+		setFields(initialFields) 			// reset form
+	}, [dispatch, status])
+
+	useEffect(() => {
+		if(error) dispatch( layoutReducer.setIsOpenSnackbar( true, {
+			severity: 'error',
+			message: error 
+		}))
+	}, [dispatch, error])
+
 
 
 	const changeHandler = (name: string) => (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,44 +90,28 @@ const ContactForm = ({ isAutoFocus = false }: Props) => {
 			...fields,
 			[name]: evt.target.value
 		})
-		// setFieldsError({
-		// 	...fieldsError,
-		// 	[name]: 'alsdfa'
-		// })
 	}
 
 	const submitHandler = async (evt: React.FormEvent<HTMLFormElement>) => {
 		evt.preventDefault()
-		setLoading(true)
 
-		// const res = await fetch('/api/contact', {
-		// 	method: 'POST',
-		// 	body: JSON.stringify(fields)
-		// })
-		// const data = await res.json()
-		console.log(fields)
-		
-		setTimeout(() => {
-			setLoading(false)
-		}, 1000);
+		if(!isFormValid(fields, setFieldsError)) return console.log(fieldsError)
+
+		dispatch(contactReducer.createContact( fields ))
 	}
 
 	return (
 		<form onSubmit={submitHandler}>
+
 			<div className="flex flex-col gap-4">
 
 				{	Object.entries(formFields).map(([key, field], index) => (
-						<TextField key={key} {...field}
+						<TextField key={key} 
+							{...field}
 							autoFocus={index === 0 && isAutoFocus}
 							onChange={changeHandler(key)}
-							value={fields[key as keyof typeof fields]}
-							multiline={field.multiline}
-							rows={field.rows}
-							// helperText={fieldsError[key as keyof typeof fieldsError]}
-							// required={field.required}
-							// autoFocus={field.autoFocus}
-							// disabled={loading}
-							// placeholder={field.placeholder}
+							value={fields[key as keyof typeof fields] || ''}
+							helperText={fieldsError[key as keyof typeof fieldsError]}
 						/>
 				))}
 

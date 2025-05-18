@@ -18,7 +18,7 @@ export const AddToCart = ({ className, ...rest }: Props) => {
 		minus: false,
 		addToCart: false,
 	})
-	const { isProductAddedToCart } = useAppSelector( state => state.layout )
+	// const { isProductAddedToCart } = useAppSelector( state => state.layout )
 
 	const productId = slug 	as string	 || ''			// productId / string
 	const isMaxValue = value >= maxValue
@@ -34,14 +34,14 @@ export const AddToCart = ({ className, ...rest }: Props) => {
 	}
 
 
-	const addItemToCart = () => {
-		dispatch(layoutReducer.addItemToCart(productId))
-		setFields({ ...fields, addToCart: true }) 			// disable addToCart
-	}
-	const removeItemFormCart = () => {
-		dispatch(layoutReducer.removeItemFromCart(productId))
-		setFields({ ...fields, addToCart: false }) 			// enable addToCart
-	}
+	// const addItemToCart = () => {
+	// 	dispatch(layoutReducer.addItemToCart(productId))
+	// 	setFields({ ...fields, addToCart: true }) 			// disable addToCart
+	// }
+	// const removeItemFormCart = () => {
+	// 	dispatch(layoutReducer.removeItemFromCart(productId))
+	// 	setFields({ ...fields, addToCart: false }) 			// enable addToCart
+	// }
 
 	return (
 		<div {...rest} className={`${className} flex items-center gap-4`}>
@@ -58,11 +58,11 @@ export const AddToCart = ({ className, ...rest }: Props) => {
 			</div>
 
 
-		{isProductAddedToCart ? (
+		{/* {isProductAddedToCart ? (
 			<Button color='error' variant='contained' onClick={removeItemFormCart}  >Remove From Cart</Button>
 		) : (
 			<Button color='primary' variant='contained' onClick={addItemToCart} >Add To Cart</Button>
-		)}
+		)} */}
 
 		</div>
 	)
