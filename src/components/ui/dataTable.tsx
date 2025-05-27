@@ -2,35 +2,9 @@ import type { ListObject } from '@/types/common'
 
 import { Action } from '@/components'
 import { Pagination, Checkbox, DataTableCheckbox } from '@/components/ui'
-import * as layoutReducer from '@/store/layoutReducer'
-import { useAppDispatch } from '@/hooks/redux'
 import { useState } from 'react'
+import type { DataTableRow } from '@/pages/dashboard'
 
-
-const tableItems = [
-	{
-		id: '1',
-		coverPhoto: '',
-		title: '',
-		description: '',
-		slug: '',
-		createdAt: '',
-		location: '',
-		images: '',
-		content: '',
-	}, 
-	{
-		id: '2',
-		coverPhoto: '',
-		title: '',
-		description: '',
-		slug: '',
-		createdAt: '',
-		location: '',
-		images: '',
-		content: '',
-	}, 
-]
 
 
 interface Props {
@@ -41,26 +15,18 @@ interface Props {
 		count: number
 		onPageChange: (page: number) => void
 	}
+	onDelete: (id: string) => void
+	onBulkDelete: (ids: string[]) => void
+
+	rowItems: DataTableRow[]
 }
 
-export const DataTable = ({ headers, actionItems, pagination }: Props) => {
-	const dispatch = useAppDispatch()
+export const DataTable = ({ headers, actionItems, pagination, onDelete, onBulkDelete, rowItems }: Props) => {
 
-	const handlePageChange = (page: number) => {
-		console.log('call api here', { page })
-		pagination.onPageChange(page)
-	}
-
-	const deleteHandler = (deleteId: string) => {
-		console.log('delete action', { deleteId })
-
-		dispatch(layoutReducer.setIsOpenSnackbar(true, {
-			severity: 'success',
-			title: 'Deletion',
-			message: 'portfolio deletion successfull!!!',
-			autoClose: true,
-		}))
-	}
+	const handlePageChange = (page: number) => pagination.onPageChange(page)
+	const deleteHandler = (id: string) => onDelete(id)
+	const bulkDeleteHandler = (ids: string[]) => () => onBulkDelete(ids)
+	
 
 	const [selectedIds, setSelectedIds] = useState<string[]>([])
 
@@ -74,13 +40,14 @@ export const DataTable = ({ headers, actionItems, pagination }: Props) => {
 	}
 
 	const toggleAllSelection = (isChecked: boolean) => () => {
-		const selectedIds = tableItems.map( item => item.id) 
+		const selectedIds = rowItems.map( row => row.id) 
 		setSelectedIds( isChecked ? [] : selectedIds)
 	}
 
 	return (
 		<>
-		<div className=" w-[286px] md:w-[950px] overflow-x-auto rounded border border-gray-300 shadow-sm " >
+		{/* <div className=" w-[286px] md:w-[950px] overflow-x-auto rounded border border-gray-300 shadow-sm " > */}
+		<div className="rounded border border-gray-300 shadow-sm " >
 
 			<table className="min-w-full divide-y divide-gray-300">
 				<thead className="ltr:text-left rtl:text-right">
@@ -89,9 +56,9 @@ export const DataTable = ({ headers, actionItems, pagination }: Props) => {
 						[&>th]:p-3 [&>tr>td]:truncate [&>tr>td]:max-w-48 
 						[&>th]:text-center
 					">
-						<th>
+						<th className='w-8'>
 							<div className="flex items-center">
-								{selectedIds.length == tableItems.length ? (
+								{selectedIds.length == rowItems.length ? (
 									<DataTableCheckbox 
 										fullCheck={true}
 										partialCheck={false}
@@ -112,6 +79,7 @@ export const DataTable = ({ headers, actionItems, pagination }: Props) => {
 								)}
 							</div>
 						</th>
+						<th className='w-8'>SL</th>
 
 						{headers.map( item => (
 							<th key={item}>{item}</th>
@@ -121,7 +89,7 @@ export const DataTable = ({ headers, actionItems, pagination }: Props) => {
 
 				<tbody className="divide-y divide-dashed divide-gray-300 *:text-gray-700 [&>tr>td]:px-3 [&>tr>td]:py-2 [&>tr>td]:truncate [&>tr>td]:max-w-48 ">
 
-					{tableItems.map( row => (
+					{rowItems.map( row => (
 						<tr key={row.id}>
 							<td>
 								<Checkbox 
@@ -131,14 +99,26 @@ export const DataTable = ({ headers, actionItems, pagination }: Props) => {
 
 							</td>
 							<td>{row.id}</td>
-							<td>Nandor the Relentless </td>
-							<td>04/06/1262</td>
-							<td>Vampire Warrior</td>
-							<td>$0</td>
-							<td>$0</td>
-							<td>$0</td>
-							<td>$0</td>
-							<td>$0</td>
+							<td>{row.image}</td>
+							<td>{row.title}</td>
+							<td>{row.description}</td>
+							<td>{row.content}</td>
+							<td>{row.location}</td>
+							<td>{row.createdAt}</td>
+							<td className='capitalize text-sm'>
+								{row.isVisible ? (
+									<span className='bg-blue-50 px-2.5 py-1.5 rounded
+									border border-blue-100
+									text-slate-800
+									'>active</span>
+								) : (
+									<span className='bg-red-50 px-2.5 py-1.5 rounded
+									border border-red-100
+									text-red-800
+									'>inactive</span>
+								)
+								}
+								</td>
 
 							<td>
 								<Action 
@@ -155,7 +135,26 @@ export const DataTable = ({ headers, actionItems, pagination }: Props) => {
 				</tbody>
 				<tfoot>
 					<tr>
-						<td colSpan={10} className=" w-full py-4 ">
+						<td colSpan={3} className='px-4'>
+							<div className='text-slate-600 flex gap-3 items-center'>
+								<button onClick={bulkDeleteHandler(selectedIds)} className='
+									text-slate-800
+									disabled:text-slate-500
+									hover:text-orange-800
+									cursor-pointer
+									disabled:cursor-auto
+								'>Delete</button>
+								<span className='text-slate-800 flex gap-1 items-center'>
+									<span className='font-semibold'> {selectedIds.length} </span>
+									of 
+									<span className='font-semibold'> {rowItems.length} </span>
+								</span>
+								<span className='whitespace-nowrap'>
+								item[s] selected
+								</span>
+							</div>
+						</td>
+						<td colSpan={800} className=" w-full py-4 ">
 							<div className="flex justify-end">
 								<Pagination 
 									// total={100} 
@@ -171,7 +170,6 @@ export const DataTable = ({ headers, actionItems, pagination }: Props) => {
 			</table>
 
 		</div>
-
 		</>
 	)
 }

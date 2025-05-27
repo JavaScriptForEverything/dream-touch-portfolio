@@ -39,6 +39,10 @@ export const Pagination: React.FC<PaginationProps> = ({
 
   return (
     <nav className="flex items-center gap-x-1" aria-label="Pagination">
+		
+		<span>
+			?
+		</span>
       <button
         disabled={currentPage === 1}
         onClick={() => onChange(currentPage - 1)}

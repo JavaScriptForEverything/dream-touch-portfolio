@@ -8,7 +8,7 @@ import { redirect } from 'react-router-dom'
 
 
 
-interface Props {
+interface Props extends React.ComponentProps<'div'> {
 	id: string
 	actionItems: ListObject[]
 	onDelete?: (id: string) => void
