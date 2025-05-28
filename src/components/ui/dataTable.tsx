@@ -19,9 +19,22 @@ interface Props {
 	onBulkDelete: (ids: string[]) => void
 
 	rowItems: DataTableRow[]
+	renderRow: (row: DataTableRow) => React.ReactNode
 }
 
-export const DataTable = ({ headers, actionItems, pagination, onDelete, onBulkDelete, rowItems }: Props) => {
+export const DataTable = (props: Props) => {
+
+	const { 
+		headers, 
+		rowItems,
+		renderRow,
+
+		actionItems, 
+		pagination, 
+		
+		onDelete, 
+		onBulkDelete, 
+	} = props
 
 	const handlePageChange = (page: number) => pagination.onPageChange(page)
 	const deleteHandler = (id: string) => onDelete(id)
@@ -84,6 +97,9 @@ export const DataTable = ({ headers, actionItems, pagination, onDelete, onBulkDe
 						{headers.map( item => (
 							<th key={item}>{item}</th>
 						))}
+
+						<th>Status</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 
@@ -96,15 +112,17 @@ export const DataTable = ({ headers, actionItems, pagination, onDelete, onBulkDe
 									onChange={checkBoxChangeHandler(row.id)}
 									checked={selectedIds.includes(row.id)}
 								/>
-
 							</td>
 							<td>{row.id}</td>
-							<td>{row.image}</td>
+
+							{renderRow(row)}
+							{/* <td>{row.image}</td>
 							<td>{row.title}</td>
 							<td>{row.description}</td>
 							<td>{row.content}</td>
 							<td>{row.location}</td>
-							<td>{row.createdAt}</td>
+							<td>{row.createdAt}</td> */}
+
 							<td className='capitalize text-sm'>
 								{row.isVisible ? (
 									<span className='bg-blue-50 px-2.5 py-1.5 rounded

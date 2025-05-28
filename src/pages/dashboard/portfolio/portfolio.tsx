@@ -46,9 +46,6 @@ const tableHeaders: string[] = [
 	'Content',
 	'Location',
 	'Date',
-
-	'Status',
-	'Action',
 ]
 
 
@@ -171,6 +168,7 @@ export const Portfolio = () => {
 			{/* --- table section --- */}
 			<DataTable 
 				headers={tableHeaders}
+
 				actionItems={actionItems}
 				pagination={{
 					count: 15,
@@ -184,11 +182,17 @@ export const Portfolio = () => {
 				onBulkDelete={bulkDeleteHandler}
 
 				rowItems={rowItems}
-
-
+				renderRow={(row) => (
+					<>
+						<td>{row.image}</td>
+						<td>{row.title}</td>
+						<td>{row.description}</td>
+						<td>{row.content}</td>
+						<td>{row.location}</td>
+						<td>{row.createdAt}</td>
+					</>
+				)}
 			/>
-
-
 
 		</div>
 	)
