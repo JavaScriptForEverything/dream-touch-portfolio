@@ -1,5 +1,6 @@
 type Props = React.ComponentProps<'svg'>
 
+
 export const AlignRightIcon = (props: Props) => (
 	<svg {...props}
 		xmlns="http://www.w3.org/2000/svg" 

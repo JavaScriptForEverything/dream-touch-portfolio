@@ -6,9 +6,11 @@ export const Input = ({ className, ...rest }: Props) => {
 	return (
 		<input {...rest}
 			className={`${className}
-				w-full px-4 py-2 pr-10 border rounded-lg 
-				focus:outline-none focus:ring focus:ring-orange-300
+				w-full px-4 py-2
+				border border-slate-300 
+				rounded-lg focus:outline-none focus:border-slate-400
 			`}
 		/>
 	)
 }
+

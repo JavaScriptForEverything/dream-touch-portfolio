@@ -19,7 +19,7 @@ const Breadcrumbs = () => {
 
   return (
     <div className="py-8 flex items-center gap-2 text-sm font-medium text-slate-500 overflow-hidden">
-      <Link to="/dashboard" className="flex-shrink-0 flex items-center gap-1 hover:text-red-600">
+      <Link to="/dashboard" className="flex-shrink-0 flex items-center gap-1 hover:text-orange-600">
         <HomeIcon className="flex-shrink-0" />
         <span className="whitespace-nowrap">Dashboard</span>
       </Link>
@@ -40,7 +40,7 @@ const Breadcrumbs = () => {
             ) : (
               <Link 
                 to={path}
-                className="hover:text-red-600 whitespace-nowrap flex-shrink-0"
+                className="hover:text-orange-600 whitespace-nowrap flex-shrink-0"
               >
                 {label}
               </Link>

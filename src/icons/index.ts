@@ -47,11 +47,17 @@ export * from './whatsAppIcon'
 export * from './youtubeIcon'
 export * from './instragramIcon'
 
-export * from './rightAngleIcon'
 export * from './arrowRightIcon'
 export * from './arrowLeftIcon'
 export * from './arrowUpIcon'
 export * from './arrowDownIcon'
+export * from '@/icons/angleLeft'
+export * from '@/icons/angleRight'
+export * from '@/icons/angleUp'
+export * from '@/icons/angleDown'
+
+export * from './rightAngleIcon'
+
 export * from './downloadIcon'
 export * from './cloudUploadIcon'
 

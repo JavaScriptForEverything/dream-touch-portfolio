@@ -1,4 +1,42 @@
 // src/pages/Dashboard/Users.tsx
-export default function Users() {
-  return <div>Users Management</div>;
+
+import { Datalist, Input, Search, Select, Textarea } from '@/components/ui'
+import { useState } from 'react'
+
+const Users = () => {
+
+	const [ input, setInput ] = useState('')
+	const onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+		setInput(evt.target.value)
+	}
+		console.log({ input })
+
+
+		const options = [
+  { label: "Option One", value: "one" },
+  { label: "Option Two", value: "two", disabled: true },
+  { label: "Option Three", value: "three" },
+]
+
+const [selected, setSelected] = useState("one")
+
+
+
+
+
+	return (
+		<>
+		
+  		<div>Users Management</div>
+
+			<div className='p-4'>
+				<Input className='rounded-sm' type='file' value={input} onChange={onChange} />
+			</div>
+
+
+
+		</>
+	)
 }
+export default Users
+

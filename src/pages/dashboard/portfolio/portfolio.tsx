@@ -1,10 +1,10 @@
 import type { ListObject } from '@/types/common'
-import { DeleteOutlinedIcon, EditIcon, EyeOpenIcon } from '@/icons'
-import { Button, DataTable } from '@/components/ui'
-import { AddPlusIcon } from '@/icons'
+import { DeleteOutlinedIcon, EditIcon, EyeOpenIcon, PlusIcon } from '@/icons'
+import { Button, DataTable, Search, Select } from '@/components/ui'
 import * as layoutReducer from '@/store/layoutReducer'
 import { useAppDispatch } from '@/hooks/redux'
 import { formatISODate } from '@/lib/utils'
+import { useState } from 'react'
 
 
 export interface DataTableRow {
@@ -117,6 +117,15 @@ const rowItems: DataTableRow[] = [
 	}, 
 ]
  
+const options = [
+	{ label: "Show 10", value: "10" },
+	{ label: "Show 25", value: "25" },
+	{ label: "Show 30", value: "30" },
+]
+
+
+
+
 export const Portfolio = () => {
 	const dispatch = useAppDispatch()
 
@@ -142,6 +151,8 @@ export const Portfolio = () => {
 	}
 
 
+  const [selected, setSelected] = useState("one")
+
 
 
 	return (
@@ -152,21 +163,72 @@ export const Portfolio = () => {
 
 
 
+			<div className="mx-10">
+
+					{/* <Search /> */}
+			</div>
 
 
 			<section className='flex items-center justify-between'>
-				<h2>Portfolio List</h2>
+				<h1 className='text-2xl font-bold capitalize'>Portfolio List</h1>
 
 				<div className="">
 					{/* --- searchbar, select range --- */}
+					Custom Select, AutoComplete,
+					SearchInput,
 
-					<Button className='text-sm md:text-base' > <AddPlusIcon className='mr-2 ' fontSize={20} /> Add Portfolio</Button>
+
+					<Select
+						options={options}
+						selected={selected}
+						onChange={setSelected}
+					/>
+					<Button className='text-sm md:text-base' > <PlusIcon className='mr-2 ' fontSize={20} /> Add Portfolio</Button>
 				</div>
 			</section>
 
+<hr className='my-8' />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 			{/* --- table section --- */}
-			<DataTable 
+			{/* <DataTable 
 				headers={tableHeaders}
 
 				actionItems={actionItems}
@@ -192,7 +254,7 @@ export const Portfolio = () => {
 						<td>{row.createdAt}</td>
 					</>
 				)}
-			/>
+			/> */}
 
 		</div>
 	)
