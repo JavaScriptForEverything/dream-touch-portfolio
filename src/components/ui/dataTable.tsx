@@ -20,6 +20,8 @@ interface Props {
 
 	rowItems: DataTableRow[]
 	renderRow: (row: DataTableRow) => React.ReactNode
+
+	className?: React.ComponentProps<'div'>['className']
 }
 
 export const DataTable = (props: Props) => {
@@ -34,6 +36,8 @@ export const DataTable = (props: Props) => {
 		
 		onDelete, 
 		onBulkDelete, 
+
+		className,
 	} = props
 
 	const handlePageChange = (page: number) => pagination.onPageChange(page)
@@ -60,7 +64,7 @@ export const DataTable = (props: Props) => {
 	return (
 		<>
 		{/* <div className=" w-[286px] md:w-[950px] overflow-x-auto rounded border border-gray-300 shadow-sm " > */}
-		<div className="rounded border border-gray-300 shadow-sm " >
+		<div className={`${className} rounded border border-gray-300 shadow-sm `} >
 
 			<table className="min-w-full divide-y divide-gray-300">
 				<thead className="ltr:text-left rtl:text-right">

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Check } from "lucide-react" // Or use ✓ emoji if you don’t want icons
-import { AngleDownIcon, AngleLeftIcon, AngleRightIcon, AngleUpIcon } from '@/icons'
+import { AngleDownIcon, AngleUpIcon } from '@/icons'
 
 
 
@@ -45,7 +45,7 @@ export const Select = (props: SelectProps) => {
 	const { 
 		options, 
 		selected, 
-		onChange 
+		onChange,
 	} = props
 
   const [open, setOpen] = useState(false)
@@ -57,11 +57,11 @@ export const Select = (props: SelectProps) => {
   }
 
   return (
-    <div className="relative inline-block w-full text-sm">
+    <div className={`relative inline-block w-full text-sm`}>
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full rounded border border-gray-300 px-4 py-2 
+        className="w-full rounded border border-gray-300 px-4 py-1 
 				text-left bg-white shadow-sm hover:border-gray-400
 
 				flex items-center justify-between

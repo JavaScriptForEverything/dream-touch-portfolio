@@ -1,21 +1,35 @@
 /* Method-3: truncate current page url only */
 
 import { HomeIcon } from '@/icons';
-import { Link, useMatches } from 'react-router-dom';
+import { Link, Params, useMatches } from 'react-router-dom';
 import { Fragment } from 'react';
 
 type Handle = {
-  breadcrumb?: string
-}
+  breadcrumb?: string | ((params: Params<string>) => string);
+};
 
 const Breadcrumbs = () => {
   const matches = useMatches();
+  
   const crumbs = matches
-    .filter(match => Boolean((match.handle as Handle)?.breadcrumb))
-    .map((match) => ({
-      label: (match.handle as Handle).breadcrumb!,
-      path: match.pathname,
-    }))
+    .filter(match => {
+      const handle = match.handle as Handle | undefined;
+      return handle?.breadcrumb !== undefined;
+    })
+    .map((match) => {
+      const handle = match.handle as Handle;
+      const params = match.params;
+      
+      // Handle both string and function breadcrumbs
+      const label = typeof handle.breadcrumb === 'function' 
+        ? handle.breadcrumb(params) 
+        : handle.breadcrumb;
+      
+      return {
+        label,
+        path: match.pathname,
+      };
+    });
 
   return (
     <div className="py-8 flex items-center gap-2 text-sm font-medium text-slate-500 overflow-hidden">
@@ -49,9 +63,82 @@ const Breadcrumbs = () => {
         );
       })}
     </div>
-  )
-}
-export default Breadcrumbs
+  );
+};
+
+export default Breadcrumbs;
+
+
+
+
+// /* Method-3: truncate current page url only */
+
+// import { HomeIcon } from '@/icons';
+// import { Link, useMatches } from 'react-router-dom';
+// import { Fragment } from 'react';
+
+// type Handle = {
+//   breadcrumb?: string
+// }
+
+// const Breadcrumbs = () => {
+//   const matches = useMatches();
+//   const crumbs = matches
+//     .filter(match => Boolean((match.handle as Handle)?.breadcrumb))
+//     .map((match) => ({
+//       label: (match.handle as Handle).breadcrumb!,
+//       path: match.pathname,
+//     }))
+
+//   return (
+//     <div className="py-8 flex items-center gap-2 text-sm font-medium text-slate-500 overflow-hidden">
+//       <Link to="/dashboard" className="flex-shrink-0 flex items-center gap-1 hover:text-orange-600">
+//         <HomeIcon className="flex-shrink-0" />
+//         <span className="whitespace-nowrap">Dashboard</span>
+//       </Link>
+
+//       {crumbs.slice(1).map(({ path, label }, index) => {
+//         const isLast = index === crumbs.length - 2;
+        
+//         return (
+//           <Fragment key={path}>
+//             <span className="flex-shrink-0">/</span>
+//             {isLast ? (
+//               <span 
+//                 className="text-slate-700 font-bold truncate max-w-[180px] md:max-w-lg"
+//                 title={label}
+//               >
+//                 {label}
+//               </span>
+//             ) : (
+//               <Link 
+//                 to={path}
+//                 className="hover:text-orange-600 whitespace-nowrap flex-shrink-0"
+//               >
+//                 {label}
+//               </Link>
+//             )}
+//           </Fragment>
+//         );
+//       })}
+//     </div>
+//   )
+// }
+// export default Breadcrumbs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // import { Link, useLocation } from 'react-router-dom'
 // import { HomeIcon } from '@/icons';

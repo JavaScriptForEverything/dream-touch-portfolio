@@ -5,6 +5,7 @@ import {
 	AccountIcon,
 	ServiceIcon,
 	NotificationIcon,
+	DashboardIcon,
 
 } from '@/icons'
 
@@ -15,6 +16,11 @@ interface SidebarList {
 }
 
 export const leftPanelListItems: SidebarList[] = [
+	{ 
+		label: 'dashboard', 	
+		Icon: DashboardIcon, 
+		path: '/dashboard'
+	},
 	{ 
 		label: 'portfolio', 	
 		Icon: PortfolioIcon, 

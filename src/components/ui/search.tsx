@@ -11,7 +11,7 @@ export const Search = ({ className, ...rest}: Props) => {
 			<input {...rest} type="search"
 				className={`${className} w-full pl-4 pr-14 py-2
 				border border-slate-300 
-				rounded-lg focus:outline-none focus:border-slate-400
+				rounded focus:outline-none focus:border-slate-400
 				`}
 			/>
 

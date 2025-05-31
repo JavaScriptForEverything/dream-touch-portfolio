@@ -1,5 +1,6 @@
-import { Home, Portfolio, Service, Customer, Notification, Setting } from "@/pages/dashboard"
+import { Home, Service, Customer, Notification, Setting } from "@/pages/dashboard"
 import Users from "@/pages/dashboard/users"
+import { portfolioRoutes } from './portfolioRoutes'
 
 export const dashboardRoutes = {
   path: "dashboard",
@@ -12,11 +13,12 @@ export const dashboardRoutes = {
 			index: true, 
 			element: <Home /> 
 		},
-    {
-      path: "portfolio",
-      element: <Portfolio />,
-      handle: { breadcrumb: "Portfolio", sidebar: "Portfolio" },
-    },
+		portfolioRoutes,
+    // {
+    //   path: "portfolio",
+    //   element: <Portfolio />,
+    //   handle: { breadcrumb: "Portfolio", sidebar: "Portfolio" },
+    // },
     {
       path: "service",
       element: <Service />,

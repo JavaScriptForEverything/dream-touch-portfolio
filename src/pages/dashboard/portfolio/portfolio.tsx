@@ -5,6 +5,7 @@ import * as layoutReducer from '@/store/layoutReducer'
 import { useAppDispatch } from '@/hooks/redux'
 import { formatISODate } from '@/lib/utils'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 
 export interface DataTableRow {
@@ -155,106 +156,86 @@ export const Portfolio = () => {
 
 
 
+	const slug = 'this-is-a-very-long-portfolio-slug-name-that-will-get-truncated'
+
+
+
 	return (
 		<div>
 
 			{/* --- header section --- */}
-
-
-
-
-			<div className="mx-10">
-
-					{/* <Search /> */}
-			</div>
-
-
-			<section className='flex items-center justify-between'>
+			<section className='flex items-center justify-between border border-slate-100 px-2 py-3 rounded '>
 				<h1 className='text-2xl font-bold capitalize'>Portfolio List</h1>
 
-				<div className="">
-					{/* --- searchbar, select range --- */}
-					Custom Select, AutoComplete,
-					SearchInput,
-
-
-					<Select
-						options={options}
-						selected={selected}
-						onChange={setSelected}
-					/>
-					<Button className='text-sm md:text-base' > <PlusIcon className='mr-2 ' fontSize={20} /> Add Portfolio</Button>
+				<div className="flex items-center gap-2">
+					{/* <div className="w-60">
+						<Search />
+					</div>
+					<div className="w-60">
+						<Select
+							options={options}
+							selected={selected}
+							onChange={setSelected}
+						/>
+					</div> */}
+					<Link to='/dashboard/portfolio/create'>
+						<Button className='text-sm md:text-base' >
+							<PlusIcon className='' fontSize={20} /> 
+							<span className='ml-2 whitespace-nowrap'> Add Portfolio </span>
+						</Button>
+					</Link>
 				</div>
+
+
+					<Link to={`/dashboard/portfolio/update/${slug}`}>
+						<Button className='text-sm md:text-base' >
+							<PlusIcon className='' fontSize={20} /> 
+							<span className='ml-2 whitespace-nowrap'> Edit </span>
+						</Button>
+					</Link>
+
+					<Link to={`/dashboard/portfolio/view/${slug}`}>
+						<Button className='text-sm md:text-base' >
+							<PlusIcon className='' fontSize={20} /> 
+							<span className='ml-2 whitespace-nowrap'> View </span>
+						</Button>
+					</Link>
+
+
+
 			</section>
 
-<hr className='my-8' />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 			{/* --- table section --- */}
-			{/* <DataTable 
-				headers={tableHeaders}
+			<div className="hidden mt-8">
+				<DataTable 
+					className='bg-white'
+					headers={tableHeaders}
 
-				actionItems={actionItems}
-				pagination={{
-					count: 15,
-					total: 100,
-					onPageChange(page) {
-						console.log('call api here', { page })
-						console.log({ page })
-					},
-				}}
-				onDelete={deleteHandler}
-				onBulkDelete={bulkDeleteHandler}
+					actionItems={actionItems}
+					pagination={{
+						count: 15,
+						total: 100,
+						onPageChange(page) {
+							console.log('call api here', { page })
+							console.log({ page })
+						},
+					}}
+					onDelete={deleteHandler}
+					onBulkDelete={bulkDeleteHandler}
 
-				rowItems={rowItems}
-				renderRow={(row) => (
-					<>
-						<td>{row.image}</td>
-						<td>{row.title}</td>
-						<td>{row.description}</td>
-						<td>{row.content}</td>
-						<td>{row.location}</td>
-						<td>{row.createdAt}</td>
-					</>
-				)}
-			/> */}
+					rowItems={rowItems}
+					renderRow={(row) => (
+						<>
+							<td>{row.image}</td>
+							<td>{row.title}</td>
+							<td>{row.description}</td>
+							<td>{row.content}</td>
+							<td>{row.location}</td>
+							<td>{row.createdAt}</td>
+						</>
+					)}
+				/>
+			</div>
 
 		</div>
 	)

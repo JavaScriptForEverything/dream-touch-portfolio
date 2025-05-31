@@ -10,7 +10,7 @@ export const Button = ({ children, className, ...rest }: Props) => {
 			hover:bg-orange-600 
 			active:bg-orange-600/80 
 			text-white 
-			font-semibold py-2 px-4 rounded-lg flex justify-center 
+			font-semibold py-2.5 px-4 rounded flex justify-center 
 			items-center transition
 			cursor-pointer
 
