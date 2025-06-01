@@ -85,6 +85,8 @@ export * from './forwardIcon'
 export * from './accountIcon'
 export * from './monitorPiIcon'
 export * from './serviceIcon'
+export * from './page'
+export * from './metadata'
 export * from './notificationIcon'
 export * from './cameraIcon'
 

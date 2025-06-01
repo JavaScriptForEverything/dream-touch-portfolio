@@ -1,6 +1,6 @@
 import { Setting, CreateSetting, EditSetting, ViewSetting } from '@/pages/dashboard/setting'
 
-export const settingRoutes = {
+export const routes = {
 	path: "setting",
 	handle: { breadcrumb: "Setting", sidebar: "Setting" }, 
 	children: [

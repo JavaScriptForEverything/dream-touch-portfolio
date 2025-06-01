@@ -1,6 +1,6 @@
 import { Portfolio, CreatePortfolio, EditPortfolio, ViewPortfolio } from '@/pages/dashboard/portfolio'
 
-export const portfolioRoutes = {
+export const routes = {
 	path: "portfolio",
 	// element: <Portfolio />, 																			// Wrapper or Common for nested children
 	handle: { breadcrumb: "Portfolio", sidebar: "Portfolio" }, 			// ...

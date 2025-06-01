@@ -1,6 +1,6 @@
 import { Notification, CreateNotification, EditNotification, ViewNotification } from '@/pages/dashboard/notification'
 
-export const notificationRoutes = {
+export const routes = {
 	path: "notification",
 	handle: { breadcrumb: "Notification", sidebar: "Notification" }, 
 	children: [

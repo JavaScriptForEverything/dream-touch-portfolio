@@ -1,6 +1,6 @@
 import { Service, CreateService, EditService, ViewService } from '@/pages/dashboard/service'
 
-export const serviceRoutes = {
+export const routes = {
 	path: "service",
 	// element: <Service />, 																			// Wrapper or Common for nested children
 	handle: { breadcrumb: "Service", sidebar: "Service" }, 			// ...

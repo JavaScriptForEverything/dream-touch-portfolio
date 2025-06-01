@@ -1,6 +1,6 @@
 import { Customer, CreateCustomer, EditCustomer, ViewCustomer } from '@/pages/dashboard/customer'
 
-export const customerRoutes = {
+export const routes = {
 	path: "customer",
 	// element: <Customer />, 																			// Wrapper or Common for nested children
 	handle: { breadcrumb: "Customer", sidebar: "Customer" }, 			// ...

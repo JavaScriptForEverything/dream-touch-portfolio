@@ -1,10 +1,12 @@
 import { Home } from "@/pages/dashboard"
 import Users from "@/pages/dashboard/users"
-import { portfolioRoutes } from '@/routes/dashboard/portfolioRoutes'
-import { serviceRoutes } from '@/routes/dashboard/serviceRoutes'
-import { customerRoutes } from '@/routes/dashboard/customerRoutes'
-import { notificationRoutes } from '@/routes/dashboard/notificationRoutes'
-import { settingRoutes } from '@/routes/dashboard/settingRoutes'
+import { routes as portfolioRoutes } from '@/routes/dashboard/portfolioRoutes'
+import { routes as serviceRoutes } from '@/routes/dashboard/serviceRoutes'
+import { routes as customerRoutes } from '@/routes/dashboard/customerRoutes'
+import { routes as notificationRoutes } from '@/routes/dashboard/notificationRoutes'
+import { routes as settingRoutes } from '@/routes/dashboard/settingRoutes'
+import { routes as pageRoutes } from '@/routes/dashboard/pageRoutes'
+import { routes as metadataRoutes } from '@/routes/dashboard/metadataRoutes'
 // import { userRoutes } from '@/routes/dashboard/userRoutes'
 
 export const dashboardRoutes = {
@@ -23,32 +25,8 @@ export const dashboardRoutes = {
 		customerRoutes,
 		notificationRoutes,
 		settingRoutes,
-		// userRoutes,
-    // {
-    //   path: "portfolio",
-    //   element: <Portfolio />,
-    //   handle: { breadcrumb: "Portfolio", sidebar: "Portfolio" },
-    // },
-    // {
-    //   path: "service",
-    //   element: <Service />,
-    //   handle: { breadcrumb: "Service", sidebar: "Service" },
-    // },
-    // {
-    //   path: "customer",
-    //   element: <Customer />,
-    //   handle: { breadcrumb: "Customer", sidebar: "Customer" },
-    // },
-    // {
-    //   path: "notification",
-    //   element: <Notification />,
-    //   handle: { breadcrumb: "Notification", sidebar: "Notification" },
-    // },
-    // {
-    //   path: "setting",
-    //   element: <Setting />,
-    //   handle: { breadcrumb: "Setting", sidebar: "Setting" },
-    // },
+		pageRoutes,
+		metadataRoutes,
     {
       path: "user",
       handle: { breadcrumb: "User", sidebar: "User" },

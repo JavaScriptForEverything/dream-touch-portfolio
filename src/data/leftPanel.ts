@@ -7,6 +7,8 @@ import {
 	NotificationIcon,
 	DashboardIcon,
 	LogoutIcon,
+	PageIcon,
+	MetadataIcon,
 
 } from '@/icons'
 
@@ -21,6 +23,16 @@ export const leftPanelListItems: SidebarList[] = [
 		label: 'dashboard', 	
 		Icon: DashboardIcon, 
 		path: '/dashboard'
+	},
+	{ 
+		label: 'page', 	
+		Icon: PageIcon, 
+		path: '/dashboard/page'
+	},
+	{ 
+		label: 'metadata', 	
+		Icon: MetadataIcon, 
+		path: '/dashboard/metadata'
 	},
 	{ 
 		label: 'portfolio', 	
@@ -52,10 +64,10 @@ export const leftPanelListItems: SidebarList[] = [
 		Icon: AccountIcon, 
 		path: '/dashboard/user/profile'
 	},
-	{ 
-		label: 'logout', 	
-		Icon: LogoutIcon, 
-		path: '/login'
-	},
+	// { 
+	// 	label: 'logout', 	
+	// 	Icon: LogoutIcon, 
+	// 	path: '/login'
+	// },
 ]
 
