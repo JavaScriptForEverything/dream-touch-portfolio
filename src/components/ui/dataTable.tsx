@@ -8,8 +8,9 @@ import type { DataTableRow } from '@/pages/dashboard'
 
 
 interface Props {
+	getActionItems: (id: string) => ListObject[]
+
 	headers: string[]
-	actionItems: ListObject[]
 	pagination: {
 		total: number
 		count: number
@@ -31,7 +32,7 @@ export const DataTable = (props: Props) => {
 		rowItems,
 		renderRow,
 
-		actionItems, 
+		getActionItems,
 		pagination, 
 		
 		onDelete, 
@@ -145,7 +146,7 @@ export const DataTable = (props: Props) => {
 							<td>
 								<Action 
 									id={row.id}
-									actionItems={actionItems}
+									actionItems={getActionItems(row.id)}
 									onDelete={deleteHandler}
 								/>
 							</td>

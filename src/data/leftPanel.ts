@@ -6,6 +6,7 @@ import {
 	ServiceIcon,
 	NotificationIcon,
 	DashboardIcon,
+	LogoutIcon,
 
 } from '@/icons'
 
@@ -50,6 +51,11 @@ export const leftPanelListItems: SidebarList[] = [
 		label: 'profile', 	
 		Icon: AccountIcon, 
 		path: '/dashboard/user/profile'
+	},
+	{ 
+		label: 'logout', 	
+		Icon: LogoutIcon, 
+		path: '/login'
 	},
 ]
 

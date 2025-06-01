@@ -1,3 +1,4 @@
+
 import type { ListObject } from '@/types/common'
 import { DeleteOutlinedIcon, EditIcon, EyeOpenIcon, PlusIcon } from '@/icons'
 import { Button, DataTable, Search, Select } from '@/components/ui'
@@ -25,12 +26,12 @@ const getActionItems = (slug: string): ListObject[] => ([
 	{
 		label: 'View',
 		Icon: EyeOpenIcon,
-		path: `/dashboard/portfolio/view/${slug}`
+		path: `/dashboard/service/view/${slug}`
 	},
 	{
 		label: 'Edit',
 		Icon: EditIcon,
-		path: `/dashboard/portfolio/update/${slug}`
+		path: `/dashboard/service/update/${slug}`
 	},
 	{
 		label: 'Delete',
@@ -127,14 +128,14 @@ const options = [
 
 
 
-export const Portfolio = () => {
+export const Service = () => {
 	const dispatch = useAppDispatch()
 
 	const deleteHandler = (_id: string) => {
 		dispatch(layoutReducer.setIsOpenSnackbar(true, {
 			severity: 'success',
 			title: 'Deletion',
-			message: 'portfolio deletion successfull!!!',
+			message: 'service deletion successfull!!!',
 			autoClose: true,
 		}))
 	}
@@ -146,7 +147,7 @@ export const Portfolio = () => {
 		dispatch(layoutReducer.setIsOpenSnackbar(true, {
 			severity: 'success',
 			title: 'Deletion',
-			message: 'portfolio bulk deletion successfull!!!',
+			message: 'service bulk deletion successfull!!!',
 			autoClose: true,
 		}))
 	}
@@ -156,12 +157,15 @@ export const Portfolio = () => {
 
 
 
+
+
+
 	return (
 		<div>
 
 			{/* --- header section --- */}
 			<section className='flex items-center justify-between border border-slate-100 px-2 py-3 rounded '>
-				<h1 className='text-2xl font-bold capitalize'>Portfolio List</h1>
+				<h1 className='text-2xl font-bold capitalize'>Service List</h1>
 
 				<div className="flex items-center gap-2">
 					<div className="w-60">
@@ -174,10 +178,10 @@ export const Portfolio = () => {
 							onChange={setSelected}
 						/>
 					</div>
-					<Link to='/dashboard/portfolio/create'>
+					<Link to='/dashboard/service/create'>
 						<Button className='text-sm md:text-base' >
 							<PlusIcon className='' fontSize={20} /> 
-							<span className='ml-2 whitespace-nowrap'> Add Portfolio </span>
+							<span className='ml-2 whitespace-nowrap'> Add Service </span>
 						</Button>
 					</Link>
 				</div>
@@ -190,7 +194,6 @@ export const Portfolio = () => {
 					headers={tableHeaders}
 
 					getActionItems={getActionItems}
-
 					pagination={{
 						count: 15,
 						total: 100,

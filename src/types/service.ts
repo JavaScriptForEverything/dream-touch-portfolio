@@ -1,5 +1,5 @@
-import type { Gender, ResponseStatus } from '@/types/common'
-import type { Image, Role } from '@/types/common'
+import type { ResponseStatus } from '@/types/common'
+import type { Image } from '@/types/common'
 
 
 interface Row {

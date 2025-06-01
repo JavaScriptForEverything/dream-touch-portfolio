@@ -1,5 +1,5 @@
 import { leftPanelListItems } from '@/data/leftPanel'
-import { DashboardIcon, LogoutIcon } from '@/icons'
+import { LogoutIcon } from '@/icons'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -15,12 +15,11 @@ const Panel = () => {
 	const clickHandler = (selectedIndex: number) => () => {
 		setSelectedTabIndex(selectedIndex)
 	}
-	console.log(selectedTabIndex)
 
 	return (
 		<div className="">
 			<div className="flex">
-				<div className="flex h-screen w-16 flex-col justify-between border-e border-gray-100 bg-white">
+				<div className="flex h-screen flex-col justify-between border-e border-gray-100 bg-white">
 					<div>
 
 						<div className="border-t border-gray-200">
@@ -37,10 +36,15 @@ const Panel = () => {
 										>
 											<Link to={path}
 												onClick={clickHandler(currentIndex)}
-											 	className="group relative flex justify-center rounded-sm px-2 py-1.5 text-gray-500 hover:bg-gray-200/80 hover:text-gray-700" >
-												<Icon className={`size-6 opacity-75
-													${selectedTabIndex === currentIndex ? 'text-black' : ''}
-												`} />
+											 	className="group relative flex rounded-sm px-2 py-1.5 text-gray-500 hover:bg-gray-200/80 hover:text-gray-700" >
+
+												<div className={`flex gap-4 items-center
+														${selectedTabIndex === currentIndex ? 'text-black' : ''}
+												`}>
+													<Icon className={`size-8 opacity-75`} />
+													<label htmlFor="" className='capitalize'>{label}</label>
+												</div>
+
 												<span className="capitalize invisible absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded-sm bg-orange-900 px-2 py-1.5 text-xs font-medium text-white group-hover:visible" > { label} </span>
 											</Link>
 										</li>
@@ -54,14 +58,14 @@ const Panel = () => {
 					</div>
 
 					<div className="sticky inset-x-0 bottom-0 border-t border-gray-100 bg-white p-2">
-						<Link to="/login" className="group relative flex w-full justify-center rounded-lg px-2 py-1.5 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700" >
-							<LogoutIcon />
+						<Link to="/login" className="group relative flex w-full rounded-lg px-2 py-1.5 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700" >
+							<LogoutIcon className='size-8' />
 							<span className="invisible absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded-sm bg-gray-900 px-2 py-1.5 text-xs font-medium text-white group-hover:visible" > Logout </span>
 						</Link>
 					</div>
 				</div>
 
-				<div className="hidden md:flex h-screen flex-1 flex-col justify-between border-e border-gray-100 bg-white">
+				{/* <div className="hidden md:flex h-screen flex-1 flex-col justify-between border-e border-gray-100 bg-white">
 					<div className="px-4 py-6">
 						<ul className="mt-14 space-y-1">
 							<li>
@@ -191,7 +195,7 @@ const Panel = () => {
 							</li>
 						</ul>
 					</div>
-				</div> 
+				</div>  */}
 			</div>
 
 		</div>

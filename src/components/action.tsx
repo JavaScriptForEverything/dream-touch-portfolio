@@ -3,7 +3,7 @@ import type { ListObject } from '@/types/common'
 import { useState } from 'react'
 import { IconButton, Modal } from '@/components/ui'
 
-import { redirect } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -16,13 +16,14 @@ interface Props extends React.ComponentProps<'div'> {
 
 export const Action = ({ id, actionItems, onDelete }: Props) => {
 	const [ openModal, setOpenModal ] = useState(false)
+	const navigate = useNavigate()
 
 	const clickHandler = (path: string, index: number) => () => {
 
 		// delete handler
 		if(index === 2) setOpenModal(true)
 		else {
-			redirect(path)
+			navigate(path)
 			console.log('redirect to', { path, id })
 		}
 	}

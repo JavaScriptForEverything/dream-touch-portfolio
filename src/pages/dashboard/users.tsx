@@ -1,6 +1,6 @@
 // src/pages/Dashboard/Users.tsx
 
-import { Datalist, Input, Search, Select, Textarea } from '@/components/ui'
+import { Input } from '@/components/ui'
 import { useState } from 'react'
 
 const Users = () => {
@@ -12,13 +12,6 @@ const Users = () => {
 		console.log({ input })
 
 
-		const options = [
-  { label: "Option One", value: "one" },
-  { label: "Option Two", value: "two", disabled: true },
-  { label: "Option Three", value: "three" },
-]
-
-const [selected, setSelected] = useState("one")
 
 
 

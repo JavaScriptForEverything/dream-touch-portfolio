@@ -1,4 +1,4 @@
-import { ResponseData, TempObj } from '@/types/common'
+import { TempObj } from '@/types/common'
 import type { AppDispatch, RootState } from '@/store'
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
 import { isEmail } from 'validator'
@@ -413,7 +413,6 @@ export const capitalize = (str: string) => {
 
 
 
-const maxLength = (str: string, length: 200 ) => {
-	
-	return str.length > length ? str.slice(0, length) + '...' : str	
-}
+// const maxLength = (str: string, length: 200 ) => {
+// 	return str.length > length ? str.slice(0, length) + '...' : str	
+// }

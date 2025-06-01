@@ -1,5 +1,4 @@
 import type { ResponseStatus } from '@/types/common'
-import type { Image } from '@/types/common'
 
 
 

@@ -402,6 +402,3 @@ export const handleIsRemembered = (isRemembered: boolean, fields: any) => catchA
 
 }, actions.failed)
 
-export function registerUser(data: { name: string; email: string; password: string; confirmPassword: string; avatar: string }): any {
-	throw new Error('Function not implemented.')
-}
