@@ -4,12 +4,27 @@ import { useAppDispatch, useAppSelector } from '@/hooks/redux'
 import * as layoutReducer from '@/store/layoutReducer'
 import { AlertErrorIcon, AlertInfoIcon, AlertSuccessIcon, AlertWarningIcon, CrossIcon } from '@/icons'
 
+
+/*
+	1. import in inside 
+	
+				<Provider store={store}>
+				 	<Snackbar /> 
+					{children} 
+				</Provider>
+
+	2. import in inside 
+*/
+
+
 const iconMap: Record<string, React.ReactNode> = {
   success: <AlertSuccessIcon />,
   info: <AlertInfoIcon />,
   warning: <AlertWarningIcon /> ,
   error: <AlertErrorIcon /> 
 }
+
+
 
 export const Snackbar = () => {
 

@@ -20,9 +20,9 @@ export const BreadCrumbs = () => {
       </Link>
 
       {segments.map((segment, index) => {
-        const href = `/${segments.slice(0, index + 1).join('/')}`;
-        const isLast = index === segments.length - 1;
-        const formatted = formatSegment(segment);
+        const href = `/${segments.slice(0, index + 1).join('/')}`
+        const isLast = index === segments.length - 1
+        const formatted = formatSegment(segment)
         
         return (
           <Fragment key={href}>
