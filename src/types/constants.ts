@@ -5,6 +5,9 @@ export enum Collection {
 	Portfolio = 'Portfolio',
 	Contact = 'Contact',
 
+	Page = 'Page',
+	Metadata = 'Metadata',
+
 	User = 'User',
 
 	// Category = 'Category',

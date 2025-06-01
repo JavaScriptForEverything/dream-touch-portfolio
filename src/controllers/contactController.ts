@@ -61,7 +61,7 @@ export const updateContactById:RequestHandler = catchAsync(async (req, res, next
 
 	// delete req.body.isActive  	// only update my seperate route
 	const filteredBody = contactDtos.filterBodyForUpdateContact(req.body)
-	const contact = await Contact.findByIdAndUpdate(contactId, req.body, { new: true })
+	const contact = await Contact.findByIdAndUpdate(contactId, filteredBody, { new: true })
 	if(!contact) return next(appError('contact update failed'))
 
 
