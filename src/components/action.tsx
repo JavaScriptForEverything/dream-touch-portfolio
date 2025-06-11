@@ -36,7 +36,7 @@ export const Action = ({ id, actionItems, onDelete }: Props) => {
 	}
 
 	return (
-		<div className='flex gap-1'>
+		<span className='flex gap-1 justify-center items-center'>
 			{actionItems.map(({ label, path, Icon }, index) => (
 				<IconButton key={ label} onClick={clickHandler(path, index)} size='small'>
 					<Icon className='text-blue-500' />
@@ -52,6 +52,6 @@ export const Action = ({ id, actionItems, onDelete }: Props) => {
 					closeHandler={closeHandler}
 				/> 
 			)}
-		</div>
+		</span>
 	)
 }

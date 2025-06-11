@@ -45,8 +45,6 @@ const getActionItems = (slug: string): ListObject[] => ([
 const tableHeaders: string[] = [
 	'Image',
 	'Title',
-	'Description',
-	'Content',
 	'Location',
 	'Date',
 ]
@@ -211,8 +209,8 @@ export const User = () => {
 						<>
 							<td>{row.image}</td>
 							<td>{row.title}</td>
-							<td>{row.description}</td>
-							<td>{row.content}</td>
+							{/* <td>{row.description}</td> */}
+							{/* <td>{row.content}</td> */}
 							<td>{row.location}</td>
 							<td>{row.createdAt}</td>
 						</>

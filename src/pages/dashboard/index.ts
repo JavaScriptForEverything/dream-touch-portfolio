@@ -1,4 +1,4 @@
-export * from '@/pages/dashboard/home'
+export * from '@/pages/dashboard/dashboard'
 export * from '@/pages/dashboard/portfolio/portfolio'
 // export * from '@/pages/dashboard/service/service'
 // export * from '@/pages/dashboard/customer'

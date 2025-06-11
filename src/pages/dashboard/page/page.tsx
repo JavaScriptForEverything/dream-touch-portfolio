@@ -13,8 +13,8 @@ export interface DataTableRow {
 
 	image: React.ReactNode
 	title: string
-	description: string
-	content: string
+	description?: string
+	content?: string
 	location: string
 	createdAt: string
 
@@ -43,8 +43,6 @@ const getActionItems = (slug: string): ListObject[] => ([
 const tableHeaders: string[] = [
 	'Image',
 	'Title',
-	'Description',
-	'Content',
 	'Location',
 	'Date',
 ]
@@ -60,8 +58,8 @@ const rowItems: DataTableRow[] = [
 		</div>
 		,
 		title: 'title goes ',
-		description: 'layoutReducer HTMLInputElement',
-		content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum commodi ducimus fuga consequuntur? Autem ipsa, animi cum aperiam ea, assumenda mollitia excepturi commodi minima necessitatibus ducimus voluptatum consequatur natus facere',
+		// description: 'layoutReducer HTMLInputElement',
+		// content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum commodi ducimus fuga consequuntur? Autem ipsa, animi cum aperiam ea, assumenda mollitia excepturi commodi minima necessitatibus ducimus voluptatum consequatur natus facere',
 		location: '30 dhaka, badda',
 		createdAt: formatISODate( new Date().toISOString() ),
 
@@ -76,8 +74,8 @@ const rowItems: DataTableRow[] = [
 		</div>
 		,
 		title: 'title goes ',
-		description: 'layoutReducer HTMLInputElement',
-		content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum commodi ducimus fuga consequuntur? Autem ipsa, animi cum aperiam ea, assumenda mollitia excepturi commodi minima necessitatibus ducimus voluptatum consequatur natus facere',
+		// description: 'layoutReducer HTMLInputElement',
+		// content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum commodi ducimus fuga consequuntur? Autem ipsa, animi cum aperiam ea, assumenda mollitia excepturi commodi minima necessitatibus ducimus voluptatum consequatur natus facere',
 		location: '30 dhaka, badda',
 		createdAt: formatISODate( new Date().toISOString() ),
 
@@ -92,8 +90,8 @@ const rowItems: DataTableRow[] = [
 		</div>
 		,
 		title: 'title goes ',
-		description: 'layoutReducer HTMLInputElement',
-		content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum commodi ducimus fuga consequuntur? Autem ipsa, animi cum aperiam ea, assumenda mollitia excepturi commodi minima necessitatibus ducimus voluptatum consequatur natus facere',
+		// description: 'layoutReducer HTMLInputElement',
+		// content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum commodi ducimus fuga consequuntur? Autem ipsa, animi cum aperiam ea, assumenda mollitia excepturi commodi minima necessitatibus ducimus voluptatum consequatur natus facere',
 		location: '30 dhaka, badda',
 		createdAt: formatISODate( new Date().toISOString() ),
 
@@ -109,8 +107,8 @@ const rowItems: DataTableRow[] = [
 		</div>
 		,
 		title: 'title goes ',
-		description: 'layoutReducer HTMLInputElement',
-		content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum commodi ducimus fuga consequuntur? Autem ipsa, animi cum aperiam ea, assumenda mollitia excepturi commodi minima necessitatibus ducimus voluptatum consequatur natus facere',
+		// description: 'layoutReducer HTMLInputElement',
+		// content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum commodi ducimus fuga consequuntur? Autem ipsa, animi cum aperiam ea, assumenda mollitia excepturi commodi minima necessitatibus ducimus voluptatum consequatur natus facere',
 		location: '30 dhaka, badda',
 		createdAt: formatISODate( new Date().toISOString() ),
 
@@ -174,10 +172,10 @@ export const Page = () => {
 							onChange={setSelected}
 						/>
 					</div>
-					<Link to='/dashboard/portfolio/create'>
+					<Link to='/dashboard/page/create'>
 						<Button className='text-sm md:text-base' >
 							<PlusIcon className='' fontSize={20} /> 
-							<span className='ml-2 whitespace-nowrap'> Add Portfolio </span>
+							<span className='ml-2 whitespace-nowrap'> Add Page </span>
 						</Button>
 					</Link>
 				</div>
@@ -207,8 +205,8 @@ export const Page = () => {
 						<>
 							<td>{row.image}</td>
 							<td>{row.title}</td>
-							<td>{row.description}</td>
-							<td>{row.content}</td>
+							{/* <td>{row.description}</td> */}
+							{/* <td>{row.content}</td> */}
 							<td>{row.location}</td>
 							<td>{row.createdAt}</td>
 						</>

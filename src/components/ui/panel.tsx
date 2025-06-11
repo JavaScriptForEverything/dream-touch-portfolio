@@ -1,19 +1,29 @@
 import { leftPanelListItems } from '@/data/leftPanel'
 import { LogoutIcon } from '@/icons'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
+import * as userReducer from '@/store/userReducer'
+import { useAppDispatch } from '@/hooks/redux'
 
 
 
 const Panel = () => {
+	const navigate = useNavigate()
+	const dispatch = useAppDispatch()
 	const [ selectedTabIndex, setSelectedTabIndex ] = useState(0)
-  // const { pathname } = useLocation();
-  // const segments = pathname.split('/').filter(Boolean);
 
 	// console.log(segments, pathname)
 	const clickHandler = (selectedIndex: number) => () => {
 		setSelectedTabIndex(selectedIndex)
+	}
+
+	const logoutHandler = () => {
+		dispatch(userReducer.logoutHandler())
+
+		setTimeout(() => {
+			navigate('/login')
+		}, 200)
 	}
 
 	return (
@@ -59,13 +69,11 @@ const Panel = () => {
 					</div>
 
 					<div className="sticky inset-x-0 bottom-0 border-t border-gray-100 bg-white p-2">
-						<Link to="/login" className="group relative flex w-full rounded-lg px-2 py-1.5 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700" >
-							<div className={`flex gap-4 items-center `}>
+						<div onClick={logoutHandler} className={`flex gap-4 items-center text-slate-500 cursor-pointer`}>
 							<LogoutIcon className='size-8' />
 							<label htmlFor="" className='hidden md:block capitalize cursor-pointer text-md'>logout</label>
 							<span className="block md:hidden capitalize invisible absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded-sm bg-orange-900 px-2 py-1.5 text-xs font-medium text-white group-hover:visible" > logout </span>
-							</div>
-						</Link>
+						</div>
 					</div>
 				</div>
 

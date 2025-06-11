@@ -4,7 +4,7 @@ import type { InitialState, SetServicePayload } from '@/types/service'
 import type { ServiceDocument } from '@/types/service'
 import { createSlice } from '@reduxjs/toolkit'
 import { catchAsyncDispatch } from '@/lib/utils'
-import { ORIGIN } from '@/lib/config'
+import { ORIGIN } from '@/config/config'
 
 
 const initialState: InitialState = {

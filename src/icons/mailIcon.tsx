@@ -1,23 +1,19 @@
 
-type Props = {
-	className?: React.ComponentProps<'svg'>['className']
-	fontSize?: React.ComponentProps<'svg'>['fontSize']
-}
-export const MailIcon = ({ className, fontSize }: Props) => {
+type Props = React.ComponentProps<'svg'>
 
-	return (
-		<svg 
-			xmlns="http://www.w3.org/2000/svg" 
-			width="1em" 
-			height="1em" 
-			viewBox="0 0 24 24"
-			className={className}
-			fontSize={fontSize}
-		>
-			<path 
-				fill="currentColor" 
-				d="M4 20q-.825 0-1.412-.587T2 18V6q0-.825.588-1.412T4 4h16q.825 0 1.413.588T22 6v12q0 .825-.587 1.413T20 20zm8-7l8-5V6l-8 5l-8-5v2z"
-			/>
-		</svg>
-	)
-}
+export const MailIcon = ( props: Props) => (
+	<svg {...props}
+		xmlns="http://www.w3.org/2000/svg" 
+		width="16" 
+		height="16" 
+		viewBox="0 0 16 16"
+	>
+		<path 
+			fill="currentColor" 
+			fillRule="evenodd" 
+			d="M0 4v8c0 1.1.895 2 2 2h12c1.1 0 2-.895 2-2V4c0-1.1-.895-2-2-2H2C.9 2 0 2.895 0 4m1 8V4.88l6.74 4.05a.5.5 0 0 0 .515 0l6.74-4.05V12a1 1 0 0 1-1 1h-12a1 1 0 0 1-1-1zm13-9a1 1 0 0 1 .964.733l-6.96 4.18l-6.96-4.18A1 1 0 0 1 2.008 3h12z" 
+			clipRule="evenodd"
+		/>
+	</svg>
+)
+

@@ -43,8 +43,6 @@ const getActionItems = (slug: string): ListObject[] => ([
 const tableHeaders: string[] = [
 	'Image',
 	'Title',
-	'Description',
-	'Content',
 	'Location',
 	'Date',
 ]
@@ -174,10 +172,10 @@ export const Metadata = () => {
 							onChange={setSelected}
 						/>
 					</div>
-					<Link to='/dashboard/portfolio/create'>
+					<Link to='/dashboard/metadata/create'>
 						<Button className='text-sm md:text-base' >
 							<PlusIcon className='' fontSize={20} /> 
-							<span className='ml-2 whitespace-nowrap'> Add Portfolio </span>
+							<span className='ml-2 whitespace-nowrap'> Add Metadata </span>
 						</Button>
 					</Link>
 				</div>
@@ -207,8 +205,8 @@ export const Metadata = () => {
 						<>
 							<td>{row.image}</td>
 							<td>{row.title}</td>
-							<td>{row.description}</td>
-							<td>{row.content}</td>
+							{/* <td>{row.description}</td> */}
+							{/* <td>{row.content}</td> */}
 							<td>{row.location}</td>
 							<td>{row.createdAt}</td>
 						</>

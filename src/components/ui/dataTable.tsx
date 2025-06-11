@@ -1,9 +1,8 @@
-import type { ListObject } from '@/types/common'
+import type { DataTableRow, ListObject } from '@/types/common'
 
 import { Action } from '@/components'
 import { Pagination, Checkbox, DataTableCheckbox } from '@/components/ui'
 import { useState } from 'react'
-import type { DataTableRow } from '@/pages/dashboard'
 
 
 
@@ -129,21 +128,24 @@ export const DataTable = (props: Props) => {
 							<td>{row.createdAt}</td> */}
 
 							<td className='capitalize text-sm'>
-								{row.isVisible ? (
-									<span className='bg-blue-50 px-2.5 py-1.5 rounded
-									border border-blue-100
-									text-slate-800
-									'>active</span>
-								) : (
-									<span className='bg-red-50 px-2.5 py-1.5 rounded
-									border border-red-100
-									text-red-800
-									'>inactive</span>
-								)
-								}
-								</td>
+								<p className="text-center">
+									{row.isVisible ? (
+										<span className='bg-blue-50 px-2.5 py-1.5 rounded
+										border border-blue-100
+										text-slate-800
+										'>active</span>
+									) : (
+										<span className='bg-red-50 px-2.5 py-1.5 rounded
+										border border-red-100
+										text-red-800
+										'>inactive</span>
+									)
+									}
+								</p>
+							</td>
 
 							<td>
+
 								<Action 
 									id={row.id}
 									actionItems={getActionItems(row.id)}

@@ -6,8 +6,7 @@ import ErrorPage from "@/components/errorPage"
 
 // Modular routes
 import { dashboardRoutes } from '@/routes/dashboardRoutes'
-import { authRoutes } from './authRoutes'
-// import { userRoutes } from '@/routes/userRoutes'
+import { authRoutes } from '@/routes/authRoutes'
 
 export const router = createBrowserRouter([
   {

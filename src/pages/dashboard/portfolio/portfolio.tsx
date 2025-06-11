@@ -1,4 +1,4 @@
-import type { ListObject } from '@/types/common'
+import type { DataTableRow, ListObject } from '@/types/common'
 import { DeleteOutlinedIcon, EditIcon, EyeOpenIcon, PlusIcon } from '@/icons'
 import { Button, DataTable, Search, Select } from '@/components/ui'
 import * as layoutReducer from '@/store/layoutReducer'
@@ -8,18 +8,6 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 
-export interface DataTableRow {
-	id: string
-
-	image: React.ReactNode
-	title: string
-	description: string
-	content: string
-	location: string
-	createdAt: string
-
-	isVisible: boolean
-}
 
 const getActionItems = (slug: string): ListObject[] => ([
 	{
@@ -43,8 +31,6 @@ const getActionItems = (slug: string): ListObject[] => ([
 const tableHeaders: string[] = [
 	'Image',
 	'Title',
-	'Description',
-	'Content',
 	'Location',
 	'Date',
 ]
@@ -60,8 +46,8 @@ const rowItems: DataTableRow[] = [
 		</div>
 		,
 		title: 'title goes ',
-		description: 'layoutReducer HTMLInputElement',
-		content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum commodi ducimus fuga consequuntur? Autem ipsa, animi cum aperiam ea, assumenda mollitia excepturi commodi minima necessitatibus ducimus voluptatum consequatur natus facere',
+		// description: 'layoutReducer HTMLInputElement',
+		// content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum commodi ducimus fuga consequuntur? Autem ipsa, animi cum aperiam ea, assumenda mollitia excepturi commodi minima necessitatibus ducimus voluptatum consequatur natus facere',
 		location: '30 dhaka, badda',
 		createdAt: formatISODate( new Date().toISOString() ),
 
@@ -76,8 +62,8 @@ const rowItems: DataTableRow[] = [
 		</div>
 		,
 		title: 'title goes ',
-		description: 'layoutReducer HTMLInputElement',
-		content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum commodi ducimus fuga consequuntur? Autem ipsa, animi cum aperiam ea, assumenda mollitia excepturi commodi minima necessitatibus ducimus voluptatum consequatur natus facere',
+		// description: 'layoutReducer HTMLInputElement',
+		// content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum commodi ducimus fuga consequuntur? Autem ipsa, animi cum aperiam ea, assumenda mollitia excepturi commodi minima necessitatibus ducimus voluptatum consequatur natus facere',
 		location: '30 dhaka, badda',
 		createdAt: formatISODate( new Date().toISOString() ),
 
@@ -92,8 +78,8 @@ const rowItems: DataTableRow[] = [
 		</div>
 		,
 		title: 'title goes ',
-		description: 'layoutReducer HTMLInputElement',
-		content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum commodi ducimus fuga consequuntur? Autem ipsa, animi cum aperiam ea, assumenda mollitia excepturi commodi minima necessitatibus ducimus voluptatum consequatur natus facere',
+		// description: 'layoutReducer HTMLInputElement',
+		// content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum commodi ducimus fuga consequuntur? Autem ipsa, animi cum aperiam ea, assumenda mollitia excepturi commodi minima necessitatibus ducimus voluptatum consequatur natus facere',
 		location: '30 dhaka, badda',
 		createdAt: formatISODate( new Date().toISOString() ),
 
@@ -109,8 +95,8 @@ const rowItems: DataTableRow[] = [
 		</div>
 		,
 		title: 'title goes ',
-		description: 'layoutReducer HTMLInputElement',
-		content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum commodi ducimus fuga consequuntur? Autem ipsa, animi cum aperiam ea, assumenda mollitia excepturi commodi minima necessitatibus ducimus voluptatum consequatur natus facere',
+		// description: 'layoutReducer HTMLInputElement',
+		// content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum commodi ducimus fuga consequuntur? Autem ipsa, animi cum aperiam ea, assumenda mollitia excepturi commodi minima necessitatibus ducimus voluptatum consequatur natus facere',
 		location: '30 dhaka, badda',
 		createdAt: formatISODate( new Date().toISOString() ),
 
@@ -207,8 +193,8 @@ export const Portfolio = () => {
 						<>
 							<td>{row.image}</td>
 							<td>{row.title}</td>
-							<td>{row.description}</td>
-							<td>{row.content}</td>
+							{/* <td>{row.description}</td> */}
+							{/* <td>{row.content}</td> */}
 							<td>{row.location}</td>
 							<td>{row.createdAt}</td>
 						</>

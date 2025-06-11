@@ -7,6 +7,13 @@ export * from './locationIcon'
 export * from './wranchIcon'
 export * from './portfolioIcon'
 export * from './blogIcon'
+export * from './visitor'
+export * from './growthRate'
+export * from './bounceRate'
+
+
+
+
 
 export * from './doubleQuoteRight'
 

@@ -1,4 +1,4 @@
-import { ORIGIN } from "@/lib/config"
+import { ORIGIN } from "@/config/config"
 
 const API_BASE_URL = ORIGIN
 

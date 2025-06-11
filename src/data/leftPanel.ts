@@ -6,7 +6,6 @@ import {
 	ServiceIcon,
 	NotificationIcon,
 	DashboardIcon,
-	LogoutIcon,
 	PageIcon,
 	MetadataIcon,
 
@@ -18,6 +17,7 @@ interface SidebarList {
 	path: string
 }
 
+// /src/components/ui/panel.tsx
 export const leftPanelListItems: SidebarList[] = [
 	{ 
 		label: 'dashboard', 	

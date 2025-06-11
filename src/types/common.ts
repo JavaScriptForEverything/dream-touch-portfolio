@@ -9,8 +9,8 @@ export interface ResponseData<Data = unknown> {
 }
 
 
-export type TempObj = {
-	[key: string]: string
+export type TempObj<T = string > = {
+	[key: string]: T
 }
 
 
@@ -57,3 +57,18 @@ export interface ListObject {
 	path: string
 }
 
+
+
+
+export interface DataTableRow {
+	id: string
+
+	image: React.ReactNode
+	title: string
+	// description: string
+	// content: string
+	location: string
+	createdAt: string
+
+	isVisible: boolean
+}

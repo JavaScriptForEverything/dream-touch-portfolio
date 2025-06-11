@@ -4,7 +4,18 @@ import Header from '@/components/header'
 import Panel from '@/components/ui/panel'
 import { Outlet } from 'react-router-dom'
 
+import * as userReducer from '@/store/userReducer'
+import { useAppDispatch, useAppSelector } from '@/hooks/redux'
+import { useEffect } from 'react'
+
+
 const MainLayout = () => {
+	const dispatch = useAppDispatch()
+	const { authToken } = useAppSelector(state => state.user)
+
+	useEffect(() => {
+		if(authToken) dispatch(userReducer.getLogedInUser())	
+	},[authToken])
 
   return (
     <div className="min-h-screen flex ">

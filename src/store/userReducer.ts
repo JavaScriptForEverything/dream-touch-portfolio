@@ -1,11 +1,13 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { AppDispatch, RootState } from '@/store'
-import type { InitialState, LoginData, SetUsersPayload } from '@/types/user'
+import type { InitialState, LoginFormData, RegisterFormData, SetUsersPayload } from '@/types/user'
 import type { UserDocument } from '@/types/user'
 import { createSlice } from '@reduxjs/toolkit'
 import { catchAsyncDispatch } from '@/lib/utils'
-import { ORIGIN } from '@/lib/config'
+import { ORIGIN } from '@/config/config'
 
+const storedAuth = localStorage.getItem('authDataString');
+const parsedAuth = storedAuth ? JSON.parse(storedAuth) : null;
 
 const initialState: InitialState = {
 	loading: false,
@@ -14,29 +16,16 @@ const initialState: InitialState = {
 	user: null ,
 	status: 'none',
 	users: [],
-	userId: '',
-	// isAuthenticated: !!localStorage.getItem('authToken'),
-	// authToken: localStorage.getItem('authToken') || '',
-	isAuthenticated: false,
-	authToken: '',
+
+	userId: parsedAuth?.userId || '',
+	isAuthenticated: parsedAuth?.isAuthenticated || false,
+	isRemembered: parsedAuth?.isRemembered || false,
+	authToken: parsedAuth?.authToken || '',
 
 	total: 0,
 	count: 0,
   limit: 10, 			// Default page size
   totalPages: 0, 	
-
-	// isRemembered: !!localStorage.getItem('login'),
-	// fields: localStorage.getItem('login') 
-	// 	? JSON.parse( JSON.parse(JSON.stringify(localStorage.getItem('login'))) )
-	// 	: {
-	// 		email: '',
-	// 		password: ''
-	// 	},
-	isRemembered: false,
-	fields: {
-		email: '',
-		password: ''
-	},
 }
 
 type AuthenticatePayload = {
@@ -80,13 +69,39 @@ export const { reducer, actions } = createSlice({
 		}),
 
 
-    updateSuccessMessage: (state: InitialState, action: PayloadAction<string>): InitialState => ({
+    setRegisterUser: (state: InitialState, action: PayloadAction<string>): InitialState => ({
       ...state,
 			loading: false,
 			error: '',
-			status: 'updated',
+			status: 'created',
 			message: action.payload
     }),
+
+    setLoginUser: (state: InitialState, action: PayloadAction<string>): InitialState => ({
+      ...state,
+			loading: false,
+			error: '',
+			status: 'created',
+			message: action.payload
+    }),
+    authenticate: (state: InitialState, action: PayloadAction<AuthenticatePayload >): InitialState => ({
+      ...state,
+			loading: false,
+			error: '',
+			message: '',
+			status: 'created',
+			...action.payload
+    }),
+    logout: (state: InitialState ): InitialState => ({
+      ...state,
+			loading: false,
+			error: '',
+			message: '',
+			user: null,
+			isAuthenticated: false,
+			userId: null
+    }),
+
 
     setUsers: (state: InitialState, action: PayloadAction<SetUsersPayload>): InitialState => ({
       ...state,
@@ -101,6 +116,13 @@ export const { reducer, actions } = createSlice({
 			totalPages: Math.ceil(action.payload.total / (state.limit || 10)) 
     }),
 	
+    setUser: (state: InitialState, action: PayloadAction<UserDocument>): InitialState => ({
+      ...state,
+			loading: false,
+			error: '',
+			message: '',
+			user: action.payload
+    }),
     addUser: (state: InitialState, action: PayloadAction<UserDocument>): InitialState => ({
       ...state,
 			loading: false,
@@ -108,21 +130,6 @@ export const { reducer, actions } = createSlice({
 			message: '',
 			status: 'created',
 			users: [ ...state.users, action.payload ]
-    }),
-    authenticate: (state: InitialState, action: PayloadAction<AuthenticatePayload >): InitialState => ({
-      ...state,
-			loading: false,
-			error: '',
-			message: '',
-			status: 'none',
-			...action.payload
-    }),
-    setUser: (state: InitialState, action: PayloadAction<UserDocument>): InitialState => ({
-      ...state,
-			loading: false,
-			error: '',
-			message: '',
-			user: action.payload
     }),
     removeUser: (state: InitialState, action: PayloadAction<string>): InitialState => ({
       ...state,
@@ -142,15 +149,7 @@ export const { reducer, actions } = createSlice({
 			status: 'deleted',
 			users: state.users.filter(user => !action.payload.userIds.includes(user.id))
     }),
-    logout: (state: InitialState ): InitialState => ({
-      ...state,
-			loading: false,
-			error: '',
-			message: '',
-			user: null,
-			isAuthenticated: false,
-			userId: null
-    }),
+
     setIsRemembered: (state: InitialState, action: PayloadAction<boolean> ): InitialState => ({
       ...state,
 			loading: false,
@@ -165,10 +164,26 @@ export const clearError = () => (dispatch: AppDispatch): void => {
 	dispatch(actions.clearError())
 }
 
+export const registerUser = (fields: RegisterFormData) => catchAsyncDispatch( async (dispatch: AppDispatch): Promise<void> => {
+	dispatch(actions.request())
+
+	const res = await fetch(`${ORIGIN}/api/auth/register`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(fields),
+		credentials: 'include'
+	})
+
+	const { status, message } = await res.json()
+	if(status !=='success') dispatch(actions.failed(message))
+	else dispatch(actions.setRegisterUser(message))
+}, actions.failed)
 
 
 
-export const loginUser = (fields: LoginData) => catchAsyncDispatch( async (dispatch: AppDispatch): Promise<void> => {
+export const loginUser = (fields: LoginFormData) => catchAsyncDispatch( async (dispatch: AppDispatch): Promise<void> => {
 	dispatch(actions.request())
 
 	const res = await fetch(`${ORIGIN}/api/auth/login`, {
@@ -181,21 +196,19 @@ export const loginUser = (fields: LoginData) => catchAsyncDispatch( async (dispa
 	})
 
 	const { status, message, data } = await res.json()
-	// if(res.status === 401) dispatch(actions.failed(message))
 	if(status !== 'success') dispatch(actions.failed(message))
-
-
 	else {
-		dispatch(actions.updateSuccessMessage(message))
 
 		const responseData: AuthenticatePayload = {
 			userId: data.userId,
 			authToken: data.authToken,
+			// isRemembered: data.isRemembered,
 			isAuthenticated: true
 		} 
-
-		if(data.authToken) localStorage.setItem('authToken', data.authToken)
 		dispatch(actions.authenticate(responseData))
+
+		const authDataString = JSON.stringify(responseData) 
+		localStorage.setItem('authDataString', authDataString)
 	}
 
 }, actions.failed)
@@ -214,32 +227,108 @@ export const logoutHandler = () => catchAsyncDispatch( async (dispatch: AppDispa
 	})
 
 	await res.json()
-	localStorage.removeItem('authToken')
 	dispatch(actions.logout())
+	localStorage.removeItem('authDataString')
 
 }, actions.failed)
 
+
+
+
 export const getLogedInUser = () => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
 	dispatch(actions.request())
+
+	const authToken = getState().user.authToken
+	// console.log({ authToken })
 
 	const res = await fetch(`${ORIGIN}/api/users/me`, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
-			'Authorization': `Bearer ${getState().user.authToken}`
+			'Authorization': `Bearer ${authToken}`
 		},
 		credentials: 'include'
 	})
 
 	const { status, message, data: user } = await res.json()
-	if(status !=='success') throw dispatch(actions.failed(message))
-
-	// dispatch(actions.setUser(user))
-	if(user.role === 'admin') dispatch(actions.setUser(user))
-	else dispatch(actions.logout())
+	if(status !=='success') dispatch(actions.failed(message))
+	else dispatch(actions.setUser(user))
 
 
 }, actions.failed)
+
+// export const loginUser = (fields: LoginData) => catchAsyncDispatch( async (dispatch: AppDispatch): Promise<void> => {
+// 	dispatch(actions.request())
+
+// 	const res = await fetch(`${ORIGIN}/api/auth/login`, {
+// 		method: 'POST',
+// 		headers: {
+// 			'Content-Type': 'application/json'
+// 		},
+// 		body: JSON.stringify(fields),
+// 		credentials: 'include'
+// 	})
+
+// 	const { status, message, data } = await res.json()
+// 	// if(res.status === 401) dispatch(actions.failed(message))
+// 	if(status !== 'success') dispatch(actions.failed(message))
+
+
+// 	else {
+// 		dispatch(actions.updateSuccessMessage(message))
+
+// 		const responseData: AuthenticatePayload = {
+// 			userId: data.userId,
+// 			authToken: data.authToken,
+// 			isAuthenticated: true
+// 		} 
+
+// 		if(data.authToken) localStorage.setItem('authToken', data.authToken)
+// 		dispatch(actions.authenticate(responseData))
+// 	}
+
+// }, actions.failed)
+
+
+// export const logoutHandler = () => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
+// 	dispatch(actions.request())
+
+// 	const res = await fetch(`${ORIGIN}/api/auth/logout`, {
+// 		method: 'POST',
+// 		headers: {
+// 			'Content-Type': 'application/json',
+// 			'Authorization': `Bearer ${getState().user.authToken}`
+// 		},
+// 		credentials: 'include'
+// 	})
+
+// 	await res.json()
+// 	localStorage.removeItem('authToken')
+// 	dispatch(actions.logout())
+
+// }, actions.failed)
+
+// export const getLogedInUser = () => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
+// 	dispatch(actions.request())
+
+// 	const res = await fetch(`${ORIGIN}/api/users/me`, {
+// 		method: 'GET',
+// 		headers: {
+// 			'Content-Type': 'application/json',
+// 			'Authorization': `Bearer ${getState().user.authToken}`
+// 		},
+// 		credentials: 'include'
+// 	})
+
+// 	const { status, message, data: user } = await res.json()
+// 	if(status !=='success') throw dispatch(actions.failed(message))
+
+// 	// dispatch(actions.setUser(user))
+// 	if(user.role === 'admin') dispatch(actions.setUser(user))
+// 	else dispatch(actions.logout())
+
+
+// }, actions.failed)
 
 export const getAllUsers = () => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
 	dispatch(actions.request())

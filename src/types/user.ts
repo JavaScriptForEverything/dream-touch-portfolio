@@ -1,13 +1,13 @@
 import type { Gender, ResponseStatus } from '@/types/common'
-import type { Image, Role } from '@/types/common'
+import type { Image } from '@/types/common'
 
-export type Address = {
-  street: string
-	city: string
-	state: string
-	postCode: number
-	country: string
-}
+// export type Address = {
+//   street: string
+// 	city: string
+// 	state: string
+// 	postCode: number
+// 	country: string
+// }
 
 
 export type UserDocument = {
@@ -15,32 +15,25 @@ export type UserDocument = {
 	createdAt: Date
 	updatedAt: Date
 
-	customId: string
-	fname: string
-	lname: string
-	fullName: string
+	name: string
 	username: string
-	slug: string
+	role: string
+	slug: string 									// show user dynamically with slugify url instead of id
 	email: string
 	password: string
 	confirmPassword?: string
+
 	coverPhoto: Image
 	avatar: Image
-	clientId: string 							// social media login 
-	role: Role
-	isActive: boolean
-	isVerified: boolean
-	isVisible: boolean
-	passwordResetToken?: string
 
 	phone: string
-	location: Location,
 	gender: Gender
+	// location: Location,
 
-	bio: string
-  dateOfBirth: Date
-	address: Address
-
+	// bio: string
+  // dateOfBirth: Date
+	// address: Address
+	passwordResetToken?: string
 	comparePassword: (password: string) => Promise<boolean>
 	getPasswordResetToken: () => Promise<string>
 
@@ -49,35 +42,37 @@ export type UserDocument = {
 	createEmailResetToken: () => Promise<string>
 	handleEmailUpdate: (resetToken: string, email: string) => Promise<boolean>
 
-	likes: string[] 				// wishlist
-	carts: string[] 				// cart items
-	orders: string[]
+	// likes: string[] 				// wishlist
+	// carts: string[] 				// cart items
+	// orders: string[]
 
-	// idCardFrontPageImage: Image
-	// idCardBackPageImage: Image
-	// bankStatementImage: Image
-	// idCardNumber: string
-	// accountHolderName: string
-	// accountNumber: string
-	// routingNumber: string
-	// bankName: string
-	// bankBranch: string
+	// status: string
+	// customId: string
+	// clientId: string 							// social media login 
+	// role: Role
+	// isActive: boolean
+	// isVerified: boolean
+	// isVisible: boolean
 
-	status: string
+
 }
 
-export type ReviewDocument = {
-	id: string
-	createdAt: Date
-	updatedAt: Date
+export type RegisterFormData = {
+  name: string
+  email: string
+  password: string
+  confirmPassword: string
+}
+export type LoginFormData = {
+  email: string
+  password: string
+	// isRemembered: boolean
 }
 
-
-export type ColorItem = {
-  color: string
-  price: number
-}
-
+// export type ColorItem = {
+//   color: string
+//   price: number
+// }
 
 
 
@@ -89,13 +84,14 @@ export type ColorItem = {
 
 
 
-export type FormFields = {
-	name: string
-	email: string
-	password: string
-	confirmPassword: string
-	avatar: string
-}
+
+// export type FormFields = {
+// 	name: string
+// 	email: string
+// 	password: string
+// 	confirmPassword: string
+// 	avatar: string
+// }
 export type RegisterData = {
 	name: string
 	email: string
@@ -127,7 +123,7 @@ export type InitialState = {
   totalPages: number
 
 	isRemembered: boolean
-	fields: Partial<FormFields>
+	// fields: Partial<FormFields>
 }
 
 
