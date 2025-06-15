@@ -1,7 +1,6 @@
 import type { Document, Model, Types } from 'mongoose'
 import type { GenderType, Image, Role } from '@/types/common'
 
-
 interface Address {
   street: string
 	city: string
@@ -11,24 +10,24 @@ interface Address {
 }
 
 interface CommonFields {
-
 	coverPhoto: Image
 	avatar: Image
 
+	name: string
+	// slug: string 									// show user dynamically with slugify url instead of id
+
 	username: string
+	role: Role
 	gender: GenderType
 
-	fname: string
-	lname: string
-	fullName: string 		// for virtual('fullName')
 	phone: string
 	bio: string
   dateOfBirth: Date
 	address: Address
 
-	isActive: boolean
-	isVerified: boolean
-	isVisible: boolean
+	// isActive: boolean
+	// isVerified: boolean
+	// isVisible: boolean
 }
 
 export interface CreateUser extends CommonFields {
@@ -40,16 +39,15 @@ export interface CreateUser extends CommonFields {
 }
 
 export interface UserDocument extends Document, CommonFields {
-	clientId: String, 		// for social media login like: Google | Facebook | ...
 	_id: Types.ObjectId
 	updatedAt: Date 			// required to update this
 
-	role: Role
+	// role: Role
 	email: string
 	password: string
 	confirmPassword?: string
 
-	otpCode?: string
+	// otpCode?: string
 	passwordResetToken?: string
 	emailResetToken: string | undefined
 	emailResetTokenExpires: Date | undefined

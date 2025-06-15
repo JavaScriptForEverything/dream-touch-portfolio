@@ -11,7 +11,7 @@ export type CheckAdmin = (role: typeof Roles) => RequestHandler
 export type RestrictTo = (...roles: string[]) => RequestHandler
 
 
-export type ErrorStatus = 'error' | 'failed' | 'AuthError' | 'PermissionDenied'
+export type ErrorStatus = 'error' | 'failed' | 'AuthError' | 'PermissionDenied' | 'DB_Error'
 export interface MyError<Status extends string = ErrorStatus> extends Error {
   message: string
   statusCode: number

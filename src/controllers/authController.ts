@@ -36,27 +36,27 @@ export const protect:RequestHandler = catchAsync( async (req, res, next) => {
 	req.session = { 
 		...req.session, 
 		// authToken,
-		user: {
-			role: user.role,
-			id: user.id
-		}
+		// user: {
+		// 	role: user.role,
+		// 	id: user.id
+		// }
 	}
 
 	next()
 })
 
-// router.get('/api/users' protect, restrictTo('admin', 'leader'), getAllUsers)
-export const restrictTo = (...roles: string[]) => (req:Request, _res:Response, next:NextFunction) => {
-	const session = req.session as Session
-	const user = session.user
+// // router.get('/api/users' protect, restrictTo('admin', 'leader'), getAllUsers)
+// export const restrictTo = (...roles: string[]) => (req:Request, _res:Response, next:NextFunction) => {
+// 	const session = req.session as Session
+// 	const user = session.user
 
-	if(!user?.role) return next(appError('user.role not found', 404, 'AuthError'))
+// 	if(!user?.role) return next(appError('user.role not found', 404, 'AuthError'))
 
-	const message = `Sorry you ( role: '${user?.role}' ) don't have permission to perform this action.`
-	if(!roles.includes(user.role)) return next(appError(message, 403, 'PermissionDenied'))
+// 	const message = `Sorry you ( role: '${user?.role}' ) don't have permission to perform this action.`
+// 	if(!roles.includes(user.role)) return next(appError(message, 403, 'PermissionDenied'))
 
-	next()
-}
+// 	next()
+// }
 
 
 
@@ -123,80 +123,80 @@ export const register: RequestHandler =  async (req, res, next) => {
 }
 
 
-// POST 	/api/auth/verify-request
-export const verifyRequest = catchAsync( async (req, res, next) => {
-	const email = req.body.email
-	const phoneOrEmail = req.body.phone || email
+// // POST 	/api/auth/verify-request
+// export const verifyRequest = catchAsync( async (req, res, next) => {
+// 	const email = req.body.email
+// 	const phoneOrEmail = req.body.phone || email
 
-	const userId = req.session?.user.id
-	// step-0: Make sure protected route: Only User himself can verify, not others
+// 	const userId = req.session?.user.id
+// 	// step-0: Make sure protected route: Only User himself can verify, not others
 
-	// step-1: check user found
-	let user = await User.findById(userId)
-	if(!user) return next(appError('user not found'))
-	if(user.isVerified) return next(appError('You are already varified user'))
+// 	// step-1: check user found
+// 	let user = await User.findById(userId)
+// 	if(!user) return next(appError('user not found'))
+// 	if(user.isVerified) return next(appError('You are already varified user'))
 
-	// step-2: get otp 
-	const otpPayload = await otpService.getOTPCode(phoneOrEmail, email)
-	if(!otpPayload) return next(appError('otpPayload empty'))
+// 	// step-2: get otp 
+// 	const otpPayload = await otpService.getOTPCode(phoneOrEmail, email)
+// 	if(!otpPayload) return next(appError('otpPayload empty'))
 
 	
-	// step-3: update user
-	user.otpCode = phoneOrEmail
-	await user.save({ validateBeforeSave: false })
+// 	// step-3: update user
+// 	user.otpCode = phoneOrEmail
+// 	await user.save({ validateBeforeSave: false })
 
 
-	const responseData: ResponseData = {
-		status: 'success',
-		message: `an otp message is send to you via email to you`, 
-		data: {
-			phoneOrEmail,
-			hash: `${otpPayload.hashedOtp}.${otpPayload.expires}`, 	// send phone, expires + hashedOTP which will be require later
-		},
-	}
-	res.status(200).json( responseData )
-})
+// 	const responseData: ResponseData = {
+// 		status: 'success',
+// 		message: `an otp message is send to you via email to you`, 
+// 		data: {
+// 			phoneOrEmail,
+// 			hash: `${otpPayload.hashedOtp}.${otpPayload.expires}`, 	// send phone, expires + hashedOTP which will be require later
+// 		},
+// 	}
+// 	res.status(200).json( responseData )
+// })
 
-// POST 	/api/auth/verify-user
-export const verifyUser = catchAsync( async (req, res, next) => {
-	if(!OTP_SECRET) return next( appError(`otpSecret: ${OTP_SECRET} error`, 400, 'EnvError'))
+// // POST 	/api/auth/verify-user
+// export const verifyUser = catchAsync( async (req, res, next) => {
+// 	if(!OTP_SECRET) return next( appError(`otpSecret: ${OTP_SECRET} error`, 400, 'EnvError'))
 
-	const { phoneOrEmail, otp, hash } = req.body
-	if(!phoneOrEmail || !otp || !hash) return next(appError('you must send: { phoneOrEmail, otp, hash: hashedOTP }'))
+// 	const { phoneOrEmail, otp, hash } = req.body
+// 	if(!phoneOrEmail || !otp || !hash) return next(appError('you must send: { phoneOrEmail, otp, hash: hashedOTP }'))
 
-	const userId = req.session?.user.id
-	if(!userId) return next(appError('You are not authenticated user'))
+// 	const userId = req.session?.user.id
+// 	if(!userId) return next(appError('You are not authenticated user'))
 
-	// step-1: find user
-	// let user = await User.findOne({ otpCode: phoneOrEmail})
-	let user = await User.findById(userId)
-	if(!user) return next(appError('please retry with your new otp'))
+// 	// step-1: find user
+// 	// let user = await User.findOne({ otpCode: phoneOrEmail})
+// 	let user = await User.findById(userId)
+// 	if(!user) return next(appError('please retry with your new otp'))
 
-		console.log({ isVerified: user.isVerified })
-	if(user.isVerified) return next(appError('You are already varified user'))
-
-
-	// step-2: verify otp and hashed
-	await	otpService.verifyOtpCode({ phoneOrEmail, otp, hashedOtp: hash })
+// 		console.log({ isVerified: user.isVerified })
+// 	if(user.isVerified) return next(appError('You are already varified user'))
 
 
-	// step-3: update user
-	user.isVerified = true
-	user.otpCode = undefined
-	await user.save({ validateBeforeSave: false })
+// 	// step-2: verify otp and hashed
+// 	await	otpService.verifyOtpCode({ phoneOrEmail, otp, hashedOtp: hash })
 
 
-	// step-4: Logout user
-	await tokenService.removeTokenFromCookie(req)
+// 	// step-3: update user
+// 	user.isVerified = true
+// 	user.otpCode = undefined
+// 	await user.save({ validateBeforeSave: false })
 
 
-	const responseData: ResponseData<UserDocument> = {
-		status: 'success',
-		message: 'user verification successfull !!!, please relogin again',
-		// data: user,
-	}
-	res.status(200).json( responseData )
-})
+// 	// step-4: Logout user
+// 	await tokenService.removeTokenFromCookie(req)
+
+
+// 	const responseData: ResponseData<UserDocument> = {
+// 		status: 'success',
+// 		message: 'user verification successfull !!!, please relogin again',
+// 		// data: user,
+// 	}
+// 	res.status(200).json( responseData )
+// })
 
 
 
@@ -340,133 +340,6 @@ export const updatePassword: RequestHandler = catchAsync( async (req, res, next)
 	}
 	res.status(200).json( responseData )
 })
-
-
-// GET 	/api/auth/google
-export const googleLoginRequest: RequestHandler = (req, res, next) => {
-  const state = crypto.randomUUID(); 							// Semi-clone required because next line type casting
-  req.session = { ...req.session, state }
-  // (req.session as CustomSession).state = state; 	// Store the state in the session
-
-  passport.authenticate('google', {
-    scope: ['profile', 'email'],
-    state  																					// Include the state in the request to Google
-  })(req, res, next)
-}
-
-
-// GET 	/api/auth/google/callback
-export const googleCallbackHandler: RequestHandler = (req, res, next) => {
-	
-	 passport.authenticate('google', async (err: unknown, user: CustomUser ) => {
-    if (err) return next(err) 
-    if (!user) return res.redirect('/auth/login') 
-
-    // Validate the state parameter to prevent CSRF attacks
-    if (req.query.state !== (req.session as CustomSession).state) {
-      return next(appError('invalid state parameter', 403, 'GoogleError'))
-    }
-
-		try {
-			await tokenService.sendTokenInCookie(req, user._id)
-			req.session = { ...req.session, state: req.query.state }
-
-			const authToken = await tokenService.generateTokenForUser(user._id) 		
-      // res.redirect(`/api/auth/google/success/?authToken=${authToken}`) 					// redirect to next 'googleSuccessHandler' middleware
-
-			// const url = `${client.origin}/auth/validate/${authToken}`
-			const url = `${req.protocol}://${req.get('host')}/auth/validate/${authToken}`
-      res.redirect(url)
-
-
-		} catch (err: unknown) {
-    	if (err instanceof Error) return next(err.message) 
-    	next(err) 
-		}
-  })(req, res, next)
-}
-
-
-// GET /auth/google/ 		=> /api/auth/google/success/?authToken={authToken} 
-export const googleSuccessHandler: RequestHandler = catchAsync( async (req, res, next) => {
-  const authToken = req.query.authToken as any
-	if(!authToken) return next(appError('No authToken: authentication failed'))
-	// console.log({ googleSuccessHandler: authToken })
-
-	if(!req.session?.state) return next(appError('Do you try to hack?, this reques must come from google, no by you'))
-
-	const { id } = await tokenService.verifyUserAuthToken(authToken) 
-	await tokenService.sendTokenInCookie(req, id)
-
-	const responseData: ResponseData = {
-		status: 'success',
-		message: 'login successfully!!!',
-		data: { 
-			userId: id,
-			authToken
-		}
-	}
-	res.status(200).json( responseData )
-
-})
-
-
-
-
-
-
-// GET  /auth/failure 		=>	/api/auth/failure 	(Proxy Reverse For API)
-export const googleAuthFailure:RequestHandler = catchAsync( async (_req, _res, next) => {
-	next(appError('google authentication failed', 401, 'GoogleAuthFailed'))
-})
-
-
-
-
-
-// GET 	/api/auth/facebook
-export const facebookLoginRequest: RequestHandler = (req, res, next) => {
-	
-  const state = crypto.randomUUID(); 							// Semi-clone required because next line type casting
-  req.session = { state }
-  // (req.session as CustomSession).state = state; 	// Store the state in the session
-
-  passport.authenticate('facebook', {
-    scope: ['profile', 'email'],
-    state  																					// Include the state in the request to Google
-  })(req, res, next)
-}
-
-// GET 	/api/auth/facebook/callback
-export const facebookCallbackHandler: RequestHandler = (req, res, next) => {
-	
-	 passport.authenticate('facebook', async (err: unknown, user: CustomUser ) => {
-    if (err) return next(err) 
-    if (!user) return res.redirect('/auth/login') 
-
-    // Validate the state parameter to prevent CSRF attacks
-    if (req.query.state !== (req.session as CustomSession).state) {
-      return next(appError<'FacebookError'>('invalid state parameter', 403, 'FacebookError'))
-    }
-
-
-		try {
-			await tokenService.sendTokenInCookie(req, user._id)
-
-			const responseData: ResponseData = {
-				status: 'success',
-				message: 'login successfully!!!',
-				// data: user,
-			}
-			res.status(200).json( responseData )
-
-		} catch (err: unknown) {
-    	if (err instanceof Error) return next(err.message) 
-    	next(err) 
-		}
-  })(req, res, next)
-}
-
 
 
 

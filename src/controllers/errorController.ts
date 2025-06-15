@@ -51,12 +51,13 @@ export const globalErrorHandler:ErrorRequestHandler = (err, _req, res, _next) =>
 
 	// 3. Give simple message for ValidationError
 	if(err.errors) {
-		const message = Object.entries( err.errors ).map( ([key, value]) => {
-			if(value instanceof Error) {
+		const message = Object.entries(err.errors).map(([key, value]) => {
+			if (value instanceof Error) {
 				return `${key}: ${value.message}`
 			}
-		})
-		err.message = message
+		}).filter(Boolean) // Remove any undefined values
+
+		err.message = message.join('; ') // Convert array to string
 		err.status = err.name
 	}
 

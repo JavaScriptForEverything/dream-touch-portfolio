@@ -10,21 +10,26 @@ import { customTransform } from '@/lib/utils'
 
 /*
 {
-	"clientId" : "alksdjalkjdalkjdjfakj",
-
-	"fname" : "Riajul",
-	"lname" : "Islam",
-  "username": "username1",
+	"name" : "Riajul Islam",
 	"email" : "riajul.delete1@gmail.com",
   "password": "{{pass}}",
   "confirmPassword": "{{pass}}",
 
-	"role" : "admin",
-
+  "username": "username1",
 	"phone" : "",
 	"gender" : "male",
-	"bio" : "my bio goes here...",
 
+	"passwordResetToken": "String",
+	"emailResetToken": "String",
+	"emailResetTokenExpires": "1995-03-08",
+
+	"coverPhoto" : "http://192.168.0.222:5000/upload/homes/985a736f-5446-433d-8b1c-bce175759812.jpg",
+	"avatar" : "data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7"
+
+	"address" : "315 hazipara badda",
+
+
+	---
 	"dateOfBirth" : "1995-03-08",
 	"address" : {
 		"street" : "315 hazipara badda",
@@ -33,28 +38,15 @@ import { customTransform } from '@/lib/utils'
 		"postCode": 1212,
 		"country": "Bangladesh"
 	},
-
-
-	"passwordResetToken": "String",
-	"emailResetToken": "String",
-	"emailResetTokenExpires": "1995-03-08",
-
 	"isActive": true,
 	"isVerified": true,
-
-	"coverPhoto" : "http://192.168.0.222:5000/upload/homes/985a736f-5446-433d-8b1c-bce175759812.jpg",
-	"avatar" : "data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7"
 }
-
-
 */
 
 
 
 
 const userSchema = new Schema<UserDocument>({
-	clientId: String, 		// for social media login like: Google | Facebook | ...
-
 	username: {
 		type: String,
 		// unique: true,
@@ -63,21 +55,13 @@ const userSchema = new Schema<UserDocument>({
 		// minlength: 3,
 		// maxlength: 50,
 	},
-	fname: {
+	name: {
 		type: String,
 		required: true,
 		trim: true,
-		// lowercase: true,
-		// minlength: 3,
-		// maxlength: 30,
-	},
-	lname: {
-		type: String,
-		required: true,
-		trim: true,
-		// lowercase: true,
-		// minlength: 3,
-		// maxlength: 30,
+		lowercase: true,
+		minlength: 3,
+		maxlength: 30,
 	},
 	email: {
 		type: String,
@@ -100,17 +84,6 @@ const userSchema = new Schema<UserDocument>({
 		},
 	},
 
-	role: {
-		type: String,
-		enum: {
-			values: Object.values(Roles),
-			message: `field "{PATH}" must be one of: ${Object.values(Roles).join(' | ')}`
-		},
-		trim: true,
-		lowercase: true,
-		default: Roles.USER
-	},
-
 	gender: {
 		type: String,
 		lowercase: true, 											
@@ -121,59 +94,32 @@ const userSchema = new Schema<UserDocument>({
 		},
 		default: Gender.OTHER
 	},
-	dateOfBirth: Date,
 
-	bio: {
+	role: {
 		type: String,
-		trim: true,
-		lowercase: true,
-		minlength: 3,
-		// maxlength: 30,
+		lowercase: true, 											
+		// enum: Object.values(Gender), 						// if use Enum value, then default value must be comes from Gender, hardCoded value throw error.
+		enum: {
+			values: Object.values(Roles),
+			message: `field "{PATH}" must be one of: ${Object.values(Roles).join(' | ')}`
+		},
+		default: Roles.SUPER_ADMIN
 	},
+
 	phone: {
 		type: String,
 		trim: true,
 		lowercase: true,
 		minlength: 8,
 	},
-
 	address: {
-		street: {
-			type: String,
-			trim: true,
-			lowercase: true,
-			minlength: 3,
-			maxlength: 300,
-		},
-		city: {
-			type: String,
-			trim: true,
-			lowercase: true,
-			minlength: 2,
-			maxlength: 50,
-		},
-		state: {
-			type: String,
-			trim: true,
-			lowercase: true,
-			minlength: 2,
-			maxlength: 50,
-		},
-		postCode: {
-			type: String,
-			trim: true,
-			lowercase: true,
-			minlength: 3,
-			maxlength: 6,
-		},
-		country: {
-			type: String,
-			trim: true,
-			lowercase: true,
-			minlength: 3,
-			maxlength: 30,
-		},
+		type: String,
+		trim: true,
+		lowercase: true,
+		minlength: 3,
+		maxlength: 300,
 	},
+
 
 	// likes: [{ 													
 	// 	type: Schema.Types.ObjectId,
@@ -189,18 +135,18 @@ const userSchema = new Schema<UserDocument>({
 	// 	ref: 'Payment',
 	// }],
 
-	isActive: {
-		type: Boolean,
-		default: true
-	},
-	isVerified: {
-		type: Boolean,
-		default: false
-	},
-	isVisible: {
-		type: Boolean,
-		default: true
-	},
+	// isActive: {
+	// 	type: Boolean,
+	// 	default: true
+	// },
+	// isVerified: {
+	// 	type: Boolean,
+	// 	default: false
+	// },
+	// isVisible: {
+	// 	type: Boolean,
+	// 	default: true
+	// },
 
 
 	coverPhoto: {
@@ -223,7 +169,7 @@ const userSchema = new Schema<UserDocument>({
 	},
 
 
-	otpCode: String,
+	// otpCode: String,
 	passwordResetToken: String,
 	emailResetToken: String,
 	emailResetTokenExpires: Date
@@ -334,12 +280,6 @@ userSchema.methods.getPasswordResetToken = async function (this: UserDocument) {
 	return resetToken
 }
 
-
-
-
-userSchema.virtual('fullName').get(function() {
-	return `${this.fname} ${this.lname}`
-})
 
 
 

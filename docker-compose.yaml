@@ -25,7 +25,6 @@ services:
     restart: always
     volumes:
       - .:/app
-      - /app/node_modules             # required for module install inside container as well
     env_file: 
       - .env 
     environment:
