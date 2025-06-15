@@ -3,6 +3,9 @@ import { Collection } from '@/types/constants'
 import { model, Schema } from 'mongoose'
 import { sanitizeSchema } from '@/services/sanitizeService'
 import { customTransform } from '@/lib/utils'
+import Page from '@/models/pageModel'
+import { appError } from '@/controllers/errorController'
+import { NextFunction } from 'express'
 
 
 /*
@@ -34,6 +37,7 @@ import { customTransform } from '@/lib/utils'
 const metadataSchema = new Schema<MetadataDocument>({
 	page: { 												
 		type: Schema.Types.ObjectId,
+		ref: Collection.Page,
 		required: true,
 	},
 
@@ -84,5 +88,19 @@ const metadataSchema = new Schema<MetadataDocument>({
 })
 
 metadataSchema.plugin(sanitizeSchema)
+
+async function validatePageReference (this: MetadataDocument, next: any ) {
+	const page = await Page.findById(this.page)
+	console.log({ page, pageId: this.page })
+	if(!page) return next(appError(`this page not exists`))
+
+	next()
+}
+metadataSchema.pre('save', validatePageReference);
+metadataSchema.pre('findOneAndUpdate', validatePageReference);
+
+metadataSchema.index({ page: 1 }, { unique: true });
+
+
 export const Metadata = model<MetadataDocument, MetadataModel>(Collection.Metadata, metadataSchema)
 export default Metadata

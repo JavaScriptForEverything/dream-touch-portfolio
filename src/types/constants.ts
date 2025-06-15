@@ -9,34 +9,6 @@ export enum Collection {
 	Metadata = 'Metadata',
 
 	User = 'User',
-
-	// Category = 'Category',
-	// SubCategory = 'SubCategory',
-	// ChildCategory = 'ChildCategory',
-	// Product = 'Product',
-	// Review = 'Review',
-	// Blog = 'Blog',
-	// Site = 'Site',
-	// Offer = 'Offer',
-	// BlogCategory = 'BlogCategory',
-	// WishList = 'WishList',
-	// Coupon = 'Coupon',
-	// ProductReviewLike = 'ProductReviewLike',
-	// Policy = 'Policy',
-
-	// Faq = 'Faq',
-	// FaqCategory = 'FaqCategoryaq',
-	// FaqQuestion = 'FaqQuestion',
-
-	// Home = 'Home',
-	// AboutUs = 'AboutUs',
-	// ContactUs = 'ContactUs',
-
-	// Subscribe = 'Subscribe',
-
-	// ShippingInfo = 'ShippingInfo',
-	// BillingInfo = 'BillingInfo',
-	// Order = 'Order',
 }
 
 
@@ -45,11 +17,6 @@ export const Gender = {
 	FEMALE: 'female',
 	OTHER: null
 }
-// export enum Role {
-// 	vendor='vendor',
-// 	user='user',
-// 	admin='admin',
-// }
 
 
 export const Roles = {
@@ -59,34 +26,16 @@ export const Roles = {
   USER: 'user',
 } as const
 
-// type Role = keyof typeof Roles 												// => "VENDOR" | "USER" | "ADMIN"
-// type Role = [keyof typeof Roles] 											// => [ "VENDOR" | "USER" | "ADMIN" ]
-// type Role = (typeof Roles)[keyof typeof Roles] 				// => type Role = "vendor" | "user" | "admin"
-
-// const roles = Object.values(Roles) 										// => [ 'vendor', 'user', 'admin' ]
 
 
 
-export const PaymentStatus = {
-	PENDING: 'pending',
-	PROCESSING: 'processing',
-	SHIFTED: 'shifted',
-	DELIVERED: 'delivered',
-	CANCELLED: 'cancelled',
-	RETURNED: 'returned',
-} as const
-
-export const PaymentTypes = {
-	CASH_ON_DELIVERY: 'cash_on_delivery',
-	STRIPE: 'STRIPE',
-	SSLCOMMERZ: 'SSLCOMMERZ'
-}
 
 
 
-export const PolicyType = {
-	FAQ: 'faq',
-	PRIVACY: 'privacy',
-	REFUND: 'refund',
-	TERMANDCONDITION: 'terms-and-condition',
+export const Pages = {
+	HOME: 'home',
+	ABOUT: 'about',
+	CONTACT: 'contact',
+	PORTFOLIO: 'portfolio',
+	SERVICE: 'service',
 } as const

@@ -1,5 +1,5 @@
 import type { PageDocument, PageModel } from '@/types/page'
-import { Collection } from '@/types/constants'
+import { Collection, Pages } from '@/types/constants'
 import { model, Schema } from 'mongoose'
 import { sanitizeSchema } from '@/services/sanitizeService'
 import { customTransform } from '@/lib/utils'
@@ -28,6 +28,12 @@ const pageSchema = new Schema<PageDocument>({
 		unique: true,
 		trim: true,
 		lowercase: true,
+		// enum: Object.values(Pages)
+		enum: { 
+			values: Object.values(Pages), 
+			message: `field "{PATH}" must be one of: ${Object.values(Pages).join(' | ')}`
+		}, 
+
 	},
 
 	slogan: {
@@ -54,11 +60,10 @@ const pageSchema = new Schema<PageDocument>({
 		caption: String,
 	},
 
-
 }, {
 	timestamps: true,
 	toJSON: {
-		// virtuals: true, 										
+		virtuals: true, 										
 
 		transform(_doc, ret, _options) {
 			const imageFields = ['coverPhoto']
@@ -66,6 +71,20 @@ const pageSchema = new Schema<PageDocument>({
 		},
 	}
 })
+
+pageSchema.virtual('metadatas', {
+	ref: Collection.Metadata,
+	localField: '_id',
+	foreignField: 'page'
+})
+pageSchema.pre(/find*/, function(this: PageDocument, next) {
+	this.populate('metadatas')
+
+	next()
+})
+
+
+pageSchema.index({ slug: 1 }, { unique: true });
 
 pageSchema.plugin(sanitizeSchema)
 export const Page = model<PageDocument, PageModel>(Collection.Page, pageSchema)

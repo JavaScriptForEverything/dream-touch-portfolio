@@ -5,6 +5,7 @@ import { appError, catchAsync } from '@/controllers/errorController'
 import { apiFeatures } from '@/lib/utils'
 import Metadata from '@/models/metadataModel'
 import * as metadataDtos from '@/dtos/metadataDtos'
+import Page from '@/models/pageModel'
 
 
 // GET /api/metadatas
@@ -27,6 +28,14 @@ export const getMetadatas: RequestHandler = catchAsync( async (req, res, next) =
 export const addMetadata: RequestHandler =  catchAsync(async (req, res, next) => {
 
 	const filteredBody = metadataDtos.filterBodyForCreateMetadata(req.body)
+
+	// const page = await Page.findOne({ page: filteredBody.page })
+	// console.log({ page, pageId: filteredBody.page })
+
+	// if(!page) return next(appError(`this page ${filteredBody.page} not exists`))
+
+
+
 	const metadata = await Metadata.create(filteredBody)
 	if(!metadata) return next(appError('metadata not found'))
 
