@@ -62,6 +62,7 @@ export * from '@/icons/angleLeft'
 export * from '@/icons/angleRight'
 export * from '@/icons/angleUp'
 export * from '@/icons/angleDown'
+export * from '@/icons/checkIcon'
 
 export * from './rightAngleIcon'
 

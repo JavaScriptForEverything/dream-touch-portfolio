@@ -72,3 +72,39 @@ export interface DataTableRow {
 
 	isVisible: boolean
 }
+
+
+
+
+type BaseField = {
+  required?: boolean
+  label: string
+  placeholder?: string
+  helperText?: string
+}
+
+type TextField = BaseField & {
+  type: 'text' | 'email' | 'password'
+}
+
+type FileField = BaseField & {
+  type: 'file'
+  multiple?: boolean 
+}
+
+type TextareaField = BaseField & {
+  type: 'textarea'
+  rows: number 
+}
+
+type SelectField = BaseField & {
+  type: 'select'
+  options: { label: string; value: string, disabled?: boolean }[] 		
+}
+
+export type FormField = TextField | TextareaField | FileField | SelectField
+
+
+// type FormSchema = {
+//   [key: string]: FormField
+// }
