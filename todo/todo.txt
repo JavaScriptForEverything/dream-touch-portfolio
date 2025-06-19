@@ -4,6 +4,11 @@ Problem-1: remove page: parse json problem, : reques was successful, but parsing
 		1. send json from backend, instead of null, so that same api call works 
 		2. get status from res.status, not from res.json() => data.status which is throwing error
 
+Problem-2: Uncrontrol => controll
+	Reason: we not pass default string value for optional property, so that our validation not failed for empty value is required
+	Solution:
+		- It is just worning, not error, 
+		- ?
 
 
 Show Error in UI

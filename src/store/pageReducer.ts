@@ -105,6 +105,10 @@ export const { reducer, actions } = createSlice({
   },
 })
 
+export const setError = (message: string) => (dispatch: AppDispatch): void => {
+	dispatch(actions.failed(message))
+}
+
 export const clearError = () => (dispatch: AppDispatch): void => {
 	dispatch(actions.clearError())
 }
@@ -139,8 +143,8 @@ export const getPages = () => catchAsyncDispatch( async (dispatch: AppDispatch, 
 	const limit = getState().page.limit;
 	const { status, message, data, count, total } = await apiRequest<any>( `/api/pages?_sort=-createdAt&_limit=${limit}`)
 
-	if (status !== "success") dispatch(actions.failed(message))
-	else dispatch(actions.setPages({ pages: data, count: count, total: total }))
+	if (status === "success") dispatch(actions.setPages({ pages: data, count: count, total: total }))
+	else dispatch(actions.failed(message))
 
 }, actions.failed)
 
@@ -149,7 +153,6 @@ export const AddPage = (body: any) => catchAsyncDispatch( async (dispatch: AppDi
 	dispatch(actions.request())
 
 	const { status, message, data: page } = await apiRequest<any>('/api/pages', 'POST', body)
-	console.log({ message, status })
 
 	if (status === "success") dispatch(actions.setPage(page))
 	else dispatch(actions.failed(message))
@@ -162,108 +165,34 @@ export const removePage = (pageId: string) => catchAsyncDispatch( async (dispatc
 
 	const { status, message  } = await apiRequest<any>(`/api/pages/${pageId}`, 'DELETE')
 
-	if (status !== "success") dispatch(actions.failed(message))
-	else dispatch(actions.removePage(pageId))
+	if (status === "success") dispatch(actions.removePage(pageId))
+	else dispatch(actions.failed(message))
 
 }, actions.failed)
 
-// export const removePage = (pageId: string) => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
-// 	dispatch(actions.request())
 
-// 	const res = await fetch(`${ORIGIN}/api/pages/${pageId}`, {
-// 		method: 'DELETE',
-// 		headers: {
-// 			'Content-Type': 'application/json',
-// 			// 'Authorization': `Bearer ${getState().user.authToken}`
-// 		},
-// 		credentials: 'include'
-// 	})
+export const updatePage = (pageId: string, body: any) => catchAsyncDispatch( async (dispatch: AppDispatch): Promise<void> => {
+	dispatch(actions.request())
 
-// 	const { status, message, } = await res.json()
-// 	if(status ==='success') dispatch(actions.removePage(pageId))
-// 	else dispatch(actions.failed(message))
+	const { status, message, data: page } = await apiRequest<any>(`/api/pages/${pageId}`, 'PATCH', body)
 
-// }, actions.failed)
+	if (status === "success") dispatch(actions.updatePage(page))
+	else dispatch(actions.failed(message))
+
+}, actions.failed)
 
 
+export const getPageByIdOrSlug = (pageId: string) => catchAsyncDispatch( async (dispatch: AppDispatch): Promise<void> => {
+	dispatch(actions.request())
 
-// export const getProduct = (idOrSlug: string) => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
-// 	dispatch(actions.request())
+	const { status, message, data: page } = await apiRequest<any>(`/api/pages/${pageId}`)
 
-// 	const res = await fetch(`${ORIGIN}/api/pages/${idOrSlug}`, {
-// 		method: 'GET',
-// 		headers: {
-// 			'Content-Type': 'application/json',
-// 			'Authorization': `Bearer ${getState().user.authToken}`
-// 		},
-// 		credentials: 'include'
-// 	})
+	if (status === "success") dispatch(actions.setPage(page))
+	else dispatch(actions.failed(message))
 
-// 	const { status, message, data } = await res.json()
-// 	if(status !=='success') dispatch(actions.failed(message))
-// 	else dispatch(actions.setProduct(data))
-
-// }, actions.failed)
+}, actions.failed)
 
 
-
-// export const addProduct = (body: any) => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
-// 	dispatch(actions.request())
-
-// 	const res = await fetch(`${ORIGIN}/api/pages`, {
-// 		method: 'POST',
-// 		headers: {
-// 			'Content-Type': 'application/json',
-// 			'Authorization': `Bearer ${getState().user.authToken}`
-// 		},
-// 		body: JSON.stringify(body),
-// 		credentials: 'include'
-// 	})
-
-// 	const { status, message, data } = await res.json()
-// 	if(status !=='success') dispatch(actions.failed(message))
-// 	else dispatch(actions.addProduct(data))
-
-// }, actions.failed)
-
-
-// export const updateProductByIdOrSlug = (idOrSlug: string, body: any) => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
-// 	dispatch(actions.request())
-
-// 	const res = await fetch(`${ORIGIN}/api/pages/${idOrSlug}`, {
-// 		method: 'PATCH',
-// 		headers: {
-// 			'Content-Type': 'application/json',
-// 			'Authorization': `Bearer ${getState().user.authToken}`
-// 		},
-// 		body: JSON.stringify(body),
-// 		credentials: 'include'
-// 	})
-
-// 	const { status, message, data } = await res.json()
-// 	if(status !=='success') dispatch(actions.failed(message))
-// 	else dispatch(actions.updateProduct(data))
-
-// }, actions.failed)
-
-
-// export const deleteProductById = (id: string) => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
-// 	dispatch(actions.request())
-
-// 	const res = await fetch(`${ORIGIN}/api/pages/${id}`, {
-// 		method: 'DELETE',
-// 		headers: {
-// 			'Content-Type': 'application/json',
-// 			'Authorization': `Bearer ${getState().user.authToken}`
-// 		},
-// 		credentials: 'include'
-// 	})
-
-// 	const { status, message } = await res.json()
-// 	if(status !=='success') dispatch(actions.failed(message))
-// 	else dispatch(actions.removeProduct(id))
-
-// }, actions.failed)
 
 
 // export const searchProductBy = (search: string, fields: string[]) => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {

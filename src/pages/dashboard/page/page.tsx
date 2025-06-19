@@ -158,7 +158,7 @@ export const Page = () => {
 					rowItems={pages}
 					renderRow={(row) => (
 						<>
-							<td className='flex justify-center'><img src={row.coverPhoto?.secure_url} /></td>
+							<td className='flex justify-center'><img src={row.coverPhoto?.secure_url} className='size-8' /></td>
 							<td>{row.slug}</td>
 							<td>{row.slogan}</td>
 							<td>{row.sloganSummary}</td>

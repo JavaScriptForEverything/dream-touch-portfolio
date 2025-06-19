@@ -5,12 +5,8 @@ import { CloudUploadIcon, LoadingIcon } from '@/icons'
 import { isFormValid, readAsDataURL } from '@/lib/utils'
 import { useEffect, useState } from 'react'
 
-
 import * as layoutReducer from '@/store/layoutReducer'
-// import { Link, useNavigate } from 'react-router-dom'
-// import { useAppDispatch, useAppSelector } from '@/hooks/redux'
 import * as pageReducer from '@/store/pageReducer'
-// import { siteInfo } from '@/data/site'
 
 
 
@@ -83,7 +79,7 @@ export const CreatePage = () => {
 
     const data = {
       ...fields,
-			coverPhtoto: {
+			coverPhoto: {
 				dataUrl: fields.coverPhotoDataUrl,
 				dataAlt: fields.coverPhotoAlt,
 				dataTitle: fields.coverPhotoTitle,
@@ -93,13 +89,6 @@ export const CreatePage = () => {
 		// console.log(data)
 		// redirect('/dashboard')
 		dispatch(pageReducer.AddPage(data))
-
-		// dispatch(layoutReducer.setIsOpenSnackbar(true, {
-		// 	severity: 'success',
-		// 	// title: 'Page',
-		// 	message: 'Page created successfull!!!',
-		// 	autoClose: false,
-		// }))
 	}
 
 
