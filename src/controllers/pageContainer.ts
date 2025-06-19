@@ -7,6 +7,7 @@ import Page from '@/models/pageModel'
 import * as pageDtos from '@/dtos/pageDtos'
 import * as fileService from '@/services/fileService'
 import { promisify } from 'node:util'
+import { isValidObjectId } from 'mongoose'
 
 
 // GET /api/pages
@@ -65,10 +66,11 @@ export const addPage: RequestHandler =  catchAsync(async (req, res, next) => {
 })
 
 // GET /api/pages/:pageId
-export const getPageById:RequestHandler = catchAsync(async (req, res, next) => {
+export const getPageByIdOrSlug:RequestHandler = catchAsync(async (req, res, next) => {
 	const pageId = req.params.pageId
+	const filter = (isValidObjectId(pageId)) ?  { _id: pageId } : { slug: pageId }
 
-	const page = await Page.findById(pageId)
+	const page = await Page.findOne(filter)
 	if(!page) return next(appError('page not found'))
 	
 	const responseData: ResponseData<PageDocument> = {
@@ -80,10 +82,13 @@ export const getPageById:RequestHandler = catchAsync(async (req, res, next) => {
 
 
 // PATCH /api/pages/:pageId
-export const updatePageById:RequestHandler = catchAsync(async (req, res, next) => {
-	const pageId = req.params.pageId
-
+export const updatePageByIdOrSlug:RequestHandler = catchAsync(async (req, res, next) => {
 	try {
+		const pageId = req.params.pageId
+		const filter = (isValidObjectId(pageId)) ?  { _id: pageId } : { slug: pageId }
+		const page = await Page.findOne(filter)
+		if(!page) return next(appError('no page found'))
+
 		if(req.body.coverPhoto) {
 			const { dataUrl, ...seoData } = req.body.coverPhoto
 
@@ -94,8 +99,8 @@ export const updatePageById:RequestHandler = catchAsync(async (req, res, next) =
 		}
 
 		const filteredBody = pageDtos.filterBodyForUpdatePage(req.body)
-		const page = await Page.findByIdAndUpdate(pageId, filteredBody, { new: true })
-		if(!page) return next(appError('page update failed'))
+		const updatedPage = await Page.findOneAndUpdate(filter, filteredBody, { new: true })
+		if(!updatedPage) return next(appError('page update failed'))
 
 		if(req.body.coverPhoto) {
 			req.body.coverPhoto = page.coverPhoto 	
@@ -107,7 +112,7 @@ export const updatePageById:RequestHandler = catchAsync(async (req, res, next) =
 
 		const responseData: ResponseData<PageDocument> = {
 			status: 'success',
-			data: page,
+			data: updatedPage,
 			message: 'page updated successful',
 		}
 
@@ -123,6 +128,67 @@ export const updatePageById:RequestHandler = catchAsync(async (req, res, next) =
 		if(typeof err === 'string') next(appError(err, 400, 'error'))
 	}
 })
+// export const updatePageByIdOrSlug: RequestHandler = catchAsync(async (req, res, next) => {
+// 	const pageId = req.params.pageId
+// 	const filter = isValidObjectId(pageId) ? { _id: pageId } : { slug: pageId }
+// 	const page = await Page.findOne(filter)
+// 	if (!page) return next(appError('no page found'))
+
+// 	let newCoverPhoto = null
+// 	let oldCoverPhoto = page.coverPhoto
+
+// 	try {
+// 		if (req.body.coverPhoto) {
+// 				const { dataUrl, ...seoData } = req.body.coverPhoto;
+// 				const { error, image } = await fileService.uploadFile(dataUrl, '/pages', seoData);
+// 				if (error) return next(appError(`Page coverPhoto upload error: ${error}`));
+
+// 				newCoverPhoto = image;
+// 				req.body.coverPhoto = image;
+// 		}
+
+// 		const filteredBody = pageDtos.filterBodyForUpdatePage(req.body);
+// 		const updatedPage = await Page.findOneAndUpdate(filter, filteredBody, { new: true });
+// 		if (!updatedPage) {
+// 				// If update failed but we uploaded a new image, clean it up
+// 				if (newCoverPhoto?.secure_url) {
+// 						await promisify(fileService.removeFile)(newCoverPhoto.secure_url);
+// 				}
+// 				return next(appError('page update failed'));
+// 		}
+
+// 		// Only delete old image if new image was successfully uploaded and saved
+// 		if (newCoverPhoto && oldCoverPhoto?.secure_url) {
+// 			try {
+// 				await promisify(fileService.removeFile)(oldCoverPhoto.secure_url);
+// 			} catch (err) {
+// 				console.error('Failed to delete old image:', err);
+// 				// Don't fail the request if deletion of old image fails
+// 			}
+// 		}
+
+// 		const responseData: ResponseData<PageDocument> = {
+// 			status: 'success',
+// 			data: updatedPage,
+// 			message: 'page updated successful',
+// 		}
+
+// 		res.status(200).json(responseData);
+
+// 	} catch (err: unknown) {
+// 		// Clean up newly uploaded image if error occurred
+// 		if (newCoverPhoto?.secure_url) {
+// 			try {
+// 				await promisify(fileService.removeFile)(newCoverPhoto.secure_url);
+// 			} catch (cleanupErr) {
+// 				console.error('Failed to cleanup new image after error:', cleanupErr);
+// 			}
+// 		}
+
+// 		if (err instanceof Error) next(appError(err.message, 400, 'error'));
+// 		if (typeof err === 'string') next(appError(err, 400, 'error'));
+// 	}
+// })
 
 
 // DELETE /api/pages/:pageId

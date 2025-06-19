@@ -10,6 +10,6 @@ router.route('/')
 	.post(pageContainer.addPage)
 
 router.route('/:pageId')
-	.get(pageContainer.getPageById)
-	.patch(pageContainer.updatePageById)
+	.get(pageContainer.getPageByIdOrSlug)
+	.patch(pageContainer.updatePageByIdOrSlug)
 	.delete(pageContainer.deletePageById)
