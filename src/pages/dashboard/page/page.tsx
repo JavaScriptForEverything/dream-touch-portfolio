@@ -103,9 +103,22 @@ export const Page = () => {
 
 
 
-	const changeHandler = (evt: React.ChangeEvent<HTMLSelectElement>) => {
-		setSelected(evt.target.value)
+	const selectHander = (evt: React.ChangeEvent<HTMLSelectElement>) => {
+		setSelected(evt.target.value) 	// update custom select's value
+
+		const limit = +evt.target.value 	
+		dispatch(pageReducer.setLimit(limit))			// update limit in state
+
+		dispatch(pageReducer.getPages()) 					// update pages based on limits
 	}
+
+	// const selectHandler = (evt: React.ChangeEvent<HTMLSelectElement>) => {
+	// 	const limit = +evt.target.value
+	// 	dispatch(blogReducer.setLimit(limit))
+
+	// 	dispatch(blogReducer.getBlogs())
+	// }
+
 
 	const searchHandler = async (evt: React.ChangeEvent<HTMLInputElement>) => {
 		const searchValue = evt.target.value.trim()
@@ -137,7 +150,7 @@ export const Page = () => {
 						<Select
 							options={options}
 							value={selected}
-							onChange={changeHandler}
+							onChange={selectHander}
 						/>
 					</div>
 					<Link to='/dashboard/page/create'>
