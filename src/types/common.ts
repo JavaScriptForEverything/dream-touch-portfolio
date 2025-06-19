@@ -90,6 +90,7 @@ type TextField = BaseField & {
 type FileField = BaseField & {
   type: 'file'
   multiple?: boolean 
+  accept?: string 
 }
 
 type TextareaField = BaseField & {

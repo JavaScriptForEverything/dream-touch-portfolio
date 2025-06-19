@@ -3,6 +3,24 @@ import { useAppDispatch, useAppSelector } from '@/hooks/redux'
 import * as layoutReducer from '@/store/layoutReducer'
 import { AlertErrorIcon, AlertInfoIcon, AlertSuccessIcon, AlertWarningIcon, CrossIcon } from '@/icons'
 
+
+
+
+/*
+
+dispatch(layoutReducer.setIsOpenSnackbar(true, {
+	severity: 'error',
+	title: 'Error',
+	message: error,
+	autoClose: false,
+	// closeTime: 999999999,
+}))
+
+*/
+
+
+
+
 const iconMap: Record<string, React.ReactNode> = {
   success: <AlertSuccessIcon />,
   info: <AlertInfoIcon />,

@@ -3,21 +3,14 @@ import type { Image } from '@/types/common'
 
 
 
-export interface PortfolioDocument {
+export interface PageDocument {
 	id: string
-	title: string
-	slug: string
-	slogan: string
-	content: string
-
-	coverPhoto: Image
-	images: Image[]
-	location: string
-	summary: string
-	description: string
-	isVisible: boolean
-
 	createdAt: string
+
+	slug: string 					// 'home' | 'about' 	| 'home/book'
+	slogan: string
+	sloganSummary: string
+	coverPhoto: Image
 }
 
 export interface InitialState {
@@ -26,8 +19,8 @@ export interface InitialState {
 	message: string
 	status: ResponseStatus
 
-	portfolio: null | PortfolioDocument
-	portfolios: PortfolioDocument[]
+	page: null | PageDocument
+	pages: PageDocument[]
 
 	total: number
 	count: number
@@ -36,8 +29,8 @@ export interface InitialState {
 }
 
 
-export type SetPortfolioPayload = { 
-	portfolios: PortfolioDocument[], 
+export type SetPagePayload = { 
+	pages: PageDocument[], 
 	total: number, 
 	count: number
 }

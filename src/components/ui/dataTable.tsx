@@ -1,9 +1,27 @@
-import type { DataTableRow, ListObject } from '@/types/common'
+import type { Image, ListObject } from '@/types/common'
 
 import { Action } from '@/components'
 import { Pagination, Checkbox, DataTableCheckbox } from '@/components/ui'
 import { useState } from 'react'
 
+export interface PagesDataTableRow {
+	id: string
+	createdAt: string
+	isVisible?: boolean
+
+	coverPhoto: Image
+	slug: string
+	slogan: string
+	sloganSummary: string
+}
+
+export const pagesDataTableHeaders = [
+	'Image',
+	'Slug',
+	'slogan',
+	'Summary',
+	'Date',
+]
 
 
 interface Props {
@@ -18,8 +36,8 @@ interface Props {
 	onDelete: (id: string) => void
 	onBulkDelete: (ids: string[]) => void
 
-	rowItems: DataTableRow[]
-	renderRow: (row: DataTableRow) => React.ReactNode
+	rowItems: PagesDataTableRow[]
+	renderRow: (row: PagesDataTableRow) => React.ReactNode
 
 	className?: React.ComponentProps<'div'>['className']
 }
@@ -109,7 +127,7 @@ export const DataTable = (props: Props) => {
 
 				<tbody className="divide-y divide-dashed divide-gray-300 *:text-gray-700 [&>tr>td]:px-3 [&>tr>td]:py-2 [&>tr>td]:truncate [&>tr>td]:max-w-48 ">
 
-					{rowItems.map( row => (
+					{rowItems.map( (row, index) => (
 						<tr key={row.id}>
 							<td>
 								<Checkbox 
@@ -117,7 +135,7 @@ export const DataTable = (props: Props) => {
 									checked={selectedIds.includes(row.id)}
 								/>
 							</td>
-							<td>{row.id}</td>
+							<td>{index + 1}</td>
 
 							{renderRow(row)}
 							{/* <td>{row.image}</td>
@@ -148,7 +166,7 @@ export const DataTable = (props: Props) => {
 
 								<Action 
 									id={row.id}
-									actionItems={getActionItems(row.id)}
+									actionItems={getActionItems(row.slug || row.id)}
 									onDelete={deleteHandler}
 								/>
 							</td>

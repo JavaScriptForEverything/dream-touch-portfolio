@@ -1,9 +1,10 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
-import type { AppDispatch } from '@/store'
-import type { InitialState, ProductDocument, SetProductsPayload } from '@/types/product'
+import type { AppDispatch, RootState } from '@/store'
+import type { InitialState, PageDocument, SetPagePayload } from '@/types/page'
 import { createSlice } from '@reduxjs/toolkit'
 import { catchAsyncDispatch } from '@/lib/utils'
-// import { ORIGIN } from '@/lib/config'
+import { ORIGIN } from '@/config/config'
+import { apiRequest } from '@/lib/api'
 // import { apiRequest } from '@/lib/api'
 
 
@@ -12,8 +13,8 @@ const initialState: InitialState = {
 	error: '',
 	message: '',
 	status: 'none',
-	product: null,
-	products: [],
+	page: null,
+	pages: [],
 
 	total: 0,
 	count: 0,
@@ -23,7 +24,7 @@ const initialState: InitialState = {
 
 
 export const { reducer, actions } = createSlice({
-  name: 'product',
+  name: 'page',
   initialState,
   reducers: {
 		request: (state: InitialState): InitialState => ({
@@ -57,47 +58,48 @@ export const { reducer, actions } = createSlice({
 		}),
 
 
-    setProduct: (state: InitialState, action: PayloadAction<ProductDocument>): InitialState => ({
+    setPage: (state: InitialState, action: PayloadAction<PageDocument>): InitialState => ({
       ...state,
 			loading: false,
 			error: '',
-			message: '',
-			product: action.payload
+			status: 'created',
+			message: 'page created successfully!!!',
+			page: action.payload
     }),
-    setProducts: (state: InitialState, action: PayloadAction<SetProductsPayload>): InitialState => ({
+    setPages: (state: InitialState, action: PayloadAction<SetPagePayload>): InitialState => ({
       ...state,
 			loading: false,
 			error: '',
 			message: '',
 
-			products: [ ...action.payload.products ],
+			pages: [ ...action.payload.pages ],
 			total: action.payload.total,
 			count: action.payload.count,
 			totalPages: Math.ceil(action.payload.total / (state.limit || 10)) 
     }),
-    addProduct: (state: InitialState, action: PayloadAction<ProductDocument>): InitialState => ({
-      ...state,
-			loading: false,
-			error: '',
-			message: '',
-			status: 'created',
-			products: [ ...state.products, action.payload ]
-    }),
-    removeProduct: (state: InitialState, action: PayloadAction<string>): InitialState => ({
+    // addPage: (state: InitialState, action: PayloadAction<PageDocument>): InitialState => ({
+    //   ...state,
+		// 	loading: false,
+		// 	error: '',
+		// 	message: '',
+		// 	status: 'created',
+		// 	pages: [ ...state.pages, action.payload ]
+    // }),
+    removePage: (state: InitialState, action: PayloadAction<string>): InitialState => ({
       ...state,
 			loading: false,
 			error: '',
 			message: '',
 			status: 'deleted',
-			products: state.products.filter(product => product.id !== action.payload)
+			pages: state.pages.filter(page => page.id !== action.payload)
     }),
-    updateProduct: (state: InitialState, { payload }: PayloadAction<ProductDocument>): InitialState => ({
+    updatePage: (state: InitialState, { payload }: PayloadAction<PageDocument>): InitialState => ({
       ...state,
 			loading: false,
 			error: '',
 			message: '',
 			status: 'updated',
-			products: state.products.map(product => product.id === payload.id ? { ...product, ...payload} : product)
+			pages: state.pages.map(page => page.id === payload.id ? { ...page, ...payload} : page)
     }),
 
   },
@@ -108,12 +110,13 @@ export const clearError = () => (dispatch: AppDispatch): void => {
 }
 
 
-// export const getProducts = () => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
+// // Method-1: Long version
+// export const getPages = () => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
 // 	dispatch(actions.request())
 
-// 	const limit = getState().product.limit
+// 	const limit = getState().page.limit
 
-// 	const res = await fetch(`${ORIGIN}/api/products?_sort=-createdAt&_limit=${limit}`, {
+// 	const res = await fetch(`${ORIGIN}/api/pages?_sort=-createdAt&_limit=${limit}`, {
 // 		method: 'GET',
 // 		headers: {
 // 			'Content-Type': 'application/json',
@@ -124,27 +127,70 @@ export const clearError = () => (dispatch: AppDispatch): void => {
 
 // 	const { status, message, data, count, total } = await res.json()
 // 	if(status !=='success') dispatch(actions.failed(message))
-// 	else dispatch(actions.setProducts({ products: data, count, total }))
+// 	else dispatch(actions.setPages({ pages: data, count, total }))
 
 // }, actions.failed)
 
 
-// export const getProducts = () => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
+// Method-2: Short version
+export const getPages = () => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
+	dispatch(actions.request())
+
+	const limit = getState().page.limit;
+	const { status, message, data, count, total } = await apiRequest<any>( `/api/pages?_sort=-createdAt&_limit=${limit}`)
+
+	if (status !== "success") dispatch(actions.failed(message))
+	else dispatch(actions.setPages({ pages: data, count: count, total: total }))
+
+}, actions.failed)
+
+
+export const AddPage = (body: any) => catchAsyncDispatch( async (dispatch: AppDispatch): Promise<void> => {
+	dispatch(actions.request())
+
+	const { status, message, data: page } = await apiRequest<any>('/api/pages', 'POST', body)
+	console.log({ message, status })
+
+	if (status === "success") dispatch(actions.setPage(page))
+	else dispatch(actions.failed(message))
+
+}, actions.failed)
+
+
+export const removePage = (pageId: string) => catchAsyncDispatch( async (dispatch: AppDispatch): Promise<void> => {
+	dispatch(actions.request())
+
+	const { status, message  } = await apiRequest<any>(`/api/pages/${pageId}`, 'DELETE')
+
+	if (status !== "success") dispatch(actions.failed(message))
+	else dispatch(actions.removePage(pageId))
+
+}, actions.failed)
+
+// export const removePage = (pageId: string) => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
 // 	dispatch(actions.request())
 
-// 	const limit = getState().product.limit;
-// 	const { status, message, data, count, total } = await apiRequest<any>( `/api/products?_sort=-createdAt&_limit=${limit}`)
+// 	const res = await fetch(`${ORIGIN}/api/pages/${pageId}`, {
+// 		method: 'DELETE',
+// 		headers: {
+// 			'Content-Type': 'application/json',
+// 			// 'Authorization': `Bearer ${getState().user.authToken}`
+// 		},
+// 		credentials: 'include'
+// 	})
 
-// 	if (status !== "success") dispatch(actions.failed(message))
-// 	else dispatch(actions.setProducts({ products: data, count: count, total: total }))
+// 	const { status, message, } = await res.json()
+// 	if(status ==='success') dispatch(actions.removePage(pageId))
+// 	else dispatch(actions.failed(message))
 
 // }, actions.failed)
+
 
 
 // export const getProduct = (idOrSlug: string) => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
 // 	dispatch(actions.request())
 
-// 	const res = await fetch(`${ORIGIN}/api/products/${idOrSlug}`, {
+// 	const res = await fetch(`${ORIGIN}/api/pages/${idOrSlug}`, {
 // 		method: 'GET',
 // 		headers: {
 // 			'Content-Type': 'application/json',
@@ -164,7 +210,7 @@ export const clearError = () => (dispatch: AppDispatch): void => {
 // export const addProduct = (body: any) => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
 // 	dispatch(actions.request())
 
-// 	const res = await fetch(`${ORIGIN}/api/products`, {
+// 	const res = await fetch(`${ORIGIN}/api/pages`, {
 // 		method: 'POST',
 // 		headers: {
 // 			'Content-Type': 'application/json',
@@ -184,7 +230,7 @@ export const clearError = () => (dispatch: AppDispatch): void => {
 // export const updateProductByIdOrSlug = (idOrSlug: string, body: any) => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
 // 	dispatch(actions.request())
 
-// 	const res = await fetch(`${ORIGIN}/api/products/${idOrSlug}`, {
+// 	const res = await fetch(`${ORIGIN}/api/pages/${idOrSlug}`, {
 // 		method: 'PATCH',
 // 		headers: {
 // 			'Content-Type': 'application/json',
@@ -204,7 +250,7 @@ export const clearError = () => (dispatch: AppDispatch): void => {
 // export const deleteProductById = (id: string) => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
 // 	dispatch(actions.request())
 
-// 	const res = await fetch(`${ORIGIN}/api/products/${id}`, {
+// 	const res = await fetch(`${ORIGIN}/api/pages/${id}`, {
 // 		method: 'DELETE',
 // 		headers: {
 // 			'Content-Type': 'application/json',
@@ -223,7 +269,7 @@ export const clearError = () => (dispatch: AppDispatch): void => {
 // export const searchProductBy = (search: string, fields: string[]) => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
 // 	// dispatch(actions.request())
 
-// 	const res = await fetch(`${ORIGIN}/api/products?_sort=-createdAt&_limit=10&_search=${search},${fields.join(',')}`, {
+// 	const res = await fetch(`${ORIGIN}/api/pages?_sort=-createdAt&_limit=10&_search=${search},${fields.join(',')}`, {
 // 		method: 'GET',
 // 		headers: {
 // 			'Content-Type': 'application/json',
@@ -234,7 +280,7 @@ export const clearError = () => (dispatch: AppDispatch): void => {
 
 // 	const { count, total, data } = await res.json()
 // 	// if(status !=='success') dispatch(actions.failed(message))
-// 	dispatch(actions.setProducts({ products: data, count, total }))
+// 	dispatch(actions.setProducts({ pages: data, count, total }))
 
 // }, actions.failed)
 
@@ -242,8 +288,8 @@ export const clearError = () => (dispatch: AppDispatch): void => {
 // export const paginate = (page: number) => catchAsyncDispatch( async (dispatch: AppDispatch, getState: () => RootState): Promise<void> => {
 // 	// dispatch(actions.request())
 
-// 	const limit = getState().product.limit
-// 	const res = await fetch(`${ORIGIN}/api/products?_sort=-createdAt&_page=${page}&_limit=${limit}`, {
+// 	const limit = getState().page.limit
+// 	const res = await fetch(`${ORIGIN}/api/pages?_sort=-createdAt&_page=${page}&_limit=${limit}`, {
 // 		method: 'GET',
 // 		headers: {
 // 			'Content-Type': 'application/json',
@@ -254,7 +300,7 @@ export const clearError = () => (dispatch: AppDispatch): void => {
 
 // 	const { count, total, data } = await res.json()
 // 	// if(status !=='success') dispatch(actions.failed(message))
-// 	dispatch(actions.setProducts({ products: data, count, total }))
+// 	dispatch(actions.setProducts({ pages: data, count, total }))
 // }, actions.failed)
 
 

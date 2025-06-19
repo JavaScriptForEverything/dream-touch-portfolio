@@ -167,7 +167,7 @@ export const Select = (props: SelectProps) => {
       </button>
 
       {open && (
-        <ul className="absolute z-10 mt-1 w-full rounded border border-gray-300 bg-white shadow-md">
+        <ul className="divide-y divide-slate-100 absolute z-10 mt-1 w-full rounded border border-gray-300 bg-white shadow-md">
           {options.map((option) => (
             <li key={option.value}
 

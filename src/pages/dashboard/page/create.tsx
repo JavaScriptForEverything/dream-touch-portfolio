@@ -1,14 +1,15 @@
 import { Button, Input, Select, Textarea } from '@/components/ui'
 import { formFields } from '@/data/formData/dashboard/page/create'
+import { useAppDispatch, useAppSelector } from '@/hooks/redux'
 import { CloudUploadIcon, LoadingIcon } from '@/icons'
 import { isFormValid, readAsDataURL } from '@/lib/utils'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 
+import * as layoutReducer from '@/store/layoutReducer'
 // import { Link, useNavigate } from 'react-router-dom'
 // import { useAppDispatch, useAppSelector } from '@/hooks/redux'
-// import * as layoutReducer from '@/store/layoutReducer'
-// import * as userReducer from '@/store/userReducer'
+import * as pageReducer from '@/store/pageReducer'
 // import { siteInfo } from '@/data/site'
 
 
@@ -27,22 +28,41 @@ const initialFields = {
   slogan: '',
   sloganSummary: '',
   coverPhotoDataUrl: '',
-  coverPhotoAlt: '',
-  coverPhotoTitle: '',
+  // coverPhotoAlt: '',
+  // coverPhotoTitle: '',
 }
 
 
 export const CreatePage = () => {
-	// const { error, loading, status, message, isAuthenticated } = useAppSelector( state => state.user)
-	const loading = false
+	const dispatch = useAppDispatch()
+	const { error, status, message, loading } = useAppSelector( state => state.page)
 
-	const [ fields, setFields] = useState<FormFields>(initialFields)
-	const [ fieldsError, setFieldsError] = useState<FormFields>(initialFields)
+	const [ fields, setFields] = useState<Partial<FormFields>>(initialFields)
+	const [ fieldsError, setFieldsError] = useState<Partial<FormFields>>(initialFields)
 
 
-	// const changeHandler = (name: string) => (evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-	// 	setFields({ ...fields, [name]: evt.target.value })
-	// }
+	useEffect(() => {
+		if(error) {
+			dispatch(layoutReducer.setIsOpenSnackbar(true, {
+				severity: 'error',
+				// title: 'Error',
+				message: error,
+				autoClose: false,
+				// closeTime: 999999999,
+			}))
+		}
+	},[error])
+
+	useEffect(() => {
+		if(status === 'created') {
+			dispatch(layoutReducer.setIsOpenSnackbar(true, {
+				severity: 'success',
+				// title: 'Login',
+				message,
+				autoClose: false,
+			}))
+		}
+	},[status, message])
 
 	const changeHandler = (name: string) => async (evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { files, value, multiple } = evt.target as HTMLInputElement
@@ -59,8 +79,7 @@ export const CreatePage = () => {
 	const submitHandler = (evt: React.FormEvent<HTMLFormElement>) => {
 		evt.preventDefault()
 
-		// if(!isFormValid(fields, setFieldsError)) return
-
+		if(!isFormValid(fields, setFieldsError)) return
 
     const data = {
       ...fields,
@@ -71,9 +90,16 @@ export const CreatePage = () => {
 			}
     }
 
-		console.log(data)
+		// console.log(data)
 		// redirect('/dashboard')
-		// dispatch(userReducer.registerUser(data))
+		dispatch(pageReducer.AddPage(data))
+
+		// dispatch(layoutReducer.setIsOpenSnackbar(true, {
+		// 	severity: 'success',
+		// 	// title: 'Page',
+		// 	message: 'Page created successfull!!!',
+		// 	autoClose: false,
+		// }))
 	}
 
 
@@ -90,7 +116,7 @@ export const CreatePage = () => {
 							key={key}
 							// className='mb-4' 
 							// className='mb-4 col-span-3' 
-							className={`mb-4 ${field.type === 'textarea' ?  'col-span-1 md:col-span-3' : '' }`}
+							className={`mb-4 ${field.type === 'textarea' ? 'col-span-1 md:col-span-3' : '' }`}
 						>
 							<label className={`block mb-1 text-sm font-bold text-gray-700
 								${field.required ? " after:content-['*'] after:text-red-500 after:ml-1 " : ' '}
@@ -109,7 +135,7 @@ export const CreatePage = () => {
 							) : field.type === 'select' ? (
 								<Select
 									options={field.options}
-									value={fields[key as keyof FormFields]}
+									value={fields[key as keyof FormFields] || ''}
 									onChange={changeHandler(key)}
 								/>
 							) : field.type === 'file' ? (
@@ -117,6 +143,9 @@ export const CreatePage = () => {
 									type={field.type}
 									placeholder={field.placeholder}
 									onChange={changeHandler(key)}
+									multiple={field.multiple}
+									accept={field.accept}
+									
 									// value={fields[key as keyof FormFields]} 		// Don't set value on files, which throw error
 								/>
 							) : (

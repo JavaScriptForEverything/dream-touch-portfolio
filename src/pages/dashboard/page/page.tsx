@@ -1,10 +1,11 @@
 import type { ListObject } from '@/types/common'
 import { DeleteOutlinedIcon, EditIcon, EyeOpenIcon, PlusIcon } from '@/icons'
-import { Button, DataTable, Search, Select } from '@/components/ui'
+import { Button, DataTable, pagesDataTableHeaders, Search, Select } from '@/components/ui'
 import * as layoutReducer from '@/store/layoutReducer'
-import { useAppDispatch } from '@/hooks/redux'
+import * as pageReducer from '@/store/pageReducer'
+import { useAppDispatch, useAppSelector } from '@/hooks/redux'
 import { formatISODate } from '@/lib/utils'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 
@@ -40,82 +41,6 @@ const getActionItems = (slug: string): ListObject[] => ([
 ])
 
 
-const tableHeaders: string[] = [
-	'Image',
-	'Title',
-	'Location',
-	'Date',
-]
-
-
-const rowItems: DataTableRow[] = [
-	{
-		id: '1', 									// SL
-
-		image: 
-		<div className="flex justify-center items-center">
-			<img src='/public/vite.svg' />
-		</div>
-		,
-		title: 'title goes ',
-		// description: 'layoutReducer HTMLInputElement',
-		// content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum commodi ducimus fuga consequuntur? Autem ipsa, animi cum aperiam ea, assumenda mollitia excepturi commodi minima necessitatibus ducimus voluptatum consequatur natus facere',
-		location: '30 dhaka, badda',
-		createdAt: formatISODate( new Date().toISOString() ),
-
-		isVisible: false, 				// Status
-	}, 
-	{
-		id: '2', 									// SL
-
-		image: 
-		<div className="flex justify-center items-center">
-			<img src='/public/vite.svg' />
-		</div>
-		,
-		title: 'title goes ',
-		// description: 'layoutReducer HTMLInputElement',
-		// content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum commodi ducimus fuga consequuntur? Autem ipsa, animi cum aperiam ea, assumenda mollitia excepturi commodi minima necessitatibus ducimus voluptatum consequatur natus facere',
-		location: '30 dhaka, badda',
-		createdAt: formatISODate( new Date().toISOString() ),
-
-		isVisible: true, 					// Status
-	}, 
-	{
-		id: '3',
-
-		image: 
-		<div className="flex justify-center items-center">
-			<img src='/public/vite.svg' />
-		</div>
-		,
-		title: 'title goes ',
-		// description: 'layoutReducer HTMLInputElement',
-		// content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum commodi ducimus fuga consequuntur? Autem ipsa, animi cum aperiam ea, assumenda mollitia excepturi commodi minima necessitatibus ducimus voluptatum consequatur natus facere',
-		location: '30 dhaka, badda',
-		createdAt: formatISODate( new Date().toISOString() ),
-
-		isVisible: true, 					// Status
-	}, 
-	{
-		id: '4',
-
-
-		image: 
-		<div className="flex justify-center items-center">
-			<img src='/public/vite.svg' />
-		</div>
-		,
-		title: 'title goes ',
-		// description: 'layoutReducer HTMLInputElement',
-		// content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum commodi ducimus fuga consequuntur? Autem ipsa, animi cum aperiam ea, assumenda mollitia excepturi commodi minima necessitatibus ducimus voluptatum consequatur natus facere',
-		location: '30 dhaka, badda',
-		createdAt: formatISODate( new Date().toISOString() ),
-
-		isVisible: false, 				// Status
-	}, 
-]
- 
 const options = [
 	{ label: "Show 10", value: "10" },
 	{ label: "Show 25", value: "25" },
@@ -127,14 +52,40 @@ const options = [
 
 export const Page = () => {
 	const dispatch = useAppDispatch()
+	const { error, status, pages, totalPages, total } = useAppSelector( state => state.page)
 
-	const deleteHandler = (_id: string) => {
-		dispatch(layoutReducer.setIsOpenSnackbar(true, {
-			severity: 'success',
-			title: 'Deletion',
-			message: 'portfolio deletion successfull!!!',
-			autoClose: true,
-		}))
+  const [selected, setSelected] = useState("one")
+
+
+	useEffect(() => {
+		dispatch(pageReducer.getPages())
+	}, [])
+
+	useEffect(() => {
+		if(error) {
+			dispatch(layoutReducer.setIsOpenSnackbar(true, {
+				severity: 'error',
+				// title: 'Error',
+				message: error,
+				autoClose: false,
+				// closeTime: 999999999,
+			}))
+		}
+	},[error])
+	useEffect(() => {
+		if(status === 'deleted') {
+			dispatch(layoutReducer.setIsOpenSnackbar(true, {
+				severity: 'error',
+				// title: 'Deletation',
+				message: 'page deletion successfull!!!',
+				autoClose: false,
+			}))
+		}
+	},[status])
+
+
+	const deleteHandler = (id: string) => {
+		dispatch(pageReducer.removePage(id))
 	}
 
 	const bulkDeleteHandler = (ids: string[]) => {
@@ -150,8 +101,10 @@ export const Page = () => {
 	}
 
 
-  const [selected, setSelected] = useState("one")
 
+	const changeHandler = (evt: React.ChangeEvent<HTMLSelectElement>) => {
+		setSelected(evt.target.value)
+	}
 
 
 	return (
@@ -168,8 +121,8 @@ export const Page = () => {
 					<div className="w-60">
 						<Select
 							options={options}
-							selected={selected}
-							onChange={setSelected}
+							value={selected}
+							onChange={changeHandler}
 						/>
 					</div>
 					<Link to='/dashboard/page/create'>
@@ -185,13 +138,15 @@ export const Page = () => {
 			<div className="mt-8">
 				<DataTable 
 					className='bg-white'
-					headers={tableHeaders}
+					headers={pagesDataTableHeaders}
 
 					getActionItems={getActionItems}
 
 					pagination={{
-						count: 15,
-						total: 100,
+						// count: 5,
+						// total: 100,
+						count: totalPages,
+						total: total,
 						onPageChange(page) {
 							console.log('call api here', { page })
 							console.log({ page })
@@ -200,15 +155,14 @@ export const Page = () => {
 					onDelete={deleteHandler}
 					onBulkDelete={bulkDeleteHandler}
 
-					rowItems={rowItems}
+					rowItems={pages}
 					renderRow={(row) => (
 						<>
-							<td>{row.image}</td>
-							<td>{row.title}</td>
-							{/* <td>{row.description}</td> */}
-							{/* <td>{row.content}</td> */}
-							<td>{row.location}</td>
-							<td>{row.createdAt}</td>
+							<td className='flex justify-center'><img src={row.coverPhoto?.secure_url} /></td>
+							<td>{row.slug}</td>
+							<td>{row.slogan}</td>
+							<td>{row.sloganSummary}</td>
+							<td>{formatISODate(row.createdAt)}</td>
 						</>
 					)}
 				/>
