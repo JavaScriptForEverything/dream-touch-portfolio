@@ -9,6 +9,7 @@ interface Page {
 	sloganSummary: string
 
 	coverPhoto: Image
+	isVisible: boolean
 }
 
 export interface PageDocument extends Document, Page {

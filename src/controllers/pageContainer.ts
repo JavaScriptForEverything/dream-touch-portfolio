@@ -27,6 +27,7 @@ export const getPages: RequestHandler = catchAsync( async (req, res, next) => {
 
 // POST 	/api/pages
 export const addPage: RequestHandler =  catchAsync(async (req, res, next) => {
+	console.log(req.body.coverPhoto)
 
 	try {
 		if(req.body.coverPhoto) {
@@ -45,6 +46,7 @@ export const addPage: RequestHandler =  catchAsync(async (req, res, next) => {
 		const responseData: ResponseData = {
 			status: 'success',
 			data: page,
+			message: 'page created successful',
 		}
 			
 		res.status(201).json( responseData )
@@ -105,7 +107,8 @@ export const updatePageById:RequestHandler = catchAsync(async (req, res, next) =
 
 		const responseData: ResponseData<PageDocument> = {
 			status: 'success',
-			data: page
+			data: page,
+			message: 'page updated successful',
 		}
 
 		res.status(200).json( responseData )
@@ -133,7 +136,8 @@ export const deletePageById:RequestHandler = catchAsync(async (req, res, next) =
 		status: 'success',
 		data: page
 	}
-	res.status(204).json( responseData )
+	res.status(200).json( responseData )
+	// res.status(204).json( responseData ) 	// if use 404, then api call .json() failes
 })
 
 

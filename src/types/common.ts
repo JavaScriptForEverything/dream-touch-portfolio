@@ -1,5 +1,5 @@
 import type { NextFunction, Request, RequestHandler, Response } from 'express'
-import { Gender, PaymentStatus, PaymentTypes, PolicyType, Roles } from '@/types/constants'
+import { Gender, Roles } from '@/types/constants'
 
 
 export type AsyncRequestHandler = ( req: Request, res: Response, next: NextFunction) => Promise<void>
@@ -55,11 +55,7 @@ export type Role = (typeof Roles)[keyof typeof Roles] 						// => type Role = "v
 
 export type GenderType = (typeof Gender)[keyof typeof Gender]
 
-export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
-export type PaymentType = (typeof PaymentTypes)[keyof typeof PaymentTypes]
 
 
 
-export type PolicyType = (typeof PolicyType)[keyof typeof PolicyType]
-// export type PolicyType = 'faq' | 'privary' | 'terms-and-conditions'
 

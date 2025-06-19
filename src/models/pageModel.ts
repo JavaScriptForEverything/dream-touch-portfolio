@@ -59,6 +59,10 @@ const pageSchema = new Schema<PageDocument>({
 		description: String,
 		caption: String,
 	},
+	isVisible: {
+		type: Boolean,
+		default: false,
+	},
 
 }, {
 	timestamps: true,
@@ -84,7 +88,7 @@ pageSchema.pre(/find*/, function(this: PageDocument, next) {
 })
 
 
-pageSchema.index({ slug: 1 }, { unique: true });
+// pageSchema.index({ slug: 1 }, { unique: true });
 
 pageSchema.plugin(sanitizeSchema)
 export const Page = model<PageDocument, PageModel>(Collection.Page, pageSchema)

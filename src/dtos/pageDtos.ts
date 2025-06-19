@@ -6,6 +6,7 @@ const commonAllowedFields = [
 	'slogan',
 	'sloganSummary',
 	'coverPhoto',
+	'isVisible',
 ]
 
 
