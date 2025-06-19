@@ -54,7 +54,8 @@ export const Page = () => {
 	const dispatch = useAppDispatch()
 	const { error, status, pages, totalPages, total } = useAppSelector( state => state.page)
 
-  const [selected, setSelected] = useState("one")
+  const [selected, setSelected] = useState('one')
+  const [searchQuery, setSearchQuery] = useState('')
 
 
 	useEffect(() => {
@@ -106,6 +107,16 @@ export const Page = () => {
 		setSelected(evt.target.value)
 	}
 
+	const searchHandler = async (evt: React.ChangeEvent<HTMLInputElement>) => {
+		const searchValue = evt.target.value.trim()
+		// dispatch(orderReducer.setLimit(limit))
+
+		setSearchQuery(searchValue)
+		dispatch(pageReducer.searchBy(searchValue, ['slug, slogan']))
+	}
+
+
+
 
 	return (
 		<div>
@@ -116,7 +127,11 @@ export const Page = () => {
 
 				<div className="flex items-center gap-2">
 					<div className="w-60">
-						<Search />
+						<Search 
+							placeholder='by slug/slogan ...'
+							onChange={searchHandler}
+							value={searchQuery}
+						/>
 					</div>
 					<div className="w-60">
 						<Select

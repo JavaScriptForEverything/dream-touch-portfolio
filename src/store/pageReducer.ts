@@ -3,9 +3,8 @@ import type { AppDispatch, RootState } from '@/store'
 import type { InitialState, PageDocument, SetPagePayload } from '@/types/page'
 import { createSlice } from '@reduxjs/toolkit'
 import { catchAsyncDispatch } from '@/lib/utils'
-import { ORIGIN } from '@/config/config'
+// import { ORIGIN } from '@/config/config'
 import { apiRequest } from '@/lib/api'
-// import { apiRequest } from '@/lib/api'
 
 
 const initialState: InitialState = {
@@ -192,6 +191,18 @@ export const getPageByIdOrSlug = (pageId: string) => catchAsyncDispatch( async (
 
 }, actions.failed)
 
+
+
+
+export const searchBy = (search: string, fields: string[]) => catchAsyncDispatch( async (dispatch: AppDispatch): Promise<void> => {
+	dispatch(actions.request())
+
+	const { status, message, data: pages, count, total } = await apiRequest<any>(`/api/pages/?_search=${search},${fields.join(',')}`)
+
+	if (status === "success") dispatch(actions.setPages({ pages, count, total }))
+	else dispatch(actions.failed(message))
+
+}, actions.failed)
 
 
 
